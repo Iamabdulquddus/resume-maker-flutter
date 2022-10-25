@@ -4,3 +4,5 @@ String onboarding3 = 'assets/images/onboarding3.jpg';
 
 String selectionScreen = 'assets/images/selection_screen.JPG';
 String resumeBro = 'assets/images/Resume-bro.png';
+
+String googleLogo = 'assets/icons/google.png';

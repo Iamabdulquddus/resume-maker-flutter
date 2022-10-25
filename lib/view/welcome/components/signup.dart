@@ -2,12 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'dart:async';
-import '../../constants/images.dart';
-import '../../constants/style.dart';
+import '../../../constants/images.dart';
+import '../../../constants/style.dart';
 import 'dart:ui' as ui;
-
-import '../../widgets/textformfeild.dart';
-import '../home/home.dart';
+import '../../../widgets/textformfeild.dart';
+import '../../home/home.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
@@ -84,7 +83,7 @@ class _SignupPageState extends State<SignupPage> with TickerProviderStateMixin {
                             });
                           }, maxLines: 1,
                         ),
-                        SizedBox(
+                         SizedBox(
                           height: 10,
                         ),
                         CustomTextFormFeild(
@@ -178,6 +177,7 @@ class _SignupPageState extends State<SignupPage> with TickerProviderStateMixin {
                             ),
                           ),
                         ),
+
                       ],
                     ),
                   ),

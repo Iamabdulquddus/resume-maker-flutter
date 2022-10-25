@@ -19,6 +19,8 @@ dependencies:
   syncfusion_flutter_datepicker: ^20.3.50
   intl: ^0.17.0 #dateformate
   dots_indicator: ^2.1.0
+  font_awesome_flutter: ^10.2.1
+  bubble_bottom_bar: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -34,6 +36,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/icons/
 
 
   # fonts:
