@@ -3,12 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:resumemaker/view/home/home.dart';
 import 'dart:async';
-import '../../constants/images.dart';
-import '../../constants/style.dart';
-import '../../responsive.dart';
+import '../../../constants/images.dart';
+import '../../../constants/style.dart';
+import '../../../responsive.dart';
 import 'dart:ui' as ui;
 
-import '../../widgets/textformfeild.dart';
+import '../../../widgets/textformfeild.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
