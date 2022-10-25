@@ -1,9 +1,10 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants/images.dart';
-import '../../constants/style.dart';
-import 'components/onboarding_picture.dart';
+import '../../../constants/images.dart';
+import '../../../constants/style.dart';
+import 'login_signup_selection.dart';
+import 'onboarding_picture.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({Key? key}) : super(key: key);
@@ -20,6 +21,7 @@ List<Widget> pages = [
   OnBoardingPicture(image: onboarding1, text: '',),
   OnBoardingPicture(image: onboarding2, text: '',),
   OnBoardingPicture(image: onboarding3, text: '',),
+  SelectionScreen(),
 ];
 
 class _OnBoardingState extends State<OnBoarding> {
