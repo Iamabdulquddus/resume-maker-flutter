@@ -3,6 +3,9 @@ import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:resumemaker/constants/style.dart';
 
+import '../new_resume/new_resume.dart';
+import 'components/home_list_item.dart';
+
 
 
 class Home extends StatefulWidget {
@@ -13,11 +16,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late int currentIndex;
+  List<Widget> tabItems = [
+    HomeListItem(),
+    Center(child: Text("2")),
+    Center(child: Text("3")),
+  ];
+
+  int? currentIndex;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     currentIndex = 0;
   }
@@ -34,8 +42,13 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: const Text('Resume Maker'),
       ),
+      body: Center(
+        child: tabItems[currentIndex!],
+      ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context)=> NewResume()));
+        },
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
@@ -71,12 +84,12 @@ class _HomeState extends State<Home> {
               activeIcon: Icon(
                 Icons.download,
               ),
-              title: Text("Downloads")),
+              title: Text("Downloads"),),
           BubbleBottomBarItem(
               backgroundColor: primary,
               icon: FaIcon(FontAwesomeIcons.info, color: Colors.black,),
               activeIcon:  FaIcon(FontAwesomeIcons.info, ),
-              title: Text("About")),
+              title: Text("About"),),
         ],
       ),
     );

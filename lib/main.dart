@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Palette.myColors,
       ),
-      home:  Home(),
+      home:  SafeArea(child: Home()),
     );
   }
 }
