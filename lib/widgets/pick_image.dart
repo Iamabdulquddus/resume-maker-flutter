@@ -54,6 +54,7 @@ class _PickImageState extends State<PickImage> {
     return Container(
       padding: EdgeInsets.all(10),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GestureDetector(
             onTap: () {
@@ -76,8 +77,8 @@ class _PickImageState extends State<PickImage> {
                 color: lightColor,
                 borderRadius: BorderRadius.circular(20),
               ),
-              width: Responsive.isMobile(context) ? size.width/2.3 : 300,
-              height: Responsive.isMobile(context) ? size.width/2.3 : 300,
+              width:  150,
+              height:  150,
               child: pickedFile != null
                   ? ClipRRect(
                       borderRadius: BorderRadius.circular(20),
