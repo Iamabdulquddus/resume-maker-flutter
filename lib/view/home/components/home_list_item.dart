@@ -47,9 +47,10 @@ class HomeListItem extends StatelessWidget {
                             children: [
                               Text(
                                 'Muhammad Abdul Quddus',
-                                style: MyTextStyles.sectionTitleSmallPrimary,
+                                style: MyTextStyles.headingLargePrimary,
                                 overflow: TextOverflow.ellipsis,
                               ),
+                              SizedBox(height: 5,),
                               Text(
                                 'Angelayu@gmail.com',
                                 style: MyTextStyles.headingxSmallGrey,

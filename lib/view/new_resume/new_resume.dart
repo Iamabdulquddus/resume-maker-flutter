@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:resumemaker/constants/style.dart';
 
+import '../feilds/education.dart';
+import '../feilds/experience.dart';
+import '../feilds/personal_details.dart';
 import '../home/home.dart';
+import 'components/more_sections.dart';
+import 'components/profile_entity.dart';
 
 class NewResume extends StatefulWidget {
   const NewResume({Key? key}) : super(key: key);
@@ -18,9 +23,9 @@ class _NewResumeState extends State<NewResume> {
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>Home() ));
+              Navigator.of(context).pop();
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_rounded,
               color: wWhiteColor,
             ),
@@ -29,7 +34,6 @@ class _NewResumeState extends State<NewResume> {
             "Profile",
             style: MyTextStyles.headingxSmallBoldWhite,
           ),
-
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -43,39 +47,66 @@ class _NewResumeState extends State<NewResume> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GridView.count(
-                  padding: EdgeInsets.all(20),
+                  physics: BouncingScrollPhysics(),
+                  padding: const EdgeInsets.all(20),
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 20,
                   crossAxisCount: 3,
                   shrinkWrap: true,
-                  children: const [
+                  children: [
                     ProfileEntity(
                       icon: Icons.person,
                       text: 'Personal Details',
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => PersonalDetails()));
+                      },
                     ),
                     ProfileEntity(
                       icon: Icons.person,
                       text: 'Education',
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Education()));
+                      },
                     ),
                     ProfileEntity(
                       icon: Icons.person,
                       text: 'Experience',
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Experience()));
+                      },
                     ),
                     ProfileEntity(
                       icon: Icons.person,
                       text: 'Skills',
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => NewResume()));
+                      },
                     ),
                     ProfileEntity(
                       icon: Icons.person,
                       text: 'Objectives',
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => NewResume()));
+                      },
                     ),
                     ProfileEntity(
                       icon: Icons.person,
                       text: 'Reference',
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => NewResume()));
+                      },
                     ),
                   ],
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
@@ -83,40 +114,58 @@ class _NewResumeState extends State<NewResume> {
                     style: MyTextStyles.headingSmallPrimary,
                   ),
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    children: [
-                      MoreSections(
-                        icon: Icons.person,
-                        text: 'Personal Details',
-                      ),
-                      MoreSections(
-                        icon: Icons.person,
-                        text: 'Education',
-                      ),
-                      MoreSections(
-                        icon: Icons.person,
-                        text: 'Experience',
-                      ),
-                      MoreSections(
-                        icon: Icons.person,
-                        text: 'Skills',
-                      ),
-                      MoreSections(
-                        icon: Icons.person,
-                        text: 'Objectives',
-                      ),
-                      MoreSections(
-                        icon: Icons.person,
-                        text: 'Reference',
-                      ),
-                    ],
+                  child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: Column(
+                      children: const [
+                        MoreSections(
+                          icon: Icons.person,
+                          text: 'Personal Details',
+                        ),
+                        MoreSections(
+                          icon: Icons.person,
+                          text: 'Education',
+                        ),
+                        MoreSections(
+                          icon: Icons.person,
+                          text: 'Experience',
+                        ),
+                        MoreSections(
+                          icon: Icons.person,
+                          text: 'Skills',
+                        ),
+                        MoreSections(
+                          icon: Icons.person,
+                          text: 'Objectives',
+                        ),
+                        MoreSections(
+                          icon: Icons.person,
+                          text: 'Reference',
+                        ),
+                        MoreSections(
+                          icon: Icons.person,
+                          text: 'Reference',
+                        ),
+                        MoreSections(
+                          icon: Icons.person,
+                          text: 'Reference',
+                        ),
+                        MoreSections(
+                          icon: Icons.person,
+                          text: 'Reference',
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -127,7 +176,7 @@ class _NewResumeState extends State<NewResume> {
                         ),
                         child: Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.remove_red_eye_rounded,
                               color: primary,
                             ),
@@ -138,27 +187,27 @@ class _NewResumeState extends State<NewResume> {
                           ],
                         ),
                       ),
-                      SizedBox(width: 10,),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Expanded(
-                        child: SizedBox(
-                          child: TextButton(
-                            onPressed: () {},
-                            style: TextButton.styleFrom(
+                        child: TextButton(
+                          onPressed: () {},
+                          style: TextButton.styleFrom(
                               backgroundColor: primary,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.remove_red_eye_rounded,
-                                  color: wWhiteColor,
-                                ),
-                                Text(
-                                  "  Generate CV",
-                                  style: MyTextStyles.subHeadingBoldWhite,
-                                )
-                              ],
-                            ),
+                              foregroundColor: Colors.white),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.remove_red_eye_rounded,
+                                color: wWhiteColor,
+                              ),
+                              Text(
+                                "  Generate CV",
+                                style: MyTextStyles.subHeadingBoldWhite,
+                              )
+                            ],
                           ),
                         ),
                       ),
@@ -168,96 +217,6 @@ class _NewResumeState extends State<NewResume> {
               ],
             ),
           ),
-        ),
-
-      ),
-    );
-  }
-}
-
-class ProfileEntity extends StatelessWidget {
-  const ProfileEntity({Key? key, required this.icon, required this.text})
-      : super(key: key);
-  final IconData icon;
-  final String text;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-          color: wWhiteColor,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              spreadRadius: 1,
-              blurRadius: 2,
-              offset: Offset(1, 2),
-            ),
-          ]),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            color: primary,
-            size: 35,
-          ),
-          // SizedBox(height: 10,),
-          Text(
-            text,
-            style: MyTextStyles.subHeadingBoldGrey,
-            overflow: TextOverflow.visible,
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class MoreSections extends StatelessWidget {
-  const MoreSections({Key? key, required this.icon, required this.text})
-      : super(key: key);
-  final IconData icon;
-  final String text;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Container(
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            color: wWhiteColor,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black12,
-                spreadRadius: 1,
-                blurRadius: 2,
-                offset: Offset(1, 2),
-              ),
-            ]),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Icon(
-              icon,
-              color: Colors.grey.shade700,
-              size: 35,
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Text(
-              text,
-              style: MyTextStyles.subHeadingBoldGrey,
-              overflow: TextOverflow.visible,
-              textAlign: TextAlign.center,
-            ),
-          ],
         ),
       ),
     );
