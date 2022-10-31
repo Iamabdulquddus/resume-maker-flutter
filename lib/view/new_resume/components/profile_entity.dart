@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../constants/style.dart';
 
 class ProfileEntity extends StatelessWidget {
-  const ProfileEntity({Key? key, required this.icon, required this.text, required this.onTap})
+  const ProfileEntity({Key? key, required this.name, required this.text, required this.onTap})
       : super(key: key);
-  final IconData icon;
+  final String name;
   final String text;
   final void Function() onTap;
   @override
@@ -29,15 +29,11 @@ class ProfileEntity extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              color: primary,
-              size: 35,
-            ),
-            // SizedBox(height: 10,),
+              Image.asset(name, width: 35, height: 35, fit: BoxFit.cover,),
+            SizedBox(height: 3,),
             Text(
               text,
-              style: MyTextStyles.subHeadingBoldGrey,
+              style: MyTextStyles.subHeadingBoldPrimary,
               overflow: TextOverflow.visible,
               textAlign: TextAlign.center,
             ),
