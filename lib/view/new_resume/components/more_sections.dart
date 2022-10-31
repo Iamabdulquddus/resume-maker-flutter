@@ -1,49 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../constants/style.dart';
 
 
 class MoreSections extends StatelessWidget {
-  const MoreSections({Key? key, required this.icon, required this.text})
+  const MoreSections({Key? key, required this.icon, required this.text, required this.onTap})
       : super(key: key);
-  final IconData icon;
+  final Widget icon;
   final String text;
+  final void Function() onTap;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            color: wWhiteColor,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black12,
-                spreadRadius: 1,
-                blurRadius: 2,
-                offset: Offset(1, 2),
-              ),
-            ]),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Icon(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+              color: wWhiteColor,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black12,
+                  spreadRadius: 1,
+                  blurRadius: 2,
+                  offset: Offset(1, 2),
+                ),
+              ]),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
               icon,
-              color: Colors.grey.shade700,
-              size: 35,
-            ),
-           const SizedBox(
-              width: 10,
-            ),
-            Text(
-              text,
-              style: MyTextStyles.subHeadingBoldGrey,
-              overflow: TextOverflow.visible,
-              textAlign: TextAlign.center,
-            ),
-          ],
+             const SizedBox(
+                width: 10,
+              ),
+              Text(
+                text,
+                style: MyTextStyles.subHeadingBoldGrey,
+                overflow: TextOverflow.visible,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       ),
     );

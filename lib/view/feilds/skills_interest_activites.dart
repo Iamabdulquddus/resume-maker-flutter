@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import '../../constants/style.dart';
 import '../../widgets/textformfeild.dart';
 
-class Experience extends StatefulWidget {
-  const Experience({Key? key}) : super(key: key);
-
+class SkillsInterestActivities extends StatefulWidget {
+  const SkillsInterestActivities({Key? key, required this.field})
+      : super(key: key);
+  final String field;
   @override
-  State<Experience> createState() => _ExperienceState();
+  State<SkillsInterestActivities> createState() =>
+      _SkillsInterestActivitiesState();
 }
 
-class _ExperienceState extends State<Experience> {
+class _SkillsInterestActivitiesState extends State<SkillsInterestActivities> {
   int numberOfTextFields = 1;
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class _ExperienceState extends State<Experience> {
           ),
         ),
         title: Text(
-          "Education",
+          "${widget.field}s",
           style: MyTextStyles.headingxSmallBoldWhite,
         ),
       ),
@@ -59,10 +61,11 @@ class _ExperienceState extends State<Experience> {
                                   ),
                                 ),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "Experience",
+                                      widget.field,
                                       style: MyTextStyles.headingLargePrimary,
                                     ),
                                     IconButton(
@@ -83,34 +86,11 @@ class _ExperienceState extends State<Experience> {
                                 padding: EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 5),
                                 child: Column(
-                                  children: const [
+                                  children: [
                                     CustomTextFormFeild(
                                       maxLines: 1,
-                                      labelText: 'Company Name',
+                                      labelText: "${widget.field}",
                                       keyboardType: TextInputType.text,
-                                    ),
-                                    CustomTextFormFeild(
-                                      maxLines: 1,
-                                      labelText: 'Job Title',
-                                      keyboardType: TextInputType.text,
-                                    ),
-                                    CustomTextFormFeild(
-                                      maxLines: 1,
-                                      labelText: 'Start (year)',
-                                      keyboardType: TextInputType.number,
-                                      maxLenght: 4,
-                                    ),
-                                    CustomTextFormFeild(
-                                      maxLines: 1,
-                                      labelText: 'End (year)',
-                                      keyboardType: TextInputType.number,
-                                      maxLenght: 4,
-                                    ),
-                                    CustomTextFormFeild(
-                                      maxLines: 3,
-                                      labelText: 'Details',
-                                      keyboardType: TextInputType.text,
-                                      maxLenght: 100,
                                     ),
                                   ],
                                 ),

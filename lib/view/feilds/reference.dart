@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../../constants/style.dart';
 import '../../widgets/textformfeild.dart';
 
-class Experience extends StatefulWidget {
-  const Experience({Key? key}) : super(key: key);
+class Reference extends StatefulWidget {
+  const Reference({Key? key}) : super(key: key);
 
   @override
-  State<Experience> createState() => _ExperienceState();
+  State<Reference> createState() => _ReferenceState();
 }
 
-class _ExperienceState extends State<Experience> {
+class _ReferenceState extends State<Reference> {
   int numberOfTextFields = 1;
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class _ExperienceState extends State<Experience> {
           ),
         ),
         title: Text(
-          "Education",
+          "Reference",
           style: MyTextStyles.headingxSmallBoldWhite,
         ),
       ),
@@ -62,7 +62,7 @@ class _ExperienceState extends State<Experience> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "Experience",
+                                      "Reference",
                                       style: MyTextStyles.headingLargePrimary,
                                     ),
                                     IconButton(
@@ -86,8 +86,8 @@ class _ExperienceState extends State<Experience> {
                                   children: const [
                                     CustomTextFormFeild(
                                       maxLines: 1,
-                                      labelText: 'Company Name',
-                                      keyboardType: TextInputType.text,
+                                      labelText: 'Reference Name',
+                                      keyboardType: TextInputType.name,
                                     ),
                                     CustomTextFormFeild(
                                       maxLines: 1,
@@ -96,21 +96,20 @@ class _ExperienceState extends State<Experience> {
                                     ),
                                     CustomTextFormFeild(
                                       maxLines: 1,
-                                      labelText: 'Start (year)',
-                                      keyboardType: TextInputType.number,
-                                      maxLenght: 4,
+                                      labelText: 'Company Name',
+                                      keyboardType: TextInputType.name,
                                     ),
                                     CustomTextFormFeild(
                                       maxLines: 1,
-                                      labelText: 'End (year)',
-                                      keyboardType: TextInputType.number,
-                                      maxLenght: 4,
+                                      labelText: 'Email',
+                                      keyboardType: TextInputType.emailAddress,
+
                                     ),
                                     CustomTextFormFeild(
-                                      maxLines: 3,
-                                      labelText: 'Details',
-                                      keyboardType: TextInputType.text,
-                                      maxLenght: 100,
+                                      maxLines: 1,
+                                      labelText: 'Phone',
+                                      keyboardType: TextInputType.phone,
+                                      maxLenght: 11,
                                     ),
                                   ],
                                 ),

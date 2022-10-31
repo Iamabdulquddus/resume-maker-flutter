@@ -59,6 +59,7 @@ class _EducationState extends State<Education> {
                                   ),
                                 ),
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       "Education",
