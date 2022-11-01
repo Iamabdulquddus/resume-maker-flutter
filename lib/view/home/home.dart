@@ -4,6 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:resumemaker/constants/style.dart';
 
 import '../new_resume/new_resume.dart';
+import 'components/about.dart';
+import 'components/generated_pdf.dart';
 import 'components/home_list_item.dart';
 
 
@@ -18,8 +20,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<Widget> tabItems = [
     HomeListItem(),
-    Center(child: Text("2")),
-    Center(child: Text("3")),
+    GeneratedPDF(),
+    About(),
   ];
 
   int? currentIndex;

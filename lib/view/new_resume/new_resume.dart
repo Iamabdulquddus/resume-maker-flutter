@@ -183,7 +183,7 @@ class _NewResumeState extends State<NewResume> {
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => SkillsInterestActivities(
+                              builder: (context) => const SkillsInterestActivities(
                                 field: 'Achievements & Awards',
                               ),
                             ),
