@@ -37,7 +37,7 @@ class _NewResumeState extends State<NewResume> {
             ),
           ),
           title: Text(
-            "Profile",
+            "Resume",
             style: MyTextStyles.headingxSmallBoldWhite,
           ),
         ),

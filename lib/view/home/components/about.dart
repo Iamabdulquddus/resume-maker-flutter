@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:resumemaker/constants/style.dart';
 
+import '../../profile/profile.dart';
+
 class About extends StatelessWidget {
   const About({Key? key}) : super(key: key);
 
@@ -14,53 +16,60 @@ class About extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-
-                padding: EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-                decoration: BoxDecoration(
-                    color: wWhiteColor,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black12,
-                        spreadRadius: 1,
-                        blurRadius: 5,
-                        offset: Offset(1, 1),
+              GestureDetector(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Profile(),),);
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.symmetric(horizontal: 5,vertical: 15),
+                  decoration: BoxDecoration(
+                      color: wWhiteColor,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black12,
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                          offset: Offset(1, 1),
+                        ),
+                        BoxShadow(
+                          color: lightColor,
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                          offset: Offset(-1, -1),
+                        ),
+                      ]),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.person_outline,
+                        color: primary,
+                        size: 35,
                       ),
-                      BoxShadow(
-                        color: lightColor,
-                        spreadRadius: 1,
-                        blurRadius: 5,
-                        offset: Offset(-1, -1),
+                      SizedBox(width: 5,),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width/ 1.34,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Muhammad Abdul Quddus',
+                              style: MyTextStyles.headingLargePrimary,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            Text(
+                              'resumemaker1122@gmail.com',
+                              style: MyTextStyles.subHeadingGrey,
+                            ),
+                            SizedBox(height: 5,),
+                            Text('View Profile', style: TextStyle(color: secondary, fontSize: 14),)
+                          ],
+                        ),
                       ),
-                    ]),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.person_outline,
-                      color: primary,
-                      size: 35,
-                    ),
-                    SizedBox(width: 5,),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width/ 1.34,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Muhammad Abdul Quddus',
-                            style: MyTextStyles.headingLargePrimary,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          Text(
-                            'resumemaker1122@gmail.com',
-                            style: MyTextStyles.subHeadingGrey,
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               SizedBox(

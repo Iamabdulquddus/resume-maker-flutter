@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../api/pdf_api.dart';
 import '../../../constants/images.dart';
 import '../../../constants/style.dart';
+import '../../templates/first_template.dart';
 
 class HomeListItem extends StatelessWidget {
   const HomeListItem({Key? key}) : super(key: key);
@@ -50,7 +52,9 @@ class HomeListItem extends StatelessWidget {
                                 style: MyTextStyles.headingLargePrimary,
                                 overflow: TextOverflow.ellipsis,
                               ),
-                              SizedBox(height: 5,),
+                              SizedBox(
+                                height: 5,
+                              ),
                               Text(
                                 'Angelayu@gmail.com',
                                 style: MyTextStyles.headingxSmallGrey,
@@ -133,6 +137,14 @@ class HomeListItem extends StatelessWidget {
                 ],
               ),
             ),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              final pdfFile =
+                  await PdfFirstTemplateApi.generate();
+             PdfApi.openFile(await pdfFile);
+            },
+            child: Text('something'),
           ),
         ],
       ),
