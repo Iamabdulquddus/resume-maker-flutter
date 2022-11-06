@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../../../api/pdf_api.dart';
 import '../../../constants/images.dart';
 import '../../../constants/style.dart';
 import '../../templates/first_template.dart';
@@ -142,7 +140,7 @@ class HomeListItem extends StatelessWidget {
             onPressed: () async {
               final pdfFile =
                   await PdfFirstTemplateApi.generate();
-             PdfApi.openFile(await pdfFile);
+              PdfFirstTemplateApi.openFile(await pdfFile);
             },
             child: Text('something'),
           ),

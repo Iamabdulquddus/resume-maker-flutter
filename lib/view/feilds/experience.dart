@@ -110,7 +110,7 @@ class _ExperienceState extends State<Experience> {
                                       maxLines: 3,
                                       labelText: 'Details',
                                       keyboardType: TextInputType.text,
-                                      maxLenght: 100,
+                                      maxLenght: 120,
                                     ),
                                   ],
                                 ),

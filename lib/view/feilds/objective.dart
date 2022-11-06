@@ -68,10 +68,10 @@ class _ObjectivesState extends State<Objectives> {
                     child: Column(
                       children: const [
                         CustomTextFormFeild(
-                          maxLines: 4,
+                          maxLines: 3,
                           labelText: 'Objective',
                           keyboardType: TextInputType.text,
-                          maxLenght: 200,
+                          maxLenght: 150,
                         ),
                       ],
                     ),
