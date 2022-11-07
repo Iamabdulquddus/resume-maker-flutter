@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../constants/images.dart';
 import '../../../constants/style.dart';
+import '../../preview/preview.dart';
 import '../../templates/first_template.dart';
 
 class HomeListItem extends StatelessWidget {
@@ -138,9 +139,7 @@ class HomeListItem extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () async {
-              final pdfFile =
-                  await PdfFirstTemplateApi.generate();
-              PdfFirstTemplateApi.openFile(await pdfFile);
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Preview()));
             },
             child: Text('something'),
           ),
