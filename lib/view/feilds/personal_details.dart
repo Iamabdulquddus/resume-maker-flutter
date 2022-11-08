@@ -32,7 +32,7 @@ class PersonalDetails extends StatelessWidget {
         child: ListView(
           children: [
             Text('   Profile Picture', style: MyTextStyles.headingxSmallBoldPrimary,),
-            // PickImage(),
+            PickImage(),
             CustomTextFormFeild(
               keyboardType: TextInputType.name,
               icon: Icon(Icons.person),
