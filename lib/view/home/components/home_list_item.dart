@@ -13,7 +13,7 @@ class HomeListItem extends StatelessWidget {
       body: ListView(
         children: [
           Card(
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
             // elevation: 1,
             child: Padding(
               padding: const EdgeInsets.all(10.0),
@@ -35,7 +35,7 @@ class HomeListItem extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
                       Expanded(
@@ -51,7 +51,7 @@ class HomeListItem extends StatelessWidget {
                                 style: MyTextStyles.headingLargePrimary,
                                 overflow: TextOverflow.ellipsis,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Text(
@@ -82,15 +82,15 @@ class HomeListItem extends StatelessWidget {
                               onPressed: () {},
                               style: TextButton.styleFrom(
                                   backgroundColor: lightColor,
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 20, vertical: 10)),
                               child: Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.edit,
                                     color: primary,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Text(
@@ -99,22 +99,22 @@ class HomeListItem extends StatelessWidget {
                                   )
                                 ],
                               )),
-                          SizedBox(
+                          const SizedBox(
                             width: 15,
                           ),
                           TextButton(
                             onPressed: () {},
                             style: TextButton.styleFrom(
                                 backgroundColor: lightColor,
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 10)),
                             child: Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.remove_red_eye_rounded,
                                   color: primary,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 Text(
@@ -126,7 +126,7 @@ class HomeListItem extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Icon(
+                      const Icon(
                         Icons.more_vert,
                         color: primary,
                         size: 25,
@@ -139,10 +139,12 @@ class HomeListItem extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () async {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Preview()));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => const Preview()));
             },
-            child: Text('something'),
+            child: const Text('something'),
           ),
+
         ],
       ),
     );
