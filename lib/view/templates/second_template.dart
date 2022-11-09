@@ -59,7 +59,8 @@ Future<Uint8List> generateResume(PdfPageFormat format, CustomData data) async {
                                 Text('Date of birth here'),
                                 UrlText('abdulquddus7782@gmail.com',
                                     'mailto:abdulquddus7782@gmail.com'),
-                                UrlText('My website', 'https://github.com/Iamabdulquddus'),
+                                UrlText('My website',
+                                    'https://github.com/Iamabdulquddus'),
                               ],
                             ),
                           ],
@@ -67,23 +68,74 @@ Future<Uint8List> generateResume(PdfPageFormat format, CustomData data) async {
                       ],
                     ),
                   ),
-                  Category(title: 'Objective'),
-                  Text('${Lorem(length: 20)}'),
                   Category(title: 'Work Experience'),
-                  Block(title: 'Tour bus driver', icon: const IconData(0xe530)),
-                  Block(
-                      title: 'Logging equipment operator',
-                      icon: const IconData(0xe30d)),
-                  Block(title: 'Foot doctor', icon: const IconData(0xe3f3)),
-                  Block(title: 'Unicorn trainer', icon: const IconData(0xf0cf)),
-                  Block(title: 'Chief chatter', icon: const IconData(0xe0ca)),
-                  SizedBox(height: 20),
+                  WorkExperience(
+                      title: 'Peasant',
+                      text: '${LoremText().paragraph(20)}',
+                      subheading: 'Classified company',
+                      from: '2014',
+                      to: '2016'),
+                  WorkExperience(
+                      title: 'Peasant',
+                      text: '${LoremText().paragraph(20)}',
+                      subheading: 'Classified company',
+                      from: '2014',
+                      to: '2016'),
+                  WorkExperience(
+                      title: 'Peasant',
+                      text: '${LoremText().paragraph(20)}',
+                      subheading: 'Classified company',
+                      from: '2014',
+                      to: '2016'),
+                  WorkExperience(
+                      title: 'Peasant',
+                      text: '${LoremText().paragraph(20)}',
+                      subheading: 'Classified company',
+                      from: '2014',
+                      to: '2016'),
+                  WorkExperience(
+                      title: 'Peasant',
+                      text: '${LoremText().paragraph(20)}',
+                      subheading: 'Classified company',
+                      from: '2014',
+                      to: '2016'),
                   Category(title: 'Education'),
-                  Block(title: 'Bachelor Of Commerce'),
-                  Block(title: 'Bachelor Interior Design'),
-                  SizedBox(height: 20),
+                  Education(
+                      title: 'Matriculation',
+                      text: '900',
+                      subheading: 'Government High School Farooka Tehsil Sahiwal District Sargodha',
+                      from: '2014',
+                      to: '2016'),
+                  Education(
+                      title: 'Matriculation',
+                      text: '900',
+                      subheading: 'Government High School Farooka Tehsil Sahiwal District Sargodha',
+                      from: '2014',
+                      to: '2016'),
+                  Education(
+                      title: 'Matriculation',
+                      text: '900',
+                      subheading: 'Government High School Farooka Tehsil Sahiwal District Sargodha',
+                      from: '2014',
+                      to: '2016'),
+                  Education(
+                      title: 'Matriculation',
+                      text: '900',
+                      subheading: 'Government High School Farooka Tehsil Sahiwal District Sargodha',
+                      from: '2014',
+                      to: '2016'),
+                  Education(
+                      title: 'Matriculation',
+                      text: '900',
+                      subheading: 'Government High School Farooka Tehsil Sahiwal District Sargodha',
+                      from: '2014',
+                      to: '2016'),
                   Category(title: 'Publications'),
+                  ProjectPublication(title: 'COVID effects on economy and entrepreneurship',text: 'Driving hospitality and tourism to foster sustainable innovation: A systematic review of COVID-19-related studies and practical implications in the digital era', ),
+                  Category(title: 'Project'),
+                  ProjectPublication(title: 'Resume maker in flutter',text: 'A flutter application which eases the process of making CV.', ),
                   Category(title: 'Reference'),
+                  Reference(referenceName: 'Reference Name',  companyName: 'Company Name',jobTitle: 'Job Title', email: 'ecorp@gmail.com', phone: '03001234567'),
                 ],
               ),
             ),
@@ -92,10 +144,11 @@ Future<Uint8List> generateResume(PdfPageFormat format, CustomData data) async {
               child: Column(
                 children: [
                   Container(
+                    padding: EdgeInsets.only(left: 10),
                     height: pageTheme.pageFormat.availableHeight,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         ClipOval(
                           child: Container(
@@ -105,13 +158,24 @@ Future<Uint8List> generateResume(PdfPageFormat format, CustomData data) async {
                             child: Image(profileImage),
                           ),
                         ),
-                        Column(children: <Widget>[
-                          Category(title: 'Skills'),
-                          Category(title: 'Interests'),
-                          Category(title: 'Activities'),
-                          Category(title: 'Languages'),
+                        SizedBox(height: 40),
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Category(title: 'Objective'),
+                              Text('${LoremText().paragraph(20)}',
+                                  style: TextStyle(fontSize: 10)),
+                              Category(title: 'Skills'),
+                              SkillInterestActivityLanguage(item: 'Sleeping'),
+                              Category(title: 'Interests'),
+                              SkillInterestActivityLanguage(item: 'Sleeping'),
+                              Category(title: 'Activities'),
+                              SkillInterestActivityLanguage(item: 'Sleeping'),
+                              Category(title: 'Languages'),
+                              SkillInterestActivityLanguage(item: 'English'),
+                              SkillInterestActivityLanguage(item: 'Urdu'),
 
-                        ]),
+                            ]),
                       ],
                     ),
                   ),
@@ -163,11 +227,16 @@ Future<PageTheme> _myPageTheme(PdfPageFormat format) async {
   );
 }
 
-class Block extends StatelessWidget {
-  Block({required this.title, this.icon,});
+class WorkExperience extends StatelessWidget {
+  WorkExperience({
+    required this.from,
+    required this.to,
+    required this.text,
+    required this.subheading,
+    required this.title,
+  });
 
-  final String title;
-  final IconData? icon;
+  final String title, text, subheading, from, to;
 
   @override
   Widget build(Context context) {
@@ -195,7 +264,9 @@ class Block extends StatelessWidget {
             Spacer(),
             Row(
               children: [
-                Text('2014 - 2016'),
+                Text(from),
+                Text(' - '),
+                Text(to),
               ],
             ),
           ],
@@ -211,7 +282,193 @@ class Block extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Lorem(length: 20),
+              Text(subheading,
+                  style:
+                      const TextStyle(fontSize: 12, color: PdfColors.green800)),
+              Text(text, style: TextStyle(fontSize: 9)),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class Education extends StatelessWidget {
+  Education({
+    required this.from,
+    required this.to,
+    required this.text,
+    required this.subheading,
+    required this.title,
+  });
+
+  final String title, text, subheading, from, to;
+
+  @override
+  Widget build(Context context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              width: 6,
+              height: 6,
+              margin: const EdgeInsets.only(top: 5.5, left: 2, right: 5),
+              decoration: const BoxDecoration(
+                color: green,
+                shape: BoxShape.circle,
+              ),
+            ),
+            Text(
+              title,
+              style: Theme.of(context)
+                  .defaultTextStyle
+                  .copyWith(fontWeight: FontWeight.bold),
+            ),
+            Spacer(),
+            Row(
+              children: [
+                Text(from),
+                Text(' - '),
+                Text(to),
+              ],
+            ),
+          ],
+        ),
+        Container(
+          decoration: const BoxDecoration(
+            border: Border(
+              left: BorderSide(color: green, width: 2),
+            ),
+          ),
+          padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5),
+          margin: const EdgeInsets.only(left: 5),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(subheading,
+                  style:
+                      const TextStyle(fontSize: 10, color: PdfColors.green900)),
+              Text(text, style: TextStyle(fontSize: 10)),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class Reference extends StatelessWidget {
+  Reference({
+    required this.referenceName,
+    required this.jobTitle,
+    required this.companyName,
+    required this.email,
+    required this.phone,
+  });
+
+  final String referenceName, jobTitle, companyName, email, phone;
+
+  @override
+  Widget build(Context context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              width: 6,
+              height: 6,
+              margin: const EdgeInsets.only(top: 5.5, left: 2, right: 5),
+              decoration: const BoxDecoration(
+                color: green,
+                shape: BoxShape.circle,
+              ),
+            ),
+            Text(
+              '${referenceName} | ',
+              style: Theme.of(context)
+                  .defaultTextStyle
+                  .copyWith(fontWeight: FontWeight.bold, fontSize: 12),
+            ),
+            Text(companyName, style: TextStyle(fontSize: 12)),
+
+
+          ],
+        ),
+        Container(
+          decoration: const BoxDecoration(
+            border: Border(
+              left: BorderSide(color: green, width: 2),
+            ),
+          ),
+          padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5),
+          margin: const EdgeInsets.only(left: 5),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(jobTitle,
+                  style:
+                      const TextStyle(fontSize: 12, color: PdfColors.green800)),
+              Text(phone, style: TextStyle(fontSize: 10),),
+              Text(email, style: TextStyle(fontSize: 10),),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ProjectPublication extends StatelessWidget {
+  ProjectPublication({
+    required this.text,
+    required this.title,
+  });
+
+  final String title, text;
+
+  @override
+  Widget build(Context context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              width: 6,
+              height: 6,
+              margin: const EdgeInsets.only(top: 5.5, left: 2, right: 5),
+              decoration: const BoxDecoration(
+                color: green,
+                shape: BoxShape.circle,
+              ),
+            ),
+            Text(
+              title,
+              style: Theme.of(context)
+                  .defaultTextStyle
+                  .copyWith(fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        Container(
+          decoration: const BoxDecoration(
+            border: Border(
+              left: BorderSide(color: green, width: 2),
+            ),
+          ),
+          padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5),
+          margin: const EdgeInsets.only(left: 5),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(text, style: TextStyle(fontSize: 10)),
             ],
           ),
         ),
@@ -236,12 +493,48 @@ class Category extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
       child: Text(
         title,
-        textScaleFactor: 1.5,
+        textScaleFactor: 1.2,
       ),
     );
   }
 }
 
+class SkillInterestActivityLanguage extends StatelessWidget {
+  SkillInterestActivityLanguage({
+    required this.item,
+
+  });
+
+  final String item ;
+
+  @override
+  Widget build(Context context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+
+      children: <Widget>[
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              width: 6,
+              height: 6,
+              margin: const EdgeInsets.only(top: 4, left: 2, right: 5),
+              decoration: const BoxDecoration(
+                color: green,
+                shape: BoxShape.circle,
+              ),
+            ),
+            Text(
+              item,
+              style: TextStyle(fontSize: 11),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
 // class Percent extends StatelessWidget {
 //   Percent({
 //     required this.size,
