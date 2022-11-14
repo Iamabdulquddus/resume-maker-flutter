@@ -6,13 +6,13 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import 'package:printing/printing.dart';
 import 'package:resumemaker/constants/images.dart';
-import '../preview/components/data.dart';
+import '../../preview/components/data.dart';
 
 const PdfColor green = PdfColor.fromInt(0xff9ce5d9);
 const PdfColor lightGreen = PdfColor.fromInt(0xffcdf1e7);
 const sep = 120.0;
 
-Future<Uint8List> generateResume(PdfPageFormat format, CustomData data) async {
+Future<Uint8List> template2(PdfPageFormat format, CustomData data) async {
   final doc = Document(title: 'My Resume', author: 'Resume Maker');
 
   final profileImage = MemoryImage(
@@ -32,12 +32,12 @@ Future<Uint8List> generateResume(PdfPageFormat format, CustomData data) async {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    padding: const EdgeInsets.only(left: 30, bottom: 20),
+                    padding: const EdgeInsets.only(left: 20, bottom: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text('Muhammad Abdul Quddus',
-                            textScaleFactor: 2,
+                            textScaleFactor: 1.5,
                             style: Theme.of(context)
                                 .defaultTextStyle
                                 .copyWith(fontWeight: FontWeight.bold)),
@@ -134,53 +134,43 @@ Future<Uint8List> generateResume(PdfPageFormat format, CustomData data) async {
                   ProjectPublication(title: 'COVID effects on economy and entrepreneurship',text: 'Driving hospitality and tourism to foster sustainable innovation: A systematic review of COVID-19-related studies and practical implications in the digital era', ),
                   Category(title: 'Project'),
                   ProjectPublication(title: 'Resume maker in flutter',text: 'A flutter application which eases the process of making CV.', ),
-                  Category(title: 'Reference'),
-                  Reference(referenceName: 'Reference Name',  companyName: 'Company Name',jobTitle: 'Job Title', email: 'ecorp@gmail.com', phone: '03001234567'),
+
                 ],
               ),
             ),
             Partition(
               width: sep,
-              child: Column(
+              child: Padding(
+                child:Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
-                    padding: EdgeInsets.only(left: 10),
-                    height: pageTheme.pageFormat.availableHeight,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        ClipOval(
-                          child: Container(
-                            width: 100,
-                            height: 100,
-                            color: lightGreen,
-                            child: Image(profileImage),
-                          ),
-                        ),
-                        SizedBox(height: 40),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Category(title: 'Objective'),
-                              Text('${LoremText().paragraph(20)}',
-                                  style: TextStyle(fontSize: 10)),
-                              Category(title: 'Skills'),
-                              SkillInterestActivityLanguage(item: 'Sleeping'),
-                              Category(title: 'Interests'),
-                              SkillInterestActivityLanguage(item: 'Sleeping'),
-                              Category(title: 'Activities'),
-                              SkillInterestActivityLanguage(item: 'Sleeping'),
-                              Category(title: 'Languages'),
-                              SkillInterestActivityLanguage(item: 'English'),
-                              SkillInterestActivityLanguage(item: 'Urdu'),
-
-                            ]),
-                      ],
+                  ClipOval(
+                    child: Container(
+                      width: 100,
+                      height: 100,
+                      color: lightGreen,
+                      child: Image(profileImage),
                     ),
                   ),
+                  SizedBox(height: 40),
+                  Category(title: 'Objective'),
+                  Text('${LoremText().paragraph(20)}',
+                      style: TextStyle(fontSize: 10)),
+                  Category(title: 'Skills'),
+                  SkillInterestActivityLanguage(item: 'Sleeping'),
+                  Category(title: 'Interests'),
+                  SkillInterestActivityLanguage(item: 'Sleeping'),
+                  Category(title: 'Activities'),
+                  SkillInterestActivityLanguage(item: 'Sleeping'),
+                  SkillInterestActivityLanguage(item: 'Sleeping'),
+                  Category(title: 'Languages'),
+                  SkillInterestActivityLanguage(item: 'English'),
+                  SkillInterestActivityLanguage(item: 'Urdu'),
+                  Category(title: 'Reference'),
+                  Reference(referenceName: 'Reference Name',  companyName: 'Company Name',jobTitle: 'Job Title', email: 'ecorp@gmail.com', phone: '03001234567'),
                 ],
-              ),
+              ), padding: EdgeInsets.only(left: 10),),
             )
           ],
         ),
@@ -264,11 +254,12 @@ class WorkExperience extends StatelessWidget {
             Spacer(),
             Row(
               children: [
-                Text(from),
+                Text(from, style: TextStyle(fontSize: 8)),
                 Text(' - '),
-                Text(to),
+                Text(to, style: TextStyle(fontSize: 8)),
               ],
             ),
+            SizedBox(width: 10,),
           ],
         ),
         Container(
@@ -331,11 +322,12 @@ class Education extends StatelessWidget {
             Spacer(),
             Row(
               children: [
-                Text(from),
+                Text(from, style: TextStyle(fontSize: 8)),
                 Text(' - '),
-                Text(to),
+                Text(to, style: TextStyle(fontSize: 8)),
               ],
             ),
+            SizedBox(width: 10,),
           ],
         ),
         Container(
@@ -395,22 +387,15 @@ class Reference extends StatelessWidget {
                   .defaultTextStyle
                   .copyWith(fontWeight: FontWeight.bold, fontSize: 12),
             ),
-            Text(companyName, style: TextStyle(fontSize: 12)),
-
-
           ],
         ),
         Container(
-          decoration: const BoxDecoration(
-            border: Border(
-              left: BorderSide(color: green, width: 2),
-            ),
-          ),
           padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5),
           margin: const EdgeInsets.only(left: 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              Text(companyName, style: TextStyle(fontSize: 12)),
               Text(jobTitle,
                   style:
                       const TextStyle(fontSize: 12, color: PdfColors.green800)),

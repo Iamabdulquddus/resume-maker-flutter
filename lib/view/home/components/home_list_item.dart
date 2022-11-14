@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:resumemaker/view/templates/select_template.dart';
 import '../../../constants/images.dart';
 import '../../../constants/style.dart';
 import '../../preview/preview.dart';
-import '../../templates/first_template.dart';
+import '../../templates/all_templates/first_template.dart';
 
 class HomeListItem extends StatelessWidget {
   const HomeListItem({Key? key}) : super(key: key);
@@ -140,7 +141,7 @@ class HomeListItem extends StatelessWidget {
           ElevatedButton(
             onPressed: () async {
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => const Preview()));
+                  .push(MaterialPageRoute(builder: (context) => const SelectTemplate()));
             },
             child: const Text('something'),
           ),
