@@ -6,9 +6,9 @@ import 'components/data.dart';
 import '../templates/template_name.dart';
 
 class Preview extends StatefulWidget {
-  const Preview({Key? key,  }) : super(key: key);
+  const Preview({Key? key, required this.template,  }) : super(key: key);
   // final int tab ;
-
+ final TemplateName template;
 
   @override
   PreviewState createState() {

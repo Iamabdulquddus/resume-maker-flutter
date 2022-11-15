@@ -69,6 +69,7 @@ import '../../preview/components/data.dart';
               Partition(
                   width: 150,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Header(
                     text: "Personal Information",

@@ -6,7 +6,7 @@ import 'all_templates/second_template.dart';
 import '../preview/components/data.dart';
 
 const templateName = [
-  TemplateName( template1),
+  TemplateName(template1),
   TemplateName(template2),
 ];
 
