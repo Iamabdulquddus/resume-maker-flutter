@@ -51,7 +51,7 @@ class PreviewState extends State<Preview> with SingleTickerProviderStateMixin {
       ),
       body: PdfPreview(
         maxPageWidth: 700,
-        build: (format) => templateName[_tab].builder(format, _data),
+        build: (format) => widget.template.builder(format, _data),
         canChangeOrientation: false,
         canChangePageFormat: false,
         canDebug: false,

@@ -520,6 +520,7 @@ class SkillInterestActivityLanguage extends StatelessWidget {
     );
   }
 }
+
 // class Percent extends StatelessWidget {
 //   Percent({
 //     required this.size,
