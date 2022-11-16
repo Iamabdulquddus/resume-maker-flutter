@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resumemaker/constants/images.dart';
+import 'package:resumemaker/constants/style.dart';
 import 'package:resumemaker/view/templates/template_name.dart';
 
 import 'all_templates/first_template.dart';
@@ -11,33 +12,42 @@ class SelectTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: templateName.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => Preview(
-                            template: templateName[index],
-                          ),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      height: 100,
-                      color: Colors.black12,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GridView.count(
+          shrinkWrap: true,
+            crossAxisCount: 2,
+            crossAxisSpacing: 10.0,
+            mainAxisSpacing: 10.0,
+            children: List.generate(templateName.length, (index) {
+              return Container(
+                decoration: BoxDecoration(
+                    gradient:  LinearGradient(
+                      colors: [primary.withOpacity(0.1), secondary.withOpacity(0.2), tertiary.withOpacity(0.3)],
                     ),
+                  borderRadius: BorderRadius.circular(10)
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Preview(
+                          template: templateName[index],
+                        ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 180,
+                    color: Colors.black12,
+                    child: Image.asset('assets/images/template/template${index +1}.jpeg', fit: BoxFit.cover,),
                   ),
-                );
-              }),
-        ],
+                ),
+              );
+            }
+            )
+        ),
       ),
     );
   }
