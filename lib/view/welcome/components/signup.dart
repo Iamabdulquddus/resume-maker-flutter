@@ -6,6 +6,7 @@ import '../../../constants/images.dart';
 import '../../../constants/style.dart';
 import 'dart:ui' as ui;
 import '../../../widgets/textformfeild.dart';
+import '../../feature_selection/feature_selection.dart';
 import '../../home/home.dart';
 
 class SignupPage extends StatefulWidget {
@@ -33,7 +34,7 @@ class _SignupPageState extends State<SignupPage> with TickerProviderStateMixin {
         const Duration(seconds: 1),
       );
       await Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => Home()));
+          .push(MaterialPageRoute(builder: (context) => FeatureSelection()));
       setState(() {
         changeButton = false;
       });
