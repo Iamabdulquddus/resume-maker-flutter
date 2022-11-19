@@ -8,11 +8,11 @@ import 'package:printing/printing.dart';
 import 'package:resumemaker/constants/images.dart';
 import '../../preview/components/data.dart';
 
-const PdfColor green = PdfColor.fromInt(0xff393E46);
+const PdfColor darkGrey = PdfColor.fromInt(0xff393E46);
 const PdfColor lightGrey = PdfColor.fromInt(0xffCFD2CF);
 const sep = 130.0;
 
-Future<Uint8List> template3 (PdfPageFormat format, CustomData data) async {
+Future<Uint8List> template3(PdfPageFormat format, CustomData data) async {
   final doc = Document(title: 'My Resume', author: 'Resume Maker');
 
   final profileImage = MemoryImage(
@@ -26,41 +26,36 @@ Future<Uint8List> template3 (PdfPageFormat format, CustomData data) async {
       pageTheme: pageTheme,
       build: (Context context) => [
         Container(
-          padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
           child: Row(
             children: [
-              ClipOval(
-                child: Container(
-                  width: 165,
-                  height: 165,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: PdfColors.white, width: 15),
-                  ),
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: PdfColors.white, width: 10),
+                ),
+                child: ClipOval(
                   child: Container(
                     color: lightGrey,
-                    width: 150,
-                    height: 150,
+                    width: 110,
+                    height: 110,
                     child: Image(profileImage),
                   ),
                 ),
               ),
               SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Muhammad Abdul Quddus',
-                    textScaleFactor: 1.5,
-                    style: Theme.of(context)
-                        .defaultTextStyle
-                        .copyWith(fontWeight: FontWeight.bold),
-                  ),
-                  Text('+1 403-721-6898'),
-                  UrlText('abdulquddus7782@gmail.com',
-                      'mailto:abdulquddus7782@gmail.com'),
-                ]
-              ),
-
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(
+                  'Muhammad Abdul Quddus',
+                  textScaleFactor: 1.5,
+                  style: Theme.of(context)
+                      .defaultTextStyle
+                      .copyWith(fontWeight: FontWeight.bold),
+                ),
+                Text('+1 403-721-6898'),
+                UrlText('abdulquddus7782@gmail.com',
+                    'mailto:abdulquddus7782@gmail.com'),
+              ]),
             ],
           ),
         ),
@@ -70,70 +65,75 @@ Future<Uint8List> template3 (PdfPageFormat format, CustomData data) async {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  Category(title: 'Objective'),
+                  Text(LoremText().paragraph(20),
+                      style: const TextStyle(fontSize: 10)),
                   Category(title: 'Work Experience'),
+
                   WorkExperience(
-                      title: 'Peasant',
-                      text: '${LoremText().paragraph(20)}',
-                      subheading: 'Classified company',
+                      companyName: 'Classified company',
+                      detail: LoremText().paragraph(20),
+                      jobTitle: 'Peasant',
                       from: '2014',
                       to: '2016'),
                   WorkExperience(
-                      title: 'Peasant',
-                      text: '${LoremText().paragraph(20)}',
-                      subheading: 'Classified company',
+                      companyName: 'Classified company',
+                      detail: LoremText().paragraph(20),
+                      jobTitle: 'Peasant',
                       from: '2014',
                       to: '2016'),
                   WorkExperience(
-                      title: 'Peasant',
-                      text: '${LoremText().paragraph(20)}',
-                      subheading: 'Classified company',
+                      companyName: 'Classified company',
+                      detail: LoremText().paragraph(20),
+                      jobTitle: 'Peasant',
                       from: '2014',
                       to: '2016'),
                   WorkExperience(
-                      title: 'Peasant',
-                      text: '${LoremText().paragraph(20)}',
-                      subheading: 'Classified company',
+                      companyName: 'Classified company',
+                      detail: LoremText().paragraph(20),
+                      jobTitle: 'Peasant',
                       from: '2014',
                       to: '2016'),
                   WorkExperience(
-                      title: 'Peasant',
-                      text: '${LoremText().paragraph(20)}',
-                      subheading: 'Classified company',
+                      companyName: 'Classified company',
+                      detail: LoremText().paragraph(20),
+                      jobTitle: 'Peasant',
                       from: '2014',
                       to: '2016'),
+
                   Category(title: 'Education'),
                   Education(
-                      title: 'Matriculation',
-                      text: '900',
-                      subheading:
+                      degree: 'Matriculation',
+                      marks: '900',
+                      institute:
                           'Government High School Farooka Tehsil Sahiwal District Sargodha',
                       from: '2014',
                       to: '2016'),
                   Education(
-                      title: 'Matriculation',
-                      text: '900',
-                      subheading:
+                      degree: 'Matriculation',
+                      marks: '900',
+                      institute:
                           'Government High School Farooka Tehsil Sahiwal District Sargodha',
                       from: '2014',
                       to: '2016'),
                   Education(
-                      title: 'Matriculation',
-                      text: '900',
-                      subheading:
+                      degree: 'Matriculation',
+                      marks: '900',
+                      institute:
                           'Government High School Farooka Tehsil Sahiwal District Sargodha',
                       from: '2014',
                       to: '2016'),
                   Education(
-                      title: 'Matriculation',
-                      text: '900',
-                      subheading:
+                      degree: 'Matriculation',
+                      marks: '900',
+                      institute:
                           'Government High School Farooka Tehsil Sahiwal District Sargodha',
                       from: '2014',
                       to: '2016'),
                   Education(
-                      title: 'Matriculation',
-                      text: '900',
-                      subheading:
+                      degree: 'Matriculation',
+                      marks: '900',
+                      institute:
                           'Government High School Farooka Tehsil Sahiwal District Sargodha',
                       from: '2014',
                       to: '2016'),
@@ -160,27 +160,20 @@ Future<Uint8List> template3 (PdfPageFormat format, CustomData data) async {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      padding: const EdgeInsets.only(left: 20, bottom: 20),
+                      padding: const EdgeInsets.only(left: 10, bottom: 20, top: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Padding(padding: const EdgeInsets.only(top: 20)),
                           Text(
                               'This is very long address of like 4 lines. so Im just typing text here.',
-                              style: TextStyle(fontSize: 9)),
-                          SizedBox(width: 10),
-
+                              style: const TextStyle(fontSize: 10)),
                           Text('Date of birth here'),
-
                           UrlText('My website',
                               'https://github.com/Iamabdulquddus'),
                         ],
                       ),
                     ),
                     SizedBox(height: 10),
-                    Category(title: 'Objective'),
-                    Text('${LoremText().paragraph(20)}',
-                        style: TextStyle(fontSize: 10)),
                     Category(title: 'Skills'),
                     SkillInterestActivityLanguage(item: 'Sleeping'),
                     Category(title: 'Interests'),
@@ -200,7 +193,7 @@ Future<Uint8List> template3 (PdfPageFormat format, CustomData data) async {
                         phone: '03001234567'),
                   ],
                 ),
-                padding: EdgeInsets.only(left: 10),
+                padding: const EdgeInsets.only(left: 10),
               ),
             )
           ],
@@ -212,7 +205,6 @@ Future<Uint8List> template3 (PdfPageFormat format, CustomData data) async {
 }
 
 Future<PageTheme> _myPageTheme(PdfPageFormat format) async {
-
   // final bgShape = await rootBundle.loadString('assets/resume.svg');
 
   format = format.applyMargin(
@@ -235,9 +227,14 @@ Future<PageTheme> _myPageTheme(PdfPageFormat format) async {
             Positioned(
               child: ClipOval(
                 child: Container(
-                  width: 250,
-                  height: 250,
-                  color: PdfColor.fromInt(0xff393E46),
+                  width: 200,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [darkGrey,lightGrey, PdfColors.grey50.shade(0.1),],
+                      begin: Alignment.topLeft
+                    ),
+                  ),
                 ),
               ),
               left: -50,
@@ -248,7 +245,7 @@ Future<PageTheme> _myPageTheme(PdfPageFormat format) async {
                 child: Container(
                   width: 200,
                   height: 200,
-                  color: PdfColor.fromInt(0xffCFD2CF),
+                  color: darkGrey,
                 ),
               ),
               right: -100,
@@ -265,12 +262,12 @@ class WorkExperience extends StatelessWidget {
   WorkExperience({
     required this.from,
     required this.to,
-    required this.text,
-    required this.subheading,
-    required this.title,
+    required this.detail,
+    required this.jobTitle,
+    required this.companyName,
   });
 
-  final String title, text, subheading, from, to;
+  final String companyName, detail, jobTitle, from, to;
 
   @override
   Widget build(Context context) {
@@ -280,17 +277,8 @@ class WorkExperience extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
-              width: 6,
-              height: 6,
-              margin: const EdgeInsets.only(top: 5.5, left: 2, right: 5),
-              decoration: const BoxDecoration(
-                color: green,
-                shape: BoxShape.circle,
-              ),
-            ),
             Text(
-              title,
+              companyName,
               style: Theme.of(context)
                   .defaultTextStyle
                   .copyWith(fontWeight: FontWeight.bold),
@@ -298,9 +286,9 @@ class WorkExperience extends StatelessWidget {
             Spacer(),
             Row(
               children: [
-                Text(from, style: TextStyle(fontSize: 8)),
+                Text(from, style: const TextStyle(fontSize: 8)),
                 Text(' - '),
-                Text(to, style: TextStyle(fontSize: 8)),
+                Text(to, style: const TextStyle(fontSize: 8)),
               ],
             ),
             SizedBox(
@@ -309,20 +297,15 @@ class WorkExperience extends StatelessWidget {
           ],
         ),
         Container(
-          decoration: const BoxDecoration(
-            border: Border(
-              left: BorderSide(color: green, width: 2),
-            ),
-          ),
-          padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5),
-          margin: const EdgeInsets.only(left: 5),
+          padding: const EdgeInsets.only(left: 5, top: 5, bottom: 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(subheading,
-                  style:
-                      const TextStyle(fontSize: 12, color: PdfColors.green800)),
-              Text(text, style: TextStyle(fontSize: 9)),
+              Text(
+                jobTitle,
+                style: TextStyle(fontSize: 12, color:  PdfColors.grey900, fontWeight: FontWeight.bold),
+              ),
+              Text(detail, style: TextStyle(fontSize: 9)),
             ],
           ),
         ),
@@ -335,12 +318,12 @@ class Education extends StatelessWidget {
   Education({
     required this.from,
     required this.to,
-    required this.text,
-    required this.subheading,
-    required this.title,
+    required this.marks,
+    required this.institute,
+    required this.degree,
   });
 
-  final String title, text, subheading, from, to;
+  final String degree, marks, institute, from, to;
 
   @override
   Widget build(Context context) {
@@ -350,51 +333,37 @@ class Education extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
-              width: 6,
-              height: 6,
-              margin: const EdgeInsets.only(top: 5.5, left: 2, right: 5),
-              decoration: const BoxDecoration(
-                color: green,
-                shape: BoxShape.circle,
+            SizedBox(
+              width: 140,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    degree,
+                    style: Theme.of(context)
+                        .defaultTextStyle
+                        .copyWith(fontWeight: FontWeight.bold),
+                  ),
+
+                  Row(
+                    children: [
+                      Text(from, style: const TextStyle(fontSize: 8)),
+                      Text(' - '),
+                      Text(to, style: const TextStyle(fontSize: 8)),
+                    ],
+                  ),
+                  Text(marks, style: const TextStyle(fontSize: 10)),
+                ],
               ),
             ),
-            Text(
-              title,
-              style: Theme.of(context)
-                  .defaultTextStyle
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-            Spacer(),
-            Row(
-              children: [
-                Text(from, style: TextStyle(fontSize: 8)),
-                Text(' - '),
-                Text(to, style: TextStyle(fontSize: 8)),
-              ],
-            ),
             SizedBox(
-              width: 10,
+              width: 210,
+              child: Text(
+                institute,
+                style: const TextStyle(fontSize: 10, color: darkGrey),
+              ),
             ),
           ],
-        ),
-        Container(
-          decoration: const BoxDecoration(
-            border: Border(
-              left: BorderSide(color: lightGrey, width: 2),
-            ),
-          ),
-          padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5),
-          margin: const EdgeInsets.only(left: 5),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(subheading,
-                  style:
-                      const TextStyle(fontSize: 10, color: lightGrey),),
-              Text(text, style: TextStyle(fontSize: 10)),
-            ],
-          ),
         ),
       ],
     );
@@ -425,15 +394,15 @@ class Reference extends StatelessWidget {
               height: 6,
               margin: const EdgeInsets.only(top: 5.5, left: 2, right: 5),
               decoration: const BoxDecoration(
-                color: green,
+                color: darkGrey,
                 shape: BoxShape.circle,
               ),
             ),
             Text(
-              '${referenceName} | ',
+              referenceName,
               style: Theme.of(context)
                   .defaultTextStyle
-                  .copyWith(fontWeight: FontWeight.bold, fontSize: 12),
+                  .copyWith(fontWeight: FontWeight.bold, fontSize: 13),
             ),
           ],
         ),
@@ -443,17 +412,17 @@ class Reference extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(companyName, style: TextStyle(fontSize: 12)),
+              Text(companyName, style: const TextStyle(fontSize: 13)),
               Text(jobTitle,
                   style:
-                      const TextStyle(fontSize: 12, color: PdfColors.green800)),
+                      const TextStyle(fontSize: 12, color: darkGrey)),
               Text(
                 phone,
-                style: TextStyle(fontSize: 10),
+                style: const TextStyle(fontSize: 10),
               ),
               Text(
                 email,
-                style: TextStyle(fontSize: 10),
+                style: const TextStyle(fontSize: 10),
               ),
             ],
           ),
@@ -479,15 +448,6 @@ class ProjectPublication extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
-              width: 6,
-              height: 6,
-              margin: const EdgeInsets.only(top: 5.5, left: 2, right: 5),
-              decoration: const BoxDecoration(
-                color: green,
-                shape: BoxShape.circle,
-              ),
-            ),
             Text(
               title,
               style: Theme.of(context)
@@ -497,17 +457,13 @@ class ProjectPublication extends StatelessWidget {
           ],
         ),
         Container(
-          decoration: const BoxDecoration(
-            border: Border(
-              left: BorderSide(color: green, width: 2),
-            ),
-          ),
-          padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5),
+
+          padding: const EdgeInsets.only(left: 5, top: 5, bottom: 5),
           margin: const EdgeInsets.only(left: 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(text, style: TextStyle(fontSize: 10)),
+              Text(text, style: const TextStyle(fontSize: 10)),
             ],
           ),
         ),
@@ -524,17 +480,20 @@ class Category extends StatelessWidget {
   @override
   Widget build(Context context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: lightGrey,
-        borderRadius: BorderRadius.all(Radius.circular(6)),
-      ),
-      margin: const EdgeInsets.only(bottom: 10, top: 20),
-      padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
-      child: Text(
-        title,
-        textScaleFactor: 1.2,
-      ),
-    );
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [lightGrey, PdfColors.white.shade(0.1)],
+          ),
+          borderRadius: BorderRadius.all(Radius.circular(6)),
+        ),
+        margin: const EdgeInsets.only(bottom: 10, top: 20),
+        padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
+        child: Row(children: [
+          Text(
+            title,
+            textScaleFactor: 1.2,
+          ),
+        ],),);
   }
 }
 
@@ -554,17 +513,18 @@ class SkillInterestActivityLanguage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              width: 6,
-              height: 6,
+              width: 4,
+              height: 4,
               margin: const EdgeInsets.only(top: 4, left: 2, right: 5),
-              decoration: const BoxDecoration(
-                color: green,
+              decoration:  BoxDecoration(
+                color: PdfColors.white,
                 shape: BoxShape.circle,
+                border: Border.all(color: darkGrey, width: 1)
               ),
             ),
             Text(
               item,
-              style: TextStyle(fontSize: 11),
+              style: const TextStyle(fontSize: 11),
             ),
           ],
         ),

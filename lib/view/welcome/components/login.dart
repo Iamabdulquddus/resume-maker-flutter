@@ -9,6 +9,7 @@ import '../../../responsive.dart';
 import 'dart:ui' as ui;
 
 import '../../../widgets/textformfeild.dart';
+import '../../feature_selection/feature_selection.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -32,7 +33,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
         const Duration(seconds: 1),
       );
       await Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => Home()));
+          .push(MaterialPageRoute(builder: (context) => FeatureSelection()));
       setState(() {
         changeButton = false;
       });

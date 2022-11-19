@@ -14,3 +14,6 @@ String skills = 'assets/images/skills.png';
 String objectives = 'assets/images/target.png';
 String reference = 'assets/images/refer.png';
 
+String feature1 = 'assets/images/feature1.png';
+String feature2 = 'assets/images/feature2.png';
+
