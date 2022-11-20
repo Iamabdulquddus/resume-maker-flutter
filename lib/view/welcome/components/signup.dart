@@ -7,7 +7,6 @@ import '../../../constants/style.dart';
 import 'dart:ui' as ui;
 import '../../../widgets/textformfeild.dart';
 import '../../feature_selection/feature_selection.dart';
-import '../../home/home.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);

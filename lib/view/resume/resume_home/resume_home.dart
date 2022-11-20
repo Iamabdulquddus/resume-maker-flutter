@@ -3,25 +3,25 @@ import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:resumemaker/constants/style.dart';
 
-import '../new_resume/new_resume.dart';
-import 'components/about.dart';
-import 'components/generated_pdf.dart';
-import 'components/home_list_item.dart';
+import '../../resume/new_resume/new_resume.dart';
+import 'components/resume_about.dart';
+import 'components/resume_generated_pdf.dart';
+import 'components/resume_home_list_item.dart';
 
 
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class ResumeCardHome extends StatefulWidget {
+  const ResumeCardHome({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<ResumeCardHome> createState() => _ResumeCardHomeState();
 }
 
-class _HomeState extends State<Home> {
+class _ResumeCardHomeState extends State<ResumeCardHome> {
   List<Widget> tabItems = [
-    HomeListItem(),
-    GeneratedPDF(),
-    About(),
+    ResumeCardHomeListItem(),
+    ResumeCardGeneratedPDF(),
+    ResumeCardAbout(),
   ];
 
   int? currentIndex;

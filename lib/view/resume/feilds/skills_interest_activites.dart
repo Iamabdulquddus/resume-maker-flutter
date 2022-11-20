@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/style.dart';
-import '../../widgets/textformfeild.dart';
+import '../../../constants/style.dart';
+import '../../../widgets/textformfeild.dart';
 
-class Education extends StatefulWidget {
-  const Education({Key? key}) : super(key: key);
-
+class SkillsInterestActivities extends StatefulWidget {
+  const SkillsInterestActivities({Key? key, required this.field})
+      : super(key: key);
+  final String field;
   @override
-  State<Education> createState() => _EducationState();
+  State<SkillsInterestActivities> createState() =>
+      _SkillsInterestActivitiesState();
 }
 
-class _EducationState extends State<Education> {
+class _SkillsInterestActivitiesState extends State<SkillsInterestActivities> {
   int numberOfTextFields = 1;
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class _EducationState extends State<Education> {
           ),
         ),
         title: Text(
-          "Education",
+          "${widget.field}s",
           style: MyTextStyles.headingxSmallBoldWhite,
         ),
       ),
@@ -59,10 +61,11 @@ class _EducationState extends State<Education> {
                                   ),
                                 ),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "Education",
+                                      widget.field,
                                       style: MyTextStyles.headingLargePrimary,
                                     ),
                                     IconButton(
@@ -83,33 +86,11 @@ class _EducationState extends State<Education> {
                                 padding: EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 5),
                                 child: Column(
-                                  children: const [
+                                  children: [
                                     CustomTextFormFeild(
                                       maxLines: 1,
-                                      labelText: 'Degree / Course',
+                                      labelText: "${widget.field}",
                                       keyboardType: TextInputType.text,
-                                    ),
-                                    CustomTextFormFeild(
-                                      maxLines: 1,
-                                      labelText: 'School / Universiy',
-                                      keyboardType: TextInputType.text,
-                                    ),
-                                    CustomTextFormFeild(
-                                      maxLines: 1,
-                                      labelText: 'Marks / CGPA',
-                                      keyboardType: TextInputType.text,
-                                    ),
-                                    CustomTextFormFeild(
-                                      maxLines: 1,
-                                      labelText: 'From (year)',
-                                      keyboardType: TextInputType.text,
-                                      maxLenght: 4,
-                                    ),
-                                    CustomTextFormFeild(
-                                      maxLines: 1,
-                                      labelText: 'To (year)',
-                                      keyboardType: TextInputType.text,
-                                      maxLenght: 4,
                                     ),
                                   ],
                                 ),

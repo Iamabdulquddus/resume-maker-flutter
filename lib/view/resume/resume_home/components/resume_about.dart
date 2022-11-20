@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:resumemaker/constants/style.dart';
 
-import '../../profile/profile.dart';
+import '../../../resume/profile/profile.dart';
 
-class About extends StatelessWidget {
-  const About({Key? key}) : super(key: key);
+class ResumeCardAbout extends StatelessWidget {
+  const ResumeCardAbout({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

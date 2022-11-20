@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/style.dart';
+import '../../../../constants/style.dart';
 
 class ProfileEntity extends StatelessWidget {
   const ProfileEntity({Key? key, required this.name, required this.text, required this.onTap})

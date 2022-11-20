@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:resumemaker/view/templates/select_template.dart';
-import '../../../constants/images.dart';
-import '../../../constants/style.dart';
-import '../../preview/preview.dart';
-import '../../templates/all_templates/first_template.dart';
+import '../../../../constants/images.dart';
+import '../../../../constants/style.dart';
+import '../../../resume/templates/select_template.dart';
 
-class HomeListItem extends StatelessWidget {
-  const HomeListItem({Key? key}) : super(key: key);
+class ResumeCardHomeListItem extends StatelessWidget {
+  const ResumeCardHomeListItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/style.dart';
-import '../../widgets/textformfeild.dart';
+import '../../../constants/style.dart';
+import '../../../widgets/textformfeild.dart';
 
-class SkillsInterestActivities extends StatefulWidget {
-  const SkillsInterestActivities({Key? key, required this.field})
-      : super(key: key);
-  final String field;
+class Projects extends StatefulWidget {
+  const Projects({Key? key}) : super(key: key);
+
   @override
-  State<SkillsInterestActivities> createState() =>
-      _SkillsInterestActivitiesState();
+  State<Projects> createState() => _ProjectsState();
 }
 
-class _SkillsInterestActivitiesState extends State<SkillsInterestActivities> {
+class _ProjectsState extends State<Projects> {
   int numberOfTextFields = 1;
   @override
   Widget build(BuildContext context) {
@@ -28,7 +26,7 @@ class _SkillsInterestActivitiesState extends State<SkillsInterestActivities> {
           ),
         ),
         title: Text(
-          "${widget.field}s",
+          "Projects",
           style: MyTextStyles.headingxSmallBoldWhite,
         ),
       ),
@@ -61,11 +59,10 @@ class _SkillsInterestActivitiesState extends State<SkillsInterestActivities> {
                                   ),
                                 ),
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      widget.field,
+                                      "Project",
                                       style: MyTextStyles.headingLargePrimary,
                                     ),
                                     IconButton(
@@ -86,11 +83,17 @@ class _SkillsInterestActivitiesState extends State<SkillsInterestActivities> {
                                 padding: EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 5),
                                 child: Column(
-                                  children: [
+                                  children: const [
                                     CustomTextFormFeild(
                                       maxLines: 1,
-                                      labelText: "${widget.field}",
+                                      labelText: 'Title',
                                       keyboardType: TextInputType.text,
+                                    ),
+                                    CustomTextFormFeild(
+                                      maxLines: 3,
+                                      labelText: 'Details',
+                                      keyboardType: TextInputType.text,
+                                      maxLenght: 120,
                                     ),
                                   ],
                                 ),
