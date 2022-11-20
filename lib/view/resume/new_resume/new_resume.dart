@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:resumemaker/constants/style.dart';
-import '../../constants/images.dart';
+import '../../../constants/images.dart';
 import '../feilds/education.dart';
 import '../feilds/experience.dart';
 import '../feilds/objective.dart';

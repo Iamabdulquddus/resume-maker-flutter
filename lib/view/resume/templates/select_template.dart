@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resumemaker/constants/style.dart';
-import 'package:resumemaker/view/templates/template_name.dart';
+import 'package:resumemaker/view/resume/templates/template_name.dart';
 import '../preview/preview.dart';
 
 class SelectTemplate extends StatelessWidget {

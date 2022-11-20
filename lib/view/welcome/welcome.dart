@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../constants/style.dart';
-import '../home/home.dart';
 import 'components/onboarding.dart';
 
 class Welcome extends StatelessWidget {

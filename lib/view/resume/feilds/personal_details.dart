@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../constants/style.dart';
-import '../../widgets/date_picker.dart';
-import '../../widgets/pick_image.dart';
-import '../../widgets/textformfeild.dart';
+import '../../../constants/style.dart';
+import '../../../widgets/date_picker.dart';
+import '../../../widgets/pick_image.dart';
+import '../../../widgets/textformfeild.dart';
 
 class PersonalDetails extends StatelessWidget {
   const PersonalDetails({Key? key}) : super(key: key);
