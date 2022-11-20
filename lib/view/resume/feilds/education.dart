@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/style.dart';
-import '../../widgets/textformfeild.dart';
+import '../../../constants/style.dart';
+import '../../../widgets/textformfeild.dart';
 
-class Experience extends StatefulWidget {
-  const Experience({Key? key}) : super(key: key);
+class Education extends StatefulWidget {
+  const Education({Key? key}) : super(key: key);
 
   @override
-  State<Experience> createState() => _ExperienceState();
+  State<Education> createState() => _EducationState();
 }
 
-class _ExperienceState extends State<Experience> {
+class _EducationState extends State<Education> {
   int numberOfTextFields = 1;
   @override
   Widget build(BuildContext context) {
@@ -62,7 +62,7 @@ class _ExperienceState extends State<Experience> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "Experience",
+                                      "Education",
                                       style: MyTextStyles.headingLargePrimary,
                                     ),
                                     IconButton(
@@ -86,31 +86,30 @@ class _ExperienceState extends State<Experience> {
                                   children: const [
                                     CustomTextFormFeild(
                                       maxLines: 1,
-                                      labelText: 'Company Name',
+                                      labelText: 'Degree / Course',
                                       keyboardType: TextInputType.text,
                                     ),
                                     CustomTextFormFeild(
                                       maxLines: 1,
-                                      labelText: 'Job Title',
+                                      labelText: 'School / Universiy',
                                       keyboardType: TextInputType.text,
                                     ),
                                     CustomTextFormFeild(
                                       maxLines: 1,
-                                      labelText: 'Start (year)',
-                                      keyboardType: TextInputType.number,
+                                      labelText: 'Marks / CGPA',
+                                      keyboardType: TextInputType.text,
+                                    ),
+                                    CustomTextFormFeild(
+                                      maxLines: 1,
+                                      labelText: 'From (year)',
+                                      keyboardType: TextInputType.text,
                                       maxLenght: 4,
                                     ),
                                     CustomTextFormFeild(
                                       maxLines: 1,
-                                      labelText: 'End (year)',
-                                      keyboardType: TextInputType.number,
-                                      maxLenght: 4,
-                                    ),
-                                    CustomTextFormFeild(
-                                      maxLines: 3,
-                                      labelText: 'Details',
+                                      labelText: 'To (year)',
                                       keyboardType: TextInputType.text,
-                                      maxLenght: 120,
+                                      maxLenght: 4,
                                     ),
                                   ],
                                 ),

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/style.dart';
-import '../../widgets/textformfeild.dart';
+import '../../../constants/style.dart';
+import '../../../widgets/textformfeild.dart';
 
-class Publication extends StatefulWidget {
-  const Publication({Key? key}) : super(key: key);
+class Reference extends StatefulWidget {
+  const Reference({Key? key}) : super(key: key);
 
   @override
-  State<Publication> createState() => _PublicationState();
+  State<Reference> createState() => _ReferenceState();
 }
 
-class _PublicationState extends State<Publication> {
+class _ReferenceState extends State<Reference> {
   int numberOfTextFields = 1;
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class _PublicationState extends State<Publication> {
           ),
         ),
         title: Text(
-          "Publication",
+          "Reference",
           style: MyTextStyles.headingxSmallBoldWhite,
         ),
       ),
@@ -62,7 +62,7 @@ class _PublicationState extends State<Publication> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "Publication",
+                                      "Reference",
                                       style: MyTextStyles.headingLargePrimary,
                                     ),
                                     IconButton(
@@ -86,14 +86,30 @@ class _PublicationState extends State<Publication> {
                                   children: const [
                                     CustomTextFormFeild(
                                       maxLines: 1,
-                                      labelText: 'Title',
+                                      labelText: 'Reference Name',
+                                      keyboardType: TextInputType.name,
+                                    ),
+                                    CustomTextFormFeild(
+                                      maxLines: 1,
+                                      labelText: 'Job Title',
                                       keyboardType: TextInputType.text,
                                     ),
                                     CustomTextFormFeild(
                                       maxLines: 1,
-                                      labelText: 'Description',
-                                      keyboardType: TextInputType.text,
-                                      maxLenght: 50,
+                                      labelText: 'Company Name',
+                                      keyboardType: TextInputType.name,
+                                    ),
+                                    CustomTextFormFeild(
+                                      maxLines: 1,
+                                      labelText: 'Email',
+                                      keyboardType: TextInputType.emailAddress,
+
+                                    ),
+                                    CustomTextFormFeild(
+                                      maxLines: 1,
+                                      labelText: 'Phone',
+                                      keyboardType: TextInputType.phone,
+                                      maxLenght: 11,
                                     ),
                                   ],
                                 ),

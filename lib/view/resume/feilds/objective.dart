@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/style.dart';
-import '../../widgets/textformfeild.dart';
+import '../../../constants/style.dart';
+import '../../../widgets/textformfeild.dart';
 
 class Objectives extends StatefulWidget {
   const Objectives({Key? key}) : super(key: key);

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:resumemaker/view/feature_selection/feature_selection.dart';
-import 'package:resumemaker/view/home/home.dart';
-import 'package:resumemaker/view/welcome/welcome.dart';
 
 import 'constants/style.dart';
 

@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:random_avatar/random_avatar.dart';
 
-import '../../constants/style.dart';
+import '../../../constants/style.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);

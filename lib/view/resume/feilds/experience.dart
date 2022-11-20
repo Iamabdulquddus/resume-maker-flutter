@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/style.dart';
-import '../../widgets/textformfeild.dart';
+import '../../../constants/style.dart';
+import '../../../widgets/textformfeild.dart';
 
-class Projects extends StatefulWidget {
-  const Projects({Key? key}) : super(key: key);
+class Experience extends StatefulWidget {
+  const Experience({Key? key}) : super(key: key);
 
   @override
-  State<Projects> createState() => _ProjectsState();
+  State<Experience> createState() => _ExperienceState();
 }
 
-class _ProjectsState extends State<Projects> {
+class _ExperienceState extends State<Experience> {
   int numberOfTextFields = 1;
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class _ProjectsState extends State<Projects> {
           ),
         ),
         title: Text(
-          "Projects",
+          "Education",
           style: MyTextStyles.headingxSmallBoldWhite,
         ),
       ),
@@ -62,7 +62,7 @@ class _ProjectsState extends State<Projects> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "Project",
+                                      "Experience",
                                       style: MyTextStyles.headingLargePrimary,
                                     ),
                                     IconButton(
@@ -86,8 +86,25 @@ class _ProjectsState extends State<Projects> {
                                   children: const [
                                     CustomTextFormFeild(
                                       maxLines: 1,
-                                      labelText: 'Title',
+                                      labelText: 'Company Name',
                                       keyboardType: TextInputType.text,
+                                    ),
+                                    CustomTextFormFeild(
+                                      maxLines: 1,
+                                      labelText: 'Job Title',
+                                      keyboardType: TextInputType.text,
+                                    ),
+                                    CustomTextFormFeild(
+                                      maxLines: 1,
+                                      labelText: 'Start (year)',
+                                      keyboardType: TextInputType.number,
+                                      maxLenght: 4,
+                                    ),
+                                    CustomTextFormFeild(
+                                      maxLines: 1,
+                                      labelText: 'End (year)',
+                                      keyboardType: TextInputType.number,
+                                      maxLenght: 4,
                                     ),
                                     CustomTextFormFeild(
                                       maxLines: 3,
