@@ -17,3 +17,5 @@ String reference = 'assets/images/refer.png';
 String feature1 = 'assets/images/feature1.png';
 String feature2 = 'assets/images/feature2.png';
 
+String businessCard1 = 'assets/images/businesscard/card1.png';
+
