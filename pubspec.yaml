@@ -42,6 +42,7 @@ flutter:
   assets:
     - assets/
     - assets/images/template/
+    - assets/images/businesscard/
     - assets/images/
     - assets/icons/
 
