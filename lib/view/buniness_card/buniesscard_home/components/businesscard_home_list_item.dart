@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../constants/images.dart';
 import '../../../../constants/style.dart';
-import '../../../resume/templates/select_template.dart';
 
 class BusinessCardHomeListItem extends StatelessWidget {
   const BusinessCardHomeListItem({Key? key}) : super(key: key);
@@ -136,14 +135,6 @@ class BusinessCardHomeListItem extends StatelessWidget {
               ),
             ),
           ),
-          ElevatedButton(
-            onPressed: () async {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => const SelectTemplate()));
-            },
-            child: const Text('something'),
-          ),
-
         ],
       ),
     );

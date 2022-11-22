@@ -139,7 +139,7 @@ class ResumeCardHomeListItem extends StatelessWidget {
           ElevatedButton(
             onPressed: () async {
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => const SelectTemplate()));
+                  .push(MaterialPageRoute(builder: (context) => const SelectResumeTemplate()));
             },
             child: const Text('something'),
           ),
