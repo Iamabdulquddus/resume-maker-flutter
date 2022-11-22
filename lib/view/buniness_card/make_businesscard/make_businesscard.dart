@@ -3,6 +3,7 @@ import 'package:resumemaker/constants/style.dart';
 
 import '../../../widgets/pick_image.dart';
 import '../../../widgets/textformfeild.dart';
+import '../template/select_businesscard_template.dart';
 
 class MakeBusinessCard extends StatefulWidget {
   const MakeBusinessCard({Key? key}) : super(key: key);
@@ -32,89 +33,136 @@ class _MakeBusinessCardState extends State<MakeBusinessCard> {
             style: MyTextStyles.headingxSmallBoldWhite,
           ),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column (
-                  children: [
-                    Text('Business Card Logo', style: MyTextStyles.headingLargePrimary,),
-                    SizedBox(height: 10,),
-                    PickImage(),
-                    CustomTextFormFeild(maxLines: 1, labelText: 'Company Title', keyboardType: TextInputType.text,),
-                    CustomTextFormFeild(maxLines: 1, labelText: 'Taq Line',keyboardType: TextInputType.text,),
-                    CustomTextFormFeild(maxLines: 1, labelText: 'Your Name',keyboardType: TextInputType.text,),
-                    CustomTextFormFeild(maxLines: 1, labelText: 'Post',keyboardType: TextInputType.text,),
-                    CustomTextFormFeild(maxLines: 1, labelText: 'Phone', maxLenght: 11,keyboardType: TextInputType.phone,),
-                    CustomTextFormFeild(maxLines: 1, labelText: 'Phone (optional)',maxLenght: 11,keyboardType: TextInputType.phone,),
-                    CustomTextFormFeild(maxLines: 1, labelText: 'Email',keyboardType: TextInputType.emailAddress,),
-                    CustomTextFormFeild(maxLines: 1, labelText: 'Website',keyboardType: TextInputType.url,),
-                    CustomTextFormFeild(maxLines: 2, labelText: 'Address', maxLenght: 110,keyboardType: TextInputType.text,),
-                  ],
-                ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height- 150,
+              padding: const EdgeInsets.all(8.0),
+              child: ListView(
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  Text(
+                    'Business Card Logo',
+                    style: MyTextStyles.headingLargePrimary,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const PickImage(),
+                  const CustomTextFormFeild(
+                    maxLines: 1,
+                    labelText: 'Company Title',
+                    keyboardType: TextInputType.text,
+                  ),
+                  const CustomTextFormFeild(
+                    maxLines: 1,
+                    labelText: 'Taq Line',
+                    keyboardType: TextInputType.text,
+                    maxLenght: 100,
+                  ),
+                  const CustomTextFormFeild(
+                    maxLines: 1,
+                    labelText: 'Your Name',
+                    keyboardType: TextInputType.text,
+                  ),
+                  const CustomTextFormFeild(
+                    maxLines: 1,
+                    labelText: 'Post',
+                    keyboardType: TextInputType.text,
+                  ),
+                  const CustomTextFormFeild(
+                    maxLines: 1,
+                    labelText: 'Phone',
+                    maxLenght: 11,
+                    keyboardType: TextInputType.phone,
+                  ),
+                  const CustomTextFormFeild(
+                    maxLines: 1,
+                    labelText: 'Phone (optional)',
+                    maxLenght: 11,
+                    keyboardType: TextInputType.phone,
+                  ),
+                  const CustomTextFormFeild(
+                    maxLines: 1,
+                    labelText: 'Email',
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+                  const CustomTextFormFeild(
+                    maxLines: 1,
+                    labelText: 'Website',
+                    keyboardType: TextInputType.url,
+                  ),
+                  const CustomTextFormFeild(
+                    maxLines: 2,
+                    labelText: 'Address',
+                    maxLenght: 110,
+                    keyboardType: TextInputType.text,
+                  ),
+                ],
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextButton(
-                      onPressed: () {},
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(
+                      backgroundColor: wWhiteColor,
+                    ),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.remove_red_eye_rounded,
+                          color: primary,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "Preview",
+                          style: MyTextStyles.subHeadingBoldPrimary,
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => SelectBusinessCardTemplate()));
+                      },
                       style: TextButton.styleFrom(
-                        backgroundColor: wWhiteColor,
-                      ),
+                          backgroundColor: primary,
+                          foregroundColor: Colors.white),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Icon(
-                            Icons.remove_red_eye_rounded,
-                            color: primary,
+                            Icons.picture_as_pdf_outlined,
+                            color: wWhiteColor,
                           ),
                           const SizedBox(
                             width: 10,
                           ),
                           Text(
-                            "Preview",
-                            style: MyTextStyles.subHeadingBoldPrimary,
+                            "Generate",
+                            style: MyTextStyles.subHeadingBoldWhite,
                           )
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: TextButton(
-                        onPressed: () {},
-                        style: TextButton.styleFrom(
-                            backgroundColor: primary,
-                            foregroundColor: Colors.white),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.picture_as_pdf_outlined,
-                              color: wWhiteColor,
-                            ),
-                            SizedBox(width: 10,),
-                            Text(
-                              "Generate",
-                              style: MyTextStyles.subHeadingBoldWhite,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-
       ),
     );
   }
