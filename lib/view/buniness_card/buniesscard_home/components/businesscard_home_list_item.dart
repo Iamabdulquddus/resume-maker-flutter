@@ -27,7 +27,7 @@ class BusinessCardHomeListItem extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Image.asset(
-                          resumeBro,
+                          businessCard1,
                           height: 100,
                           width: 100,
                           fit: BoxFit.cover,
@@ -41,26 +41,16 @@ class BusinessCardHomeListItem extends StatelessWidget {
                           // height: 90,
                           // color: secondary,
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Muhammad Abdul Quddus',
+                                'Business Template ${DateTime.now().toString()
+                              .substring(0,16)}',
                                 style: MyTextStyles.headingLargePrimary,
                                 overflow: TextOverflow.ellipsis,
                               ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                'Angelayu@gmail.com',
-                                style: MyTextStyles.headingxSmallGrey,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              Text('03004400443',
-                                  style: MyTextStyles.headingxSmallGrey),
-                              Text('Oct 25, 2022 02:18 pm',
-                                  style: MyTextStyles.headingxSmallGrey),
+
                             ],
                           ),
                         ),
