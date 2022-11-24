@@ -1,8 +1,8 @@
-import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../../constants/images.dart';
 import '../../../../constants/style.dart';
 
@@ -17,7 +17,7 @@ class BusinessCardTemplate1 extends StatefulWidget {
 }
 
 class _BusinessCardTemplate1State extends State<BusinessCardTemplate1> {
-  GlobalKey _globalKey = GlobalKey();
+  GlobalKey globalKey = GlobalKey();
 
   @override
   void initState() {
@@ -39,9 +39,10 @@ class _BusinessCardTemplate1State extends State<BusinessCardTemplate1> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             RepaintBoundary(
-              key: _globalKey,
+              key: globalKey,
               child: Container(
-                padding: EdgeInsets.all(10),
+                color: Colors.white,
+                padding: const EdgeInsets.all(10),
                 child: Stack(
                   children: [
                     Image.asset(businessCard1),
@@ -64,42 +65,58 @@ class _BusinessCardTemplate1State extends State<BusinessCardTemplate1> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Text(
                                 'Company Name',
-                                style: MyTextStyles.headingLargeWhite,
+                                style: GoogleFonts.kalam(
+                                  textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Text(
                                 'Tag Line should be only 1 line ',
-                                style: MyTextStyles.subHeadingWhite,
+                                style: GoogleFonts.oswald(
+                                  textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                  ),
+                                ),
                                 maxLines: 1,
                               ),
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 120,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 10, bottom: 3),
                           child: Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.person,
                                 color: Colors.white,
                                 size: 18,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
                               Text(
                                 'Your Name',
-                                style: MyTextStyles.subHeadingBoldWhite,
+                                style: GoogleFonts.oswald(
+                                  textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ],
                           ),
@@ -108,17 +125,22 @@ class _BusinessCardTemplate1State extends State<BusinessCardTemplate1> {
                           padding: const EdgeInsets.only(left: 10, bottom: 3),
                           child: Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.people_outline_sharp,
                                 color: Colors.white,
                                 size: 18,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
                               Text(
                                 'Post in the company',
-                                style: MyTextStyles.subHeadingBoldWhite,
+                                style: GoogleFonts.oswald(
+                                  textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ],
                           ),
@@ -127,17 +149,22 @@ class _BusinessCardTemplate1State extends State<BusinessCardTemplate1> {
                           padding: const EdgeInsets.only(left: 10, bottom: 3),
                           child: Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.email,
                                 color: Colors.white,
                                 size: 18,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
                               Text(
                                 'youremailhere@gmail.com',
-                                style: MyTextStyles.subHeadingBoldWhite,
+                                style: GoogleFonts.oswald(
+                                  textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ],
                           ),
@@ -146,17 +173,22 @@ class _BusinessCardTemplate1State extends State<BusinessCardTemplate1> {
                           padding: const EdgeInsets.only(left: 10, bottom: 3),
                           child: Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.sports_basketball,
                                 color: Colors.white,
                                 size: 18,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
                               Text(
                                 'yourwebsitehere.com',
-                                style: MyTextStyles.subHeadingBoldWhite,
+                                style: GoogleFonts.oswald(
+                                  textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ],
                           ),
@@ -165,17 +197,22 @@ class _BusinessCardTemplate1State extends State<BusinessCardTemplate1> {
                           padding: const EdgeInsets.only(left: 10, bottom: 3),
                           child: Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.house,
                                 color: Colors.white,
                                 size: 18,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
                               Text(
                                 'Youraddressoverhere max 120 keys',
-                                style: MyTextStyles.subHeadingBoldWhite,
+                                style: GoogleFonts.oswald(
+                                  textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ],
                           ),
@@ -183,7 +220,7 @@ class _BusinessCardTemplate1State extends State<BusinessCardTemplate1> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            SizedBox(),
+                            const SizedBox(),
                             Column(
                               children: [
                                 Padding(
@@ -191,17 +228,22 @@ class _BusinessCardTemplate1State extends State<BusinessCardTemplate1> {
                                       right: 10, bottom: 3, top: 55),
                                   child: Row(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.phone,
                                         color: Colors.black,
                                         size: 18,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 5,
                                       ),
                                       Text(
                                         '03001234567',
-                                        style: MyTextStyles.subHeadingBoldBlack,
+                                        style: GoogleFonts.oswald(
+                                          textStyle: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -213,17 +255,22 @@ class _BusinessCardTemplate1State extends State<BusinessCardTemplate1> {
                                   ),
                                   child: Row(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.phone,
                                         color: Colors.black,
                                         size: 18,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 5,
                                       ),
                                       Text(
                                         '03001234567',
-                                        style: MyTextStyles.subHeadingBoldBlack,
+                                        style: GoogleFonts.oswald(
+                                          textStyle: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -241,13 +288,31 @@ class _BusinessCardTemplate1State extends State<BusinessCardTemplate1> {
             Row(
               children: [
                 Expanded(
-                    child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: ElevatedButton(
-                    onPressed: _saveScreen,
-                    child: Text("Save to Device"),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        final RenderRepaintBoundary boundary =
+                            globalKey.currentContext!.findRenderObject()!
+                                as RenderRepaintBoundary;
+                        final ui.Image image =
+                            await boundary.toImage(pixelRatio: 4.0);
+                        final ByteData? byteData = await image.toByteData(
+                            format: ui.ImageByteFormat.png);
+                        final Uint8List pngBytes =
+                            byteData!.buffer.asUint8List();
+                        print(pngBytes);
+                        final result = await ImageGallerySaver.saveImage(
+                            byteData.buffer.asUint8List());
+                        print(result);
+                        if (!mounted) return;
+                        savedToDevice(context);
+                        Navigator.pop(context);
+                      },
+                      child: const Text("Save to Device"),
+                    ),
                   ),
-                )),
+                ),
               ],
             ),
           ],
@@ -256,17 +321,11 @@ class _BusinessCardTemplate1State extends State<BusinessCardTemplate1> {
     );
   }
 
-  _saveScreen() async {
-    RenderRepaintBoundary boundary =
-        _globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-    ui.Image image = await boundary.toImage();
-    ByteData? byteData =
-        await (image.toByteData(format: ui.ImageByteFormat.png));
-    if (byteData != null) {
-      final result =
-          await ImageGallerySaver.saveImage(byteData.buffer.asUint8List());
-      print(result);
-      // _toastInfo(result.toString());
-    }
+  void savedToDevice(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Image saved successfully'),
+      ),
+    );
   }
 }
