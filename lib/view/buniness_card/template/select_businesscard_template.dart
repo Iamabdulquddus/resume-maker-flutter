@@ -40,9 +40,8 @@ class SelectBusinessCardTemplateCard extends StatelessWidget {
       child: Card(
         color: Colors.white,
         child: Center(
-          child: Image.asset(imageName, height: 50,width: 50,),
+          child: Image.asset(imageName, ),
         ),
-
       ),
     );
   }

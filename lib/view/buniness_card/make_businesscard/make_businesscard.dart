@@ -108,30 +108,6 @@ class _MakeBusinessCardState extends State<MakeBusinessCard> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextButton(
-                    onPressed: () {},
-                    style: TextButton.styleFrom(
-                      backgroundColor: wWhiteColor,
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.remove_red_eye_rounded,
-                          color: primary,
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "Preview",
-                          style: MyTextStyles.subHeadingBoldPrimary,
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
                   Expanded(
                     child: TextButton(
                       onPressed: () {
