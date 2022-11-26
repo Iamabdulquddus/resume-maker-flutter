@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:resumemaker/constants/style.dart';
 import '../../constants/images.dart';
+import '../birthday_card/birthdaycard_home/birthdaycard_home.dart';
 import '../buniness_card/buniesscard_home/businesscard_home.dart';
 import '../resume/resume_home/resume_home.dart';
 
@@ -44,6 +45,18 @@ class FeatureSelection extends StatelessWidget {
                 );
               },
               featureHeading: 'Business Card',
+            ),
+
+            FeatureSelectionItem(
+              image: feature2,
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => BirthdayCardHome(),
+                  ),
+                );
+              },
+              featureHeading: 'Birthday Card',
             ),
           ],
         ),
