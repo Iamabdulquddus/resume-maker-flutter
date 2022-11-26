@@ -24,15 +24,15 @@ class MyRoutes {
   static String projects = '/projects'; //Projects()
   static String publication = '/publication'; //Publication()
   static String reference = '/reference'; //Reference()
-  static String skillsInterestActivities = '/skills_interest_activities'; //SkillsInterestActivities()
+  static String skillsInterestActivities =
+      '/skills_interest_activities'; //SkillsInterestActivities()
 
   /// this route to preview the resume template
   static String preview = '/preview'; //Preview()
 
   /// this route to preview the resume template
-  static String selectResumeTemplate = '/select_resume_template'; //SelectResumeTemplate()
-
-
+  static String selectResumeTemplate =
+      '/select_resume_template'; //SelectResumeTemplate()
 
   /// Now all the business card routes
   /// Homeroute on business card
@@ -40,8 +40,8 @@ class MyRoutes {
   // Textformfields of businesscard..
   static String makeBusinessCard = '/make_business_card'; //MakeBusinessCard()
   //all templates of business card
-  static String selectBusinessCardTemplate = '/select_business_card_template'; //SelectBusinessCardTemplate()
-
+  static String selectBusinessCardTemplate =
+      '/select_business_card_template'; //SelectBusinessCardTemplate()
 
   static String getWelcome() => welcome;
   static String getLoginRoute() => login;
@@ -68,7 +68,6 @@ class MyRoutes {
   static String getMakeBusinessCardRoute() => busniessCardHome;
   static String getSelectBusinessCardTemplateRoute() => selectBusinessCardTemplate;
 
-  static List<GetPage> appRoutes() => [
-
-      ];
+  static List<GetPage> appRoutes() => [];
 }
+
