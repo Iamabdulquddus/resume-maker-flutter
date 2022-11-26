@@ -12,7 +12,7 @@ class BusinessCardHomeListItem extends StatelessWidget {
         children: [
           Card(
             margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-            // elevation: 1,
+
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(
