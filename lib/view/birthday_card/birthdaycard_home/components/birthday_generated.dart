@@ -14,47 +14,47 @@ class BirthdayCardGeneratedPDF extends StatelessWidget {
         children: [
           Container(
             // height: 40,
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             decoration: BoxDecoration(
-                color: wWhiteColor,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    spreadRadius: 1,
-                    blurRadius: 5,
-                    offset: Offset(1, 1),
-                  ),
-                  BoxShadow(
-                    color: lightColor,
-                    spreadRadius: 1,
-                    blurRadius: 5,
-                    offset: Offset(-1, -1),
-                  ),
-                ]),
+              color: wWhiteColor,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black12,
+                  spreadRadius: 1,
+                  blurRadius: 5,
+                  offset: Offset(1, 1),
+                ),
+                BoxShadow(
+                  color: lightColor,
+                  spreadRadius: 1,
+                  blurRadius: 5,
+                  offset: Offset(-1, -1),
+                ),
+              ],),
             child: ListTile(
-              leading: FaIcon(
-                FontAwesomeIcons.filePdf,
+              leading: const FaIcon(
+                FontAwesomeIcons.cakeCandles,
                 color: primary,
                 size: 30,
               ),
               title: Text(
-                'Resume Maker ${DateTime.now()
+                'Birthday ${DateTime.now()
                     .toString()
                     .substring(0,16)}',
                 style: MyTextStyles.headingSmallPrimary,
                 overflow: TextOverflow.visible,
               ),
               trailing: PopupMenuButton<int>(
-                  itemBuilder: (context) {
-                    return <PopupMenuEntry<int>>[
-                      PopupMenuItem(child: Text('Share'), value: 0),
-                      PopupMenuItem(child: Text('Delete'), value: 1),
-                    ];
-                  },
-                child: FaIcon(FontAwesomeIcons.ellipsisVertical, color: primary,),
-            ),
-          ),),
+                itemBuilder: (context) {
+                  return <PopupMenuEntry<int>>[
+                    const PopupMenuItem(value: 0, child: Text('Share')),
+                    const PopupMenuItem(value: 1, child: Text('Delete')),
+                  ];
+                },
+                child: const FaIcon(FontAwesomeIcons.ellipsisVertical, color: primary,),
+              ),
+            ),),
         ],
       ),
     );

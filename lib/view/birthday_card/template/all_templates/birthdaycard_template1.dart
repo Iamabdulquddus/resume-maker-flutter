@@ -18,7 +18,8 @@ class BirthdayCardTemplate1 extends StatefulWidget {
 
 class _BirthdayCardTemplate1State extends State<BirthdayCardTemplate1> {
   GlobalKey globalKey = GlobalKey();
-
+  static Color templateDark = const Color(0xff7c6148);
+  static Color templateLight = const Color(0xffcba882);
   @override
   void initState() {
     super.initState();
@@ -45,7 +46,51 @@ class _BirthdayCardTemplate1State extends State<BirthdayCardTemplate1> {
                 padding: const EdgeInsets.all(10),
                 child: Stack(
                   children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          'assets/images/birthdaycard/birthdaycard1.png',
+                          width: MediaQuery.of(context).size.width,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Center(
+                          child: Container(
+                            width: MediaQuery.of(context).size.width - 150,
+                            height: 230,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                                border:
+                                    Border.all(color: Colors.white70  , width: 10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset.zero,
+                                spreadRadius: 5,
+                                blurRadius: 10
+                              ),
+                            ]
+                            ),
 
+                            child: Image.asset(
+                              resumeBro,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 70,),
+                        Text('Dear, Name Birthday person', style: TextStyle(fontSize: 16, color: templateDark, fontWeight: FontWeight.bold), maxLines: 1,),
+                        SizedBox(height: 70,),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width - 150,
+                            child: Text('Wishing you a beautiful day with good health and happiness forever. Happy Birthday.', style: TextStyle(fontSize: 16, color: templateLight, fontWeight: FontWeight.bold), maxLines: 3, textAlign: TextAlign.center,),),
+                        SizedBox(height: 10,),
+                        Text('Regards, Name of person Wishing', style: TextStyle(fontSize: 13, color: templateDark, fontWeight: FontWeight.bold), maxLines: 1,),
+                      ],
+                    ),
                   ],
                 ),
               ),
