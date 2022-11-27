@@ -58,10 +58,15 @@ class _MakeBirthdayCardState extends State<MakeBirthdayCard> {
                     icon: Icon(Icons.person),
                   ),
                   const CustomTextFormFeild(
-                    maxLines: 1,
+                    maxLines: 3,
                     labelText: 'Wishing line (optional)',
                     keyboardType: TextInputType.text,
                     maxLenght: 150,
+                  ),
+                  const CustomTextFormFeild(
+                    maxLines: 1,
+                    labelText: 'Regards',
+                    keyboardType: TextInputType.text,
                   ),
                 ],
               ),

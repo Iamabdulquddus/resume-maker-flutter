@@ -45,7 +45,7 @@ class SelectResumeTemplate extends StatelessWidget {
                     height: 180,
                     color: Colors.black12,
                     child: Image.asset(
-                      'assets/images/template/template${index + 1}.jpeg',
+                      'assets/images/resumetemplate/resumetemplate${index + 1}.jpeg',
                       fit: BoxFit.cover,
                     ),
                   ),

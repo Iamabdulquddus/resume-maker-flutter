@@ -27,10 +27,10 @@ class MyRoutes {
   static String skillsInterestActivities =
       '/skills_interest_activities'; //SkillsInterestActivities()
 
-  /// this route to preview the resume template
+  /// this route to preview the resume resumetemplate
   static String preview = '/preview'; //Preview()
 
-  /// this route to preview the resume template
+  /// this route to preview the resume resumetemplate
   static String selectResumeTemplate =
       '/select_resume_template'; //SelectResumeTemplate()
 
