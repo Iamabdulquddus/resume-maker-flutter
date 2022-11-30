@@ -3,10 +3,13 @@ import 'package:resumemaker/view/welcome/components/login.dart';
 import 'package:resumemaker/view/welcome/components/signup.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../constants/images.dart';
+import 'package:get/get.dart';
 import '../../../constants/style.dart';
+import '../../../controller/login_controller.dart';
 
 class SelectionScreen extends StatelessWidget {
-  const SelectionScreen({Key? key}) : super(key: key);
+  LoginController loginController = Get.find();
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,16 +52,26 @@ class SelectionScreen extends StatelessWidget {
                     height: 10,
                   ),
                   ElevatedButton.icon(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      minimumSize: Size( MediaQuery.of(context).size.width - 40 , 50)
-                    ),
-                    icon: FaIcon(
-                      FontAwesomeIcons.google,
-                      color: Colors.red.shade800,
-                    ),
-                    label: Text("Signup with Google", style: MyTextStyles.headingxSmallBoldPrimary,),
+                      onPressed: () {
+                        loginController.signInWithGoogle(context);
+                        print("login complete ${loginController.user?.email}");
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        minimumSize: Size( MediaQuery.of(context).size.width - 40 , 50)
+                      ),
+                      icon: FaIcon(
+                        FontAwesomeIcons.google,
+                        color: Colors.red.shade800,
+                      ),
+                      label:
+                      //loginController.user?.email == null ?
+                          Text("Signup with Google", style: MyTextStyles.headingxSmallBoldPrimary,)
+                      //:
+                        //  Text("login complete ${loginController.user?.email}", style: MyTextStyles.headingxSmallBoldPrimary,)
+
+                      ,
+                  //  ),
                   ),
                   SizedBox(
                     height: 10,
