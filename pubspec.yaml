@@ -26,6 +26,7 @@ dependencies:
   printing: ^5.9.3
   image_gallery_saver: ^1.7.1
   google_fonts: ^3.0.1
+  firebase_core: ^2.3.0
 
 
 

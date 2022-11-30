@@ -1,4 +1,7 @@
 import 'package:get/get.dart';
+import '../view/feature_selection/feature_selection.dart';
+import '../view/welcome/components/login.dart';
+import '../view/welcome/components/signup.dart';
 import '../view/welcome/welcome.dart';
 
 class MyRoutes {
@@ -68,6 +71,26 @@ class MyRoutes {
   static String getMakeBusinessCardRoute() => busniessCardHome;
   static String getSelectBusinessCardTemplateRoute() => selectBusinessCardTemplate;
 
-  static List<GetPage> appRoutes() => [];
+  static List<GetPage> appRoutes() => [
+
+    GetPage(
+        name: getWelcome(),
+        page: ()=> const Welcome()
+    ),
+    GetPage(
+        name: getLoginRoute(),
+        page: ()=> const LoginPage()
+    ),
+    GetPage(
+        name: getSignupRoute(),
+        page: ()=> const SignupPage()
+    ),
+    GetPage(
+        name: getFeatureSelectionRoute(),
+        page: ()=> const FeatureSelection()
+    ),
+
+
+  ];
 }
 

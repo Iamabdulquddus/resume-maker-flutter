@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "530673871314",
+    "project_id": "card-resume-builder",
+    "storage_bucket": "card-resume-builder.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530673871314:android:92d4f9524569954f55400b",
+        "android_client_info": {
+          "package_name": "com.example.resumemaker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "530673871314-imdm22qk74sa18e6te4lq95aq84qdkan.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjaMe7B1v96tUbT29ZskbLVvsPhK71lnk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "530673871314-imdm22qk74sa18e6te4lq95aq84qdkan.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "530673871314-0bcd019kp87t7u2cbrsieojp9m7b9te8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.resumemaker"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
