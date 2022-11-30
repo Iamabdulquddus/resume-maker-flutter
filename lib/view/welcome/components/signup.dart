@@ -5,8 +5,10 @@ import 'dart:async';
 import '../../../constants/images.dart';
 import '../../../constants/style.dart';
 import 'dart:ui' as ui;
+import '../../../controller/login_controller.dart';
 import '../../../widgets/textformfeild.dart';
 import '../../feature_selection/feature_selection.dart';
+import 'package:get/get.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
@@ -16,29 +18,15 @@ class SignupPage extends StatefulWidget {
 }
 
 String name = '';
-bool changeButton = false;
+
 //TextController to read text entered in text field
 
-final _formKey = GlobalKey<FormState>();
+
 
 class _SignupPageState extends State<SignupPage> with TickerProviderStateMixin {
+  LoginController loginController = Get.find();
 
-  moveToHome(BuildContext context) async {
-    if (_formKey.currentState!.validate()) {
-      setState(() {
-        changeButton = true;
-      });
 
-      await Future.delayed(
-        const Duration(seconds: 1),
-      );
-      await Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => FeatureSelection()));
-      setState(() {
-        changeButton = false;
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +52,7 @@ class _SignupPageState extends State<SignupPage> with TickerProviderStateMixin {
                     // color: Colors.white.withOpacity(.2),
                   ),
                   child: Form(
-                    key: _formKey,
+                    key: loginController.formKey,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -73,30 +61,62 @@ class _SignupPageState extends State<SignupPage> with TickerProviderStateMixin {
                           style: MyTextStyles.sectionTitleSmallPrimary,
                         ),
                         SizedBox(height: 20,),
-                        CustomTextFormFeild(
-                          icon: Icon(Icons.person_outline),
-                          labelText: "Name",
-                          keyboardType: TextInputType.name,
-                          onChange: (value) {
-                            setState(() {
-                              name = value;
-                            });
-                          }, maxLines: 1,
+                        TextFormField(
+                          controller: loginController.sigUpUserName,
+                          decoration:  InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            labelText: "Name",
+                            hintText: "Enter Name",
+                            prefixIcon: Icon(Icons.person_outline),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
+                                5.0,
+                              ),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Enter Name";
+                            }
+                            return null;
+                          },
                         ),
+
                          SizedBox(
                           height: 10,
                         ),
-                        CustomTextFormFeild(
-                          labelText: "Email",
-                          icon: Icon(Icons.email_outlined),
-                          keyboardType: TextInputType.emailAddress, maxLines: 1,
+                        TextFormField(
+                          controller: loginController.sigUpUserEmail,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration:  InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            labelText: "Email",
+                            hintText: "Enter Email",
+                            prefixIcon: Icon(Icons.email_outlined),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
+                                5.0,
+                              ),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Enter Email";
+                            }else if(!RegExp(loginController.emailPattern).hasMatch(value)){
+                              return "Enter Correct Email";
+                            }
+                            return null;
+                          },
                         ),
+
                         SizedBox(
                           height: 10,
                         ),
                         TextFormField(
                           obscureText: true,
-
+                          controller: loginController.sigUpUserPassword,
                           decoration:  InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
@@ -122,6 +142,7 @@ class _SignupPageState extends State<SignupPage> with TickerProviderStateMixin {
                           height: 10,
                         ),
                         TextFormField(
+                          controller: loginController.sigUpUserPassword2,
                           obscureText: true,
                           decoration:  InputDecoration(
                             filled: true,
@@ -137,11 +158,10 @@ class _SignupPageState extends State<SignupPage> with TickerProviderStateMixin {
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Please re-enter password';
+                              return "Password can't be empty";
+                            }else if(value!=loginController.sigUpUserPassword.text){
+                              return "Password not match";
                             }
-                            // if (loginSingupController.createAccountPassword.text !=  loginSingupController.createAccountConfirmPassword.text) {
-                            //   return "Password does not match";
-                            // }
                             return null;
                           },
                         ),
@@ -150,29 +170,31 @@ class _SignupPageState extends State<SignupPage> with TickerProviderStateMixin {
                         ),
                         InkWell(
                           onTap: ()  {
-                            // loginSingupController.createUserAccount();
-                          moveToHome(context);
+                            loginController.sigUpWithEmail();
+                          //moveToHome(context);
                           },
-                          child: AnimatedContainer(
-                            duration: const Duration(seconds: 1),
-                            width: changeButton ? 40 : 130,
-                            height: 40,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: primary,
-                              borderRadius:
-                              BorderRadius.circular(changeButton ? 40 : 10),
-                            ),
-                            child: changeButton
-                                ? const Icon(
-                              Icons.done,
-                              color: Colors.white,
-                            )
-                                : const Text(
-                              'Sign up',
-                              style: TextStyle(
-                                fontSize: 14,
+                          child: Obx(
+                            ()=> AnimatedContainer(
+                              duration: const Duration(seconds: 1),
+                              width: loginController.changeButton.value ? 40 : 130,
+                              height: 40,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: primary,
+                                borderRadius:
+                                BorderRadius.circular(loginController.changeButton.value ? 40 : 10),
+                              ),
+                              child: loginController.changeButton.value
+                                  ? const Icon(
+                                Icons.done,
                                 color: Colors.white,
+                              )
+                                  : const Text(
+                                'Sign up',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
