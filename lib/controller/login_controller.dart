@@ -23,7 +23,7 @@ class LoginController extends GetxController {
 
   ///EMAIL VALIDATION PATTERN
   String emailPattern = r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-
+/// updatesd
 
   sigUpWithEmail() async {
     if (formKey.currentState!.validate()) {
