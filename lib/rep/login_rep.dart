@@ -14,21 +14,24 @@ class LoginAndSignUp {
         password: password,
       );
       print("credential=> ${credential.user?.email}");
-      UserListModel(
-        userName: name,
-        userEmail: emailAddress,
-        password: password,
-        signInMethod: credential.credential?.signInMethod,
-      ).toJson();
-      FirebaseFirestore.instance.collection("users")
-          .doc(credential.user?.uid)
-          .set(
-          UserListModel(
-            userName: name,
-            userEmail: emailAddress,
-            password: password, signInMethod:
-          credential.credential?.signInMethod,
-          ).toJson()).onError((e, _) => print("Error writing document: $e"));
+      if(credential.user?.email!=null){
+        UserListModel(
+          userName: name,
+          userEmail: emailAddress,
+          password: password,
+          signInMethod: credential.credential?.signInMethod,
+        ).toJson();
+        FirebaseFirestore.instance.collection("users")
+            .doc(credential.user?.uid)
+            .set(
+            UserListModel(
+              userName: name,
+              userEmail: emailAddress,
+              password: password,
+              signInMethod: credential.credential?.signInMethod,
+            ).toJson()).onError((e, _) => print("Error writing document: $e"));
+
+      }
 
 
 
@@ -40,6 +43,12 @@ class LoginAndSignUp {
         return e.code;
       } else if (e.code == EMAIL_ALREADY_IN_USE) {
         print('The account already exists for that email.');
+        return e.code;
+      }if (e.code == INVALID_EMAIL) {
+        print('Enter Email According To Pattern.');
+        return e.code;
+      }else {
+        print("e.code ${e.code}");
         return e.code;
       }
     } catch (e) {

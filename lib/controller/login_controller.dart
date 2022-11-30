@@ -29,13 +29,15 @@ class LoginController extends GetxController {
     if (formKey.currentState!.validate()) {
       changeButton.value = true;
       final response = LoginAndSignUp.SignUp(
-        sigUpUserEmail.text,
-        sigUpUserPassword.text,
-        sigUpUserName.text
+          sigUpUserName.text,
+          sigUpUserEmail.text,
+          sigUpUserPassword.text
       );
       if(response==WEAK_PASSEWORD){
 
       }else if(response==EMAIL_ALREADY_IN_USE){
+
+      }else if(response==INVALID_EMAIL){
 
       }else if(response==UNKNOWN_ERROR){
 
