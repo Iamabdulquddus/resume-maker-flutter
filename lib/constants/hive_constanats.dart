@@ -1,0 +1,8 @@
+
+
+
+const String USER_LOGIN_DETAILS = "USER_LOGIN_DETAILS";
+const String USER_ENAIL = "USER_ENAIL";
+const String USER_PASSWORD = "USER_PASSWORD";
+const String USER_ID = "USER_ID";
+const String USER_SIGN_IN_METHOD = "USER_SIGN_IN_METHOD";

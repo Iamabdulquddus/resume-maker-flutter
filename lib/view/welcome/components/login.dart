@@ -6,8 +6,10 @@ import '../../../constants/images.dart';
 import '../../../constants/style.dart';
 import 'dart:ui' as ui;
 
+import '../../../controller/login_controller.dart';
 import '../../../widgets/textformfeild.dart';
 import '../../feature_selection/feature_selection.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -17,26 +19,10 @@ class LoginPage extends StatefulWidget {
 }
 
 
-bool changeButton = false;
-final _formKey = GlobalKey<FormState>();
-
 class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
-  moveToHome(BuildContext context) async {
-    if (_formKey.currentState!.validate()) {
-      setState(() {
-        changeButton = true;
-      });
+  LoginController loginController = Get.find();
 
-      await Future.delayed(
-        const Duration(seconds: 1),
-      );
-      await Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => FeatureSelection()));
-      setState(() {
-        changeButton = false;
-      });
-    }
-  }
+
 
 
   @override
@@ -60,7 +46,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                   height: size.height,
                   padding: EdgeInsets.all(20),
                   child: Form(
-                    key: _formKey,
+                    key: loginController.loginFormKey,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,13 +66,42 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                         SizedBox(
                           height: 20,
                         ),
-                         CustomTextFormFeild(maxLines: 1,labelText: "Email", icon: Icon(Icons.mail_outline,),),
+                         // CustomTextFormFeild(
+                         //
+                         //   labelText: "Email",
+                         //   icon: Icon(Icons.mail_outline,),
+                         // ),
+                        TextFormField(
+                          maxLines: 1,
+                          controller: loginController.loginUserEmail,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration:  InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            labelText: "Email",
+                            hintText: "Enter Email",
+                            prefixIcon: Icon(Icons.mail_outline),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
+                                5.0,
+                              ),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Enter Email";
+                            }else if(!RegExp(loginController.emailPattern).hasMatch(value)){
+                              return "Enter Correct Email";
+                            }
+                            return null;
+                          },
+                        ),
 
                         SizedBox(
                           height: 10,
                         ),
                          TextFormField(
-
+                           controller: loginController.loginUserPassword,
                             obscureText: true,
                             decoration: const InputDecoration(
                               labelText: "Password",
@@ -122,30 +137,32 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                         ),
                         InkWell(
                           onTap: () {
-                            moveToHome(context);
+                            loginController.loginWithEmailAndPassword();
                           },
-                          child: AnimatedContainer(
-                            duration: const Duration(seconds: 1),
-                            width: changeButton ? 50 : 130,
-                            height: 50,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: primary,
-                              borderRadius:
-                                  BorderRadius.circular(changeButton ? 50 : 10),
-                            ),
-                            child: changeButton
-                                ? const Icon(
-                                    Icons.done,
-                                    color: Colors.white,
-                                  )
-                                : const Text(
-                                    'Log in',
-                                    style: TextStyle(
-                                      fontSize: 16,
+                          child: Obx(
+                            ()=> AnimatedContainer(
+                              duration: const Duration(seconds: 1),
+                              width: loginController.loginChangeButton.value ? 50 : 130,
+                              height: 50,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: primary,
+                                borderRadius:
+                                    BorderRadius.circular(loginController.loginChangeButton.value ? 50 : 10),
+                              ),
+                              child: loginController.loginChangeButton.value
+                                  ? const Icon(
+                                      Icons.done,
                                       color: Colors.white,
+                                    )
+                                  : const Text(
+                                      'Log in',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                      ),
                                     ),
-                                  ),
+                            ),
                           ),
                         ),
                         const SizedBox(
