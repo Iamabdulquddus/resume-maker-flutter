@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:resumemaker/rep/login_rep.dart';
 
 import '../constants/firebase_constants.dart';
+import '../routes/routes.dart';
 
 class LoginController extends GetxController {
 
@@ -12,18 +13,51 @@ class LoginController extends GetxController {
   User? user;
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
+  ///SigUp
   TextEditingController sigUpUserName = TextEditingController();
   TextEditingController sigUpUserEmail = TextEditingController();
   TextEditingController sigUpUserPassword = TextEditingController();
   TextEditingController sigUpUserPassword2 = TextEditingController();
 
+  ///Login
+  TextEditingController loginUserEmail = TextEditingController();
+  TextEditingController loginUserPassword = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
+  final loginFormKey = GlobalKey<FormState>();
   RxBool changeButton = false.obs;
+  RxBool loginChangeButton = false.obs;
 
 
   ///EMAIL VALIDATION PATTERN
   String emailPattern = r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-/// updatesd
+
+
+  loginWithEmailAndPassword() async {
+    if(loginFormKey.currentState!.validate()){
+      loginChangeButton.value = true;
+      final responce =await LoginAndSignUp.LoginEmailAndPassword(
+        loginUserEmail.text,
+        loginUserPassword.text
+      );
+      await Future.delayed(
+        const Duration(seconds: 1),
+      );
+      if(responce==UNKNOWN_ERROR){
+
+      }else if(responce==WRONG_PASSWORD_MESSAGE){
+
+      }else if(responce==USER_NOT_FOUND_MESSAGE){
+
+      }else if(responce==LOGIN_SUCCESSFULLY){
+        loginChangeButton.value = false;
+        Get.toNamed(MyRoutes.getFeatureSelectionRoute());
+      }
+
+    }
+    loginChangeButton.value = false;
+  }
+
 
   sigUpWithEmail() async {
     if (formKey.currentState!.validate()) {
@@ -33,6 +67,7 @@ class LoginController extends GetxController {
           sigUpUserEmail.text,
           sigUpUserPassword.text
       );
+
       if(response==WEAK_PASSEWORD){
 
       }else if(response==EMAIL_ALREADY_IN_USE){
