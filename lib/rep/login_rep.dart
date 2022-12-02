@@ -68,11 +68,7 @@ class LoginAndSignUp {
             ).toJson()).onError((e, _) => print("Error writing document: $e"));
 
       }
-
-
-
-
-      return credential;
+      return SIG_UN_SUCCESSFULLY;
     } on FirebaseAuthException catch (e) {
       if (e.code == WEAK_PASSEWORD) {
         print('The password provided is too weak.');

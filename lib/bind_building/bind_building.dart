@@ -6,6 +6,7 @@ class BindBuilding implements Bindings {
   @override
   void dependencies() {
     // TODO: implement dependencies
+    print("calling controllers" );
     Get.lazyPut<LoginController>(
           () => LoginController(),
     );

@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
+import '../middleware/auth_middleware.dart';
 import '../view/feature_selection/feature_selection.dart';
+import '../view/resume/feilds/personal_details.dart';
+import '../view/resume/resume_home/resume_home.dart';
 import '../view/welcome/components/login.dart';
 import '../view/welcome/components/signup.dart';
 import '../view/welcome/welcome.dart';
@@ -75,21 +78,36 @@ class MyRoutes {
 
     GetPage(
         name: getWelcome(),
+        middlewares: [AuthMiddleware()],
+        transition: Transition.topLevel,
         page: ()=> const Welcome()
     ),
     GetPage(
         name: getLoginRoute(),
+        transition: Transition.topLevel,
         page: ()=> const LoginPage()
     ),
     GetPage(
         name: getSignupRoute(),
+        transition: Transition.topLevel,
         page: ()=> const SignupPage()
     ),
     GetPage(
         name: getFeatureSelectionRoute(),
+        transition: Transition.circularReveal,
         page: ()=> const FeatureSelection()
     ),
-
+    GetPage(
+        name: getPersonalDetailsRoute(),
+        transition: Transition.circularReveal,
+        page: ()=> const PersonalDetails()
+    ),
+    ///Now all the routes of the Resume
+    GetPage(
+        name: getResumeCardHomeRoute(),
+        transition: Transition.circularReveal,
+        page: ()=> const ResumeCardHome()
+    ),
 
   ];
 }

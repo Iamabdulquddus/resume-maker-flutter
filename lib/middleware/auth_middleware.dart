@@ -1,15 +1,23 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../routes/routes.dart';
+
 class AuthMiddleware extends GetMiddleware {
   @override
-  int? get priority => 2;
+  int? get priority => 4;
 
   bool isAuthenticated = false;
 
   @override
   RouteSettings? redirect(String? route) {
-
+    print("checking user status");
+    if(FirebaseAuth.instance.currentUser?.uid!=null){
+      Get.toNamed(MyRoutes.getFeatureSelectionRoute());
+    }else {
+      Get.toNamed(MyRoutes.getLoginRoute());
+    }
   }
 
   //This function will be called  before anything created we can use it to
