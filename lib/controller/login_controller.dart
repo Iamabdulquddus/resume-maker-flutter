@@ -23,10 +23,12 @@ class LoginController extends GetxController {
   TextEditingController loginUserEmail = TextEditingController();
   TextEditingController loginUserPassword = TextEditingController();
 
-  final formKey = GlobalKey<FormState>();
-  final loginFormKey = GlobalKey<FormState>();
+
+
   RxBool changeButton = false.obs;
   RxBool loginChangeButton = false.obs;
+  RxString errorText = "".obs;
+  RxString errorTextSigUp = "".obs;
 
 
   ///EMAIL VALIDATION PATTERN
@@ -34,78 +36,62 @@ class LoginController extends GetxController {
 
 
   loginWithEmailAndPassword() async {
-    if(loginFormKey.currentState!.validate()){
       loginChangeButton.value = true;
-      final responce =await LoginAndSignUp.LoginEmailAndPassword(
+      final response =await LoginAndSignUp.LoginEmailAndPassword(
         loginUserEmail.text,
         loginUserPassword.text
       );
+      if(response==UNKNOWN_ERROR){
+        loginChangeButton.value = false;
+        errorText.value = UNKNOWN_ERROR;
+      }else if(response==WRONG_PASSWORD_MESSAGE){
+        loginChangeButton.value = false;
+        errorText.value = WRONG_PASSWORD_MESSAGE;
+      }else if(response==USER_NOT_FOUND_MESSAGE){
+        loginChangeButton.value = false;
+        errorText.value = USER_NOT_FOUND_MESSAGE;
+      }else if(response==LOGIN_SUCCESSFULLY){
+        errorText.value = "";
+        loginChangeButton.value = false;
+        Get.offNamed(MyRoutes.getFeatureSelectionRoute());
+      }
       await Future.delayed(
         const Duration(seconds: 1),
       );
-      if(responce==UNKNOWN_ERROR){
-
-      }else if(responce==WRONG_PASSWORD_MESSAGE){
-
-      }else if(responce==USER_NOT_FOUND_MESSAGE){
-
-      }else if(responce==LOGIN_SUCCESSFULLY){
-        loginChangeButton.value = false;
-        Get.toNamed(MyRoutes.getFeatureSelectionRoute());
-      }
-
-    }
-    loginChangeButton.value = false;
   }
 
 
   sigUpWithEmail() async {
-    if (formKey.currentState!.validate()) {
       changeButton.value = true;
       final response = LoginAndSignUp.SignUp(
           sigUpUserName.text,
           sigUpUserEmail.text,
           sigUpUserPassword.text
       );
-
       if(response==WEAK_PASSEWORD){
-
+        changeButton.value = false;
+        errorTextSigUp.value = WEAK_PASSEWORD_MESSAGE;
       }else if(response==EMAIL_ALREADY_IN_USE){
-
+        changeButton.value = false;
+        errorTextSigUp.value = EMAIL_ALREADY_IN_USE_MESSAGE;
       }else if(response==INVALID_EMAIL){
-
+        changeButton.value = false;
+        errorTextSigUp.value = ENTER_EMAIL_ACCOURDING_TO_PATTERN;
       }else if(response==UNKNOWN_ERROR){
-
+        changeButton.value = false;
+        errorTextSigUp.value = USER_NOT_FOUND_MESSAGE;
+      }else if(response==SIG_UN_SUCCESSFULLY){
+        errorTextSigUp.value ="";
+        changeButton.value = false;
+        Get.offNamed(MyRoutes.getFeatureSelectionRoute());
       }
       await Future.delayed(
         const Duration(seconds: 1),
       );
-    }
-
-
-
-    changeButton.value = false;
-    update();
   }
 
-  // moveToHome(BuildContext context) async {
-  //   if (loginController.formKey.currentState!.validate()) {
-  //     setState(() {
-  //
-  //     });
-  //
-  //
-  //
-  //     setState(() {
-  //       loginController.
-  //     });
-  //   }
-  // }
 
   Future<User?> signInWithGoogle( BuildContext context)  async {
-
-
-
 
   final GoogleSignInAccount? googleSignInAccount =
   await googleSignIn.signIn();

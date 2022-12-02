@@ -22,7 +22,12 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   LoginController loginController = Get.find();
 
-
+  GlobalKey<FormState> loginFormKey = GlobalKey<FormState>(debugLabel: 'loginFormKey');
+  void signIp() {
+    if (loginFormKey.currentState!.validate()) {
+      loginController.loginWithEmailAndPassword();
+    }
+  }
 
 
   @override
@@ -46,7 +51,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                   height: size.height,
                   padding: EdgeInsets.all(20),
                   child: Form(
-                    key: loginController.loginFormKey,
+                    key: loginFormKey,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -132,12 +137,16 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                               return null;
                             },
                           ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Obx(()=> Text("${loginController.errorText.value}")),
                         const SizedBox(
-                          height: 40,
+                          height: 29,
                         ),
                         InkWell(
                           onTap: () {
-                            loginController.loginWithEmailAndPassword();
+                            signIp();
                           },
                           child: Obx(
                             ()=> AnimatedContainer(

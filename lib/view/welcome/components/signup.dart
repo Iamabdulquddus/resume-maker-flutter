@@ -26,7 +26,12 @@ String name = '';
 class _SignupPageState extends State<SignupPage> with TickerProviderStateMixin {
   LoginController loginController = Get.find();
 
-
+  GlobalKey<FormState> formKey = GlobalKey<FormState>(debugLabel: 'formKey');
+  void signUp() {
+    if (formKey.currentState!.validate()) {
+      loginController.sigUpWithEmail();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +57,7 @@ class _SignupPageState extends State<SignupPage> with TickerProviderStateMixin {
                     // color: Colors.white.withOpacity(.2),
                   ),
                   child: Form(
-                    key: loginController.formKey,
+                    key: formKey,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -170,7 +175,7 @@ class _SignupPageState extends State<SignupPage> with TickerProviderStateMixin {
                         ),
                         InkWell(
                           onTap: ()  {
-                            loginController.sigUpWithEmail();
+                            signUp();
                           //moveToHome(context);
                           },
                           child: Obx(
@@ -199,6 +204,10 @@ class _SignupPageState extends State<SignupPage> with TickerProviderStateMixin {
                             ),
                           ),
                         ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Obx(() => Text("${loginController.errorTextSigUp.value}")),
 
                       ],
                     ),

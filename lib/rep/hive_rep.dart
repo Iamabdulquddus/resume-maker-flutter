@@ -21,6 +21,15 @@ class HiveRep {
     box.put(USER_SIGN_IN_METHOD, signInMethod);
   }
 
+  static Future UserLoginStatus() async {
+    Box box = await instance.box;
+    if( await box.get(USER_ID)!=null ){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
 
 
 

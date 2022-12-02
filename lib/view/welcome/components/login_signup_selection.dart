@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resumemaker/routes/routes.dart';
 import 'package:resumemaker/view/welcome/components/login.dart';
 import 'package:resumemaker/view/welcome/components/signup.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -36,8 +37,9 @@ class SelectionScreen extends StatelessWidget {
                 children: [
                   ElevatedButton.icon(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => SignupPage()));
+                      Get.toNamed(MyRoutes.getSignupRoute());
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: (context) => SignupPage()));
                     },
                     style: ElevatedButton.styleFrom(
                         minimumSize: Size( MediaQuery.of(context).size.width - 40 , 50),
@@ -78,8 +80,9 @@ class SelectionScreen extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => LoginPage()));
+                      Get.toNamed(MyRoutes.getLoginRoute());
+                      // Navigator.of(context).push(
+                      //     MaterialPageRoute(builder: (context) => LoginPage()));
                     },
                     child: RichText(
                       text: TextSpan(children: [
