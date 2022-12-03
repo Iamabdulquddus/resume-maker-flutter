@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:resumemaker/constants/style.dart';
 import '../../../constants/images.dart';
+import '../../../routes/routes.dart';
 import '../feilds/education.dart';
 import '../feilds/experience.dart';
 import '../feilds/objective.dart';
@@ -57,50 +59,44 @@ class _NewResumeState extends State<NewResume> {
                     name: personal,
                     text: 'BASICS',
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => PersonalDetails()));
+                      Get.toNamed(MyRoutes.getPersonalDetailsRoute());
                     },
                   ),
                   ProfileEntity(
                    name: education,
                     text: 'EDUCATION',
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Education()));
+                      Get.toNamed(MyRoutes.getEducationRoute());
                     },
                   ),
                   ProfileEntity(
                    name: experience,
                     text: 'EXPERIENCE',
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Experience()));
+                      Get.toNamed(MyRoutes.getExperienceRoute());
                     },
                   ),
                   ProfileEntity(
                     name: skills,
                     text: 'SKILLS',
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => SkillsInterestActivities(
-                                field: 'Skill',
-                              )));
+                      Get.to(const SkillsInterestActivities(
+                        field: 'Skill',
+                      ));
                     },
                   ),
                   ProfileEntity(
                    name: objectives,
                     text: 'OBJECTIVES',
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Objectives()));
+                      Get.toNamed(MyRoutes.getObjectivesRoute());
                     },
                   ),
                   ProfileEntity(
                     name: reference,
                     text: 'REFERENCE',
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Reference()));
+                      Get.toNamed(MyRoutes.getReferenceRoute());
                     },
                   ),
                 ],
@@ -132,13 +128,9 @@ class _NewResumeState extends State<NewResume> {
                         ),
                         text: 'Interests',
                         onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => SkillsInterestActivities(
-                                field: 'Interest',
-                              ),
-                            ),
-                          );
+                          Get.to(const SkillsInterestActivities(
+                            field: 'Interest',
+                          ));
                         },
                       ),
                       MoreSections(
@@ -149,11 +141,7 @@ class _NewResumeState extends State<NewResume> {
                         ),
                         text: 'Projects',
                         onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => Projects(),
-                            ),
-                          );
+                          Get.toNamed(MyRoutes.getProjectsRoute());
                         },
                       ),
                       MoreSections(
@@ -164,13 +152,9 @@ class _NewResumeState extends State<NewResume> {
                         ),
                         text: 'Language',
                         onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => SkillsInterestActivities(
-                                field: 'Language',
-                              ),
-                            ),
-                          );
+                          Get.to(const SkillsInterestActivities(
+                            field: 'Language',
+                          ));
                         },
                       ),
                       MoreSections(
@@ -181,13 +165,10 @@ class _NewResumeState extends State<NewResume> {
                         ),
                         text: 'Achievements & Awards',
                         onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const SkillsInterestActivities(
-                                field: 'Achievements & Awards',
-                              ),
-                            ),
-                          );
+                          Get.to(const SkillsInterestActivities(
+                            field: 'Achievements & Awards',
+                          ));
+
                         },
                       ),
                       MoreSections(
@@ -198,13 +179,9 @@ class _NewResumeState extends State<NewResume> {
                         ),
                         text: 'Activities',
                         onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => SkillsInterestActivities(
-                                field: 'Activities',
-                              ),
-                            ),
-                          );
+                          Get.to(const SkillsInterestActivities(
+                            field: 'Activities',
+                          ));
                         },
                       ),
                       MoreSections(
@@ -215,11 +192,7 @@ class _NewResumeState extends State<NewResume> {
                         ),
                         text: 'Publication',
                         onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => Publication(),
-                            ),
-                          );
+                          Get.toNamed(MyRoutes.getPublicationRoute());
                         },
                       ),
                     ],

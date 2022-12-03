@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:resumemaker/constants/style.dart';
 import '../../constants/images.dart';
+import '../../routes/routes.dart';
 import '../birthday_card/birthdaycard_home/birthdaycard_home.dart';
 import '../buniness_card/buniesscard_home/businesscard_home.dart';
 import '../resume/resume_home/resume_home.dart';
+import 'package:get/get.dart';
 
 class FeatureSelection extends StatelessWidget {
   const FeatureSelection({Key? key}) : super(key: key);
@@ -27,22 +29,14 @@ class FeatureSelection extends StatelessWidget {
             FeatureSelectionItem(
               image: feature1,
               onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => ResumeCardHome(),
-                  ),
-                );
+                Get.toNamed(MyRoutes.getResumeCardHomeRoute());
               },
               featureHeading: 'Resume Maker',
             ),
             FeatureSelectionItem(
               image: feature2,
               onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => BusniessCardHome(),
-                  ),
-                );
+                Get.toNamed(MyRoutes.getBusniessCardHomeRoute());
               },
               featureHeading: 'Business Card',
             ),
