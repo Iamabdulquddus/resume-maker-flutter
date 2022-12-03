@@ -53,7 +53,7 @@ class LoginController extends GetxController {
       }else if(response==LOGIN_SUCCESSFULLY){
         errorText.value = "";
         loginChangeButton.value = false;
-        Get.offNamed(MyRoutes.getFeatureSelectionRoute());
+        Get.offAllNamed(MyRoutes.getFeatureSelectionRoute());
       }
       await Future.delayed(
         const Duration(seconds: 1),
@@ -63,15 +63,17 @@ class LoginController extends GetxController {
 
   sigUpWithEmail() async {
       changeButton.value = true;
-      final response = LoginAndSignUp.SignUp(
+      final response =await LoginAndSignUp.SignUp(
           sigUpUserName.text,
           sigUpUserEmail.text,
           sigUpUserPassword.text
       );
+
       if(response==WEAK_PASSEWORD){
         changeButton.value = false;
         errorTextSigUp.value = WEAK_PASSEWORD_MESSAGE;
       }else if(response==EMAIL_ALREADY_IN_USE){
+        print(response);
         changeButton.value = false;
         errorTextSigUp.value = EMAIL_ALREADY_IN_USE_MESSAGE;
       }else if(response==INVALID_EMAIL){
@@ -83,12 +85,14 @@ class LoginController extends GetxController {
       }else if(response==SIG_UN_SUCCESSFULLY){
         errorTextSigUp.value ="";
         changeButton.value = false;
-        Get.offNamed(MyRoutes.getFeatureSelectionRoute());
+        Get.offAllNamed(MyRoutes.getFeatureSelectionRoute());
       }
       await Future.delayed(
         const Duration(seconds: 1),
       );
   }
+
+
 
 
   Future<User?> signInWithGoogle( BuildContext context)  async {

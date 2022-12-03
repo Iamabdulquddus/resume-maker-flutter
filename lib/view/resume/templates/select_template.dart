@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:resumemaker/constants/style.dart';
 import 'package:resumemaker/view/resume/templates/template_name.dart';
+import '../../../constants/images.dart';
 import '../preview/preview.dart';
 
 class SelectResumeTemplate extends StatelessWidget {
@@ -45,7 +46,7 @@ class SelectResumeTemplate extends StatelessWidget {
                     height: 180,
                     color: Colors.black12,
                     child: Image.asset(
-                      'assets/images/resumetemplate/resumetemplate${index + 1}.jpeg',
+                      'assets/images/resumetemplate/template${index + 1}.jpeg',
                       fit: BoxFit.cover,
                     ),
                   ),

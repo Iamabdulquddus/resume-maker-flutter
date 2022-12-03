@@ -76,7 +76,7 @@ Future<Uint8List> template1(PdfPageFormat format, CustomData data) async {
                       title: 'Reference',
                       categoryIcon: profileImage,
                     ),
-                    Reference(
+                    ReferenceFields(
                         referenceName: 'Reference Name',
                         companyName: 'Company Name',
                         jobTitle: 'Job Title',
@@ -170,35 +170,35 @@ Future<Uint8List> template1(PdfPageFormat format, CustomData data) async {
                     title: 'Education',
                     categoryIcon: profileImage,
                   ),
-                  Education(
+                  EducationFields(
                       title: 'Matriculation',
                       text: '900',
                       subheading:
                           'Government High School Farooka Tehsil Sahiwal District Sargodha',
                       from: '2014',
                       to: '2016'),
-                  Education(
+                  EducationFields(
                       title: 'Matriculation',
                       text: '900',
                       subheading:
                           'Government High School Farooka Tehsil Sahiwal District Sargodha',
                       from: '2014',
                       to: '2016'),
-                  Education(
+                  EducationFields(
                       title: 'Matriculation',
                       text: '900',
                       subheading:
                           'Government High School Farooka Tehsil Sahiwal District Sargodha',
                       from: '2014',
                       to: '2016'),
-                  Education(
+                  EducationFields(
                       title: 'Matriculation',
                       text: '900',
                       subheading:
                           'Government High School Farooka Tehsil Sahiwal District Sargodha',
                       from: '2014',
                       to: '2016'),
-                  Education(
+                  EducationFields(
                       title: 'Matriculation',
                       text: '900',
                       subheading:
@@ -317,8 +317,8 @@ class WorkExperience extends StatelessWidget {
   }
 }
 
-class Education extends StatelessWidget {
-  Education({
+class EducationFields extends StatelessWidget {
+  EducationFields({
     required this.from,
     required this.to,
     required this.text,
@@ -397,8 +397,8 @@ class Education extends StatelessWidget {
   }
 }
 
-class Reference extends StatelessWidget {
-  Reference({
+class ReferenceFields extends StatelessWidget {
+  ReferenceFields({
     required this.referenceName,
     required this.jobTitle,
     required this.companyName,

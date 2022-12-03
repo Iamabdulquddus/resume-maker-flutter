@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:resumemaker/constants/style.dart';
+import 'package:resumemaker/routes/routes.dart';
 
 import '../../resume/new_resume/new_resume.dart';
 import 'components/resume_about.dart';
@@ -49,7 +51,7 @@ class _ResumeCardHomeState extends State<ResumeCardHome> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context)=> NewResume()));
+          Get.toNamed(MyRoutes.getNewResumeRoute());
         },
         child: const Icon(Icons.add),
       ),

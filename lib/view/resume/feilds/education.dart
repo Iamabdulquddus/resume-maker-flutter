@@ -4,7 +4,6 @@ import '../../../constants/style.dart';
 import '../../../widgets/textformfeild.dart';
 
 class Education extends StatefulWidget {
-  const Education({Key? key}) : super(key: key);
 
   @override
   State<Education> createState() => _EducationState();

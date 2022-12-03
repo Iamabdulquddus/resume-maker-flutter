@@ -19,3 +19,9 @@ String feature2 = 'assets/images/feature2.png';
 
 String businessCard1 = 'assets/images/businesscard/card1.png';
 
+
+///Resume Templates
+String template1 = 'assets/images/resumetemplate/template1.jpeg';
+String template2 = 'assets/images/resumetemplate/template2.jpeg';
+String template3 = 'assets/images/resumetemplate/template3.jpeg';
+

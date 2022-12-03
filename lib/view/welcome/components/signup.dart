@@ -205,7 +205,7 @@ class _SignupPageState extends State<SignupPage> with TickerProviderStateMixin {
                           ),
                         ),
                         const SizedBox(
-                          height: 15,
+                          height: 11,
                         ),
                         Obx(() => Text("${loginController.errorTextSigUp.value}")),
 
