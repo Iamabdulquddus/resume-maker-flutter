@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DatePicker extends StatefulWidget {
-  const DatePicker({super.key, this.labelText});
+  DatePicker({super.key, this.labelText,this.controller});
   final String? labelText;
+  TextEditingController? controller = TextEditingController();
+
   @override
   State<DatePicker> createState() => _DatePickerState();
 }
 
 class _DatePickerState extends State<DatePicker> {
-  TextEditingController dateController = TextEditingController();
 
   @override
   void initState() {
-    dateController.text = ""; //set the initial value of text field
+    widget.controller?.text = ""; //set the initial value of text field
     super.initState();
   }
 
@@ -22,7 +23,7 @@ class _DatePickerState extends State<DatePicker> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: TextFormField(
-        controller: dateController,
+        controller: widget.controller,
         decoration: InputDecoration(
           prefixIcon: Icon(Icons.cake),
           fillColor: Colors.white,
@@ -54,7 +55,7 @@ class _DatePickerState extends State<DatePicker> {
             //You can format date as per your need
 
             setState(() {
-              dateController.text =
+              widget.controller?.text =
                   formattedDate; //set foratted date to TextField value.
             });
           } else {

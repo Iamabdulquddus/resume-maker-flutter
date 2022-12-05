@@ -111,11 +111,11 @@ class MyRoutes {
         transition: Transition.circularReveal,
         page: ()=> const FeatureSelection()
     ),
-    GetPage(
-        name: getPersonalDetailsRoute(),
-        transition: Transition.circularReveal,
-        page: ()=> const PersonalDetails()
-    ),
+    // GetPage(
+    //     name: getPersonalDetailsRoute(),
+    //     transition: Transition.circularReveal,
+    //     page: ()=> const PersonalDetails()
+    // ),
     ///Now all the routes of the Resume
     ///Resume Home page
     GetPage(
@@ -131,7 +131,7 @@ class MyRoutes {
     GetPage(
         name: getPersonalDetailsRoute(),
         transition: Transition.circularReveal,
-        page: ()=> const PersonalDetails()
+        page: ()=> PersonalDetails()
     ),
     GetPage(
         name: getEducationRoute(),

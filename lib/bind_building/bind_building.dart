@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../controller/login_controller.dart';
+import '../controller/resume_controller.dart';
 
 class BindBuilding implements Bindings {
   @override
@@ -9,6 +10,10 @@ class BindBuilding implements Bindings {
     print("calling controllers" );
     Get.lazyPut<LoginController>(
           () => LoginController(),
+    );
+
+    Get.lazyPut<ResumeController>(
+          () => ResumeController(),
     );
 
   }
