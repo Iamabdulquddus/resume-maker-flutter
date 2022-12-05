@@ -10,6 +10,8 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'bind_building/bind_building.dart';
 import 'constants/style.dart';
+import 'controller/login_controller.dart';
+import 'controller/resume_controller.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -20,6 +22,9 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   print("user=> ${FirebaseAuth.instance.currentUser?.uid}");
+
+  Get.put(LoginController());
+  Get.put(ResumeController());
 
 
   runApp( MyApp() );
@@ -39,7 +44,7 @@ class MyApp extends StatelessWidget {
       //home:  SafeArea(child: FeatureSelection()),
       initialRoute: FirebaseAuth.instance.currentUser?.uid != null?  MyRoutes.getFeatureSelectionRoute() : MyRoutes.getWelcome(),
       getPages: MyRoutes.appRoutes(),
-      initialBinding: BindBuilding(),
+      //initialBinding: BindBuilding(),
     );
   }
 }
