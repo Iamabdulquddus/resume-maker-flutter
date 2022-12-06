@@ -15,6 +15,13 @@ class _EducationState extends State<Education> {
   ResumeController resumeController = Get.find();
 
   int numberOfTextFields = 1;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print(resumeController.resumeId);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

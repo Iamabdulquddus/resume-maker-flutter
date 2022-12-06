@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:resumemaker/constants/style.dart';
+import 'package:resumemaker/controller/resume_controller.dart';
 import '../../../constants/images.dart';
 import '../../../routes/routes.dart';
 import '../feilds/education.dart';
@@ -23,6 +24,13 @@ class NewResume extends StatefulWidget {
 }
 
 class _NewResumeState extends State<NewResume> {
+  ResumeController resumeController = Get.find();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    resumeController.getResumeId();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
