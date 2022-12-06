@@ -1,10 +1,9 @@
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:resumemaker/models/user_resume_list_model.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../componet/toast_message.dart';
+import '../componet/show_toast.dart';
 import '../rep/sqflite_rep.dart';
 
 class ResumeController extends GetxController{
@@ -27,6 +26,10 @@ class ResumeController extends GetxController{
   List listGPAOrMarksController = [].obs ;
   List listJoinFromYearController = [].obs ;
   List listJoinToYearController = [].obs;
+
+
+  /// Resume ID
+  RxInt resumeId = 0.obs;
 
 
   addBio() async {
@@ -59,9 +62,33 @@ class ResumeController extends GetxController{
 
 
   addEducations(){
+    bool check = false;
+
     for(int lop=0;lop<listGPAOrMarksController.length;lop++){
+      String marksOrGPA = listGPAOrMarksController[lop].text;
+      String joinFromYear = listJoinFromYearController[lop].text;
+      String joinToYear = listJoinToYearController[lop].text;
+      String uniOrSchool = listUniOrSchoolController[lop].text;
+      String degreeOrCourse = listDegreeOrCourseController[lop].text;
+      if(marksOrGPA.isEmpty || joinFromYear.isEmpty || joinToYear.isEmpty || uniOrSchool.isEmpty || degreeOrCourse.isEmpty){
+        ShowToast(message: 'empty ${lop + 1}');
+        break;
+      }
+      print("go");
+
     }
 
+  }
+
+
+  getResumeId() async {
+    try{
+      var dbHelper =  DatabaseHelper.instance;
+      resumeId.value = await dbHelper.getLastId();
+      print("resumeId=> ${resumeId.value}");
+      }catch(e){
+      print(e);
+    }
   }
 
 
