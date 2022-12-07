@@ -3,6 +3,7 @@ import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:resumemaker/constants/style.dart';
+import 'package:resumemaker/controller/resume_controller.dart';
 import 'package:resumemaker/routes/routes.dart';
 
 import '../../resume/new_resume/new_resume.dart';
@@ -20,6 +21,7 @@ class ResumeCardHome extends StatefulWidget {
 }
 
 class _ResumeCardHomeState extends State<ResumeCardHome> {
+  ResumeController resumeController = Get.find();
   List<Widget> tabItems = [
     ResumeCardHomeListItem(),
     ResumeCardGeneratedPDF(),
@@ -50,7 +52,8 @@ class _ResumeCardHomeState extends State<ResumeCardHome> {
         child: tabItems[currentIndex!],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
+          await resumeController.getResumeId();
           Get.toNamed(MyRoutes.getNewResumeRoute());
         },
         child: const Icon(Icons.add),

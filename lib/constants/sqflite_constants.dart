@@ -22,6 +22,9 @@ const String  SQ_KEY_TEXT = "TEXT";
 const String  SQ_KEY_INTEGER = "INTEGER";
 
 
+/// COMMON
+const String  SQ_USER_ID2 = "user_id";
+
 /// USER RESUME TABLES FIELDS
 const String  SQ_USER_ID = "id";
 const String  SQ_USER_NAME = "name";
@@ -31,6 +34,15 @@ const String  SQ_USER_DOB = "dob";
 const String  SQ_USER_ADDRESS = "address";
 const String  SQ_USER_WEBSITE = "website";
 const String  SQ_USER_OBJECTIVE = "objective";
+const String  SQ_USER_EDUCATION = "education";
+const String  SQ_USER_EXPERIENCE = "experience";
+const String  SQ_USER_SKILLS = "skills";
+const String  SQ_USER_REFERENC = "reference";
+const String  SQ_USER_INTEREST = "interest";
+const String  SQ_USER_PROJECTS = "projects";
+const String  SQ_USER_LANGUAGE = "languages";
+const String  SQ_USER_AWARDS = "awards";
+const String  SQ_USER_PUBLICATION = "publication";
 
 
 
@@ -52,7 +64,7 @@ const String  SQ_USER_DETAILS = "details";
 
 ///USER SKILLS TABLE FIELDS
 const String  SQ_SKILLS_TABLE_ID = "id";
-const String  SQ_USER_SKILLS = "skills";
+
 
 
 ///USER REFERENCE TABLE FIELDS

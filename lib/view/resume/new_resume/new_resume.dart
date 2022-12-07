@@ -29,7 +29,7 @@ class _NewResumeState extends State<NewResume> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    resumeController.getResumeId();
+    print(resumeController.resumeId.value);
   }
   @override
   Widget build(BuildContext context) {
