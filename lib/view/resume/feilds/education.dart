@@ -16,6 +16,14 @@ class _EducationState extends State<Education> {
 
   int numberOfTextFields = 1;
 
+  CleanController(){
+    resumeController.listUniOrSchoolController.clear();
+    resumeController.listDegreeOrCourseController.clear();
+    resumeController.listGPAOrMarksController.clear();
+    resumeController.listJoinToYearController.clear();
+    resumeController.listJoinFromYearController.clear();
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -98,7 +106,7 @@ class _EducationState extends State<Education> {
                                             horizontal: 10, vertical: 3),
                                         decoration: BoxDecoration(
                                           color: primary.withOpacity(0.2),
-                                          borderRadius: BorderRadius.only(
+                                          borderRadius: const BorderRadius.only(
                                             topLeft: Radius.circular(10),
                                             topRight: Radius.circular(10),
                                           ),
@@ -112,9 +120,7 @@ class _EducationState extends State<Education> {
                                             ),
                                             IconButton(
                                               onPressed: () {
-                                                // setState(() {
-                                                //   numberOfTextFields--;
-                                                // });
+                                                CleanController();
                                                 resumeController.valueEducationController.value--;
                                               },
                                               icon: const Icon(
@@ -126,7 +132,7 @@ class _EducationState extends State<Education> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.symmetric(
+                                        padding: const EdgeInsets.symmetric(
                                             vertical: 10, horizontal: 5),
                                         child: Column(
                                           children: [

@@ -11,26 +11,26 @@ String userResumeListModelToJson(UserResumeListModel data) => json.encode(data.t
 class UserResumeListModel {
   UserResumeListModel({
     this.id,
-    required this.name,
-    required this.email,
-    required this.phoneNo,
+    this.name,
+    this.email,
+    this.phoneNo,
     this.dob,
-    required this.address,
+    this.address,
     this.website,
     this.objective,
   });
 
-  String? id;
-  String name;
-  String email;
-  String phoneNo;
+  int? id;
+  String? name;
+  String? email;
+  String? phoneNo;
   String? dob;
-  String address;
+  String? address;
   String? website;
   String? objective;
 
   factory UserResumeListModel.fromJson(Map<String, dynamic> json) => UserResumeListModel(
-    id: json["id"].toString(),
+    id: json["id"],
     name: json["name"],
     email: json["email"],
     phoneNo: json["phone_no"],

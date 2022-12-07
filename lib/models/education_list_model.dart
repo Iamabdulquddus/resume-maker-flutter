@@ -12,7 +12,6 @@ class EducationListModel {
     this.uniOrSchool,
     this.degreeOrCourse,
   });
-
   String? gpaOrMarks;
   String? joinFromYear;
   String? joinToYear;
