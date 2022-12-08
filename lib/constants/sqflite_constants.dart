@@ -50,7 +50,7 @@ const String  SQ_USER_PUBLICATION = "publication";
 const String  SQ_EDUCATION_TABLE_ID = "id";
 const String  SQ_USER_GPA_OR_MARKS = "gpa_or_marks";
 const String  SQ_USER_JOIN_FROM_YEAR = "join_from_year";
-const String  SQ_USER_JOIN_TO_YEAR = "join_to_year";
+const String  SQ_USER_END_TO_YEAR = "end_to_year";
 const String  SQ_USER_UNI_OR_SCHOOL = "uni_or_school";
 const String  SQ_USER_DEGREE_OR_COURSE = "degree_or_course";
 
