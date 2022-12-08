@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:resumemaker/models/education_list_model.dart';
@@ -97,10 +99,7 @@ class ResumeController extends GetxController{
 
 
   addEducations() async {
-    List list = [];
-    String data="";
-
-
+    List<EducationListModel> list = [];
     for(int lop=0;lop<listGPAOrMarksController.length;lop++){
       String marksOrGPA = listGPAOrMarksController[lop].text;
       String joinFromYear = listJoinFromYearController[lop].text;
@@ -110,40 +109,32 @@ class ResumeController extends GetxController{
       if(marksOrGPA.isEmpty || joinFromYear.isEmpty || joinToYear.isEmpty || uniOrSchool.isEmpty || degreeOrCourse.isEmpty){
         ShowToast(message: 'empty ${lop + 1}');
       }else {
-        if(data.isEmpty){
-          data = "${EducationListModel(
-              gpaOrMarks: marksOrGPA,
-              joinFromYear: joinFromYear,
-              joinToYear: joinToYear,
-              uniOrSchool: uniOrSchool,
-              degreeOrCourse: degreeOrCourse
-          ).toJson()}";
-        }else{
-          data =  "$data,${EducationListModel(
-              gpaOrMarks: marksOrGPA,
-              joinFromYear: joinFromYear,
-              joinToYear: joinToYear,
-              uniOrSchool: uniOrSchool,
-              degreeOrCourse: degreeOrCourse
-          ).toJson()}";
-        }
+        list.add(
+            EducationListModel(
+                user_id: resumeId.value,
+                gpa_or_marks: marksOrGPA,
+                join_from_year: joinFromYear,
+                end_to_year: joinToYear,
+                uni_or_school: uniOrSchool,
+                degree_or_course: degreeOrCourse
+            )
+        );
       }
-
-
     }
-    data = "[$data]";
-    print("list ${data}");
     try{
       var dbHelper =  DatabaseHelper.instance;
-      int result = await dbHelper.insertUserOtherDetails(data,SQ_USER_OBJECTIVE,resumeId.value);
+      List<EducationListModel> allEducation = await dbHelper.getAllEducation(resumeId.value);
+      print("allEducation=> ${allEducation.length}");
+      if(allEducation.isNotEmpty){
+        await dbHelper.deleteAllEducationByID(resumeId.value);
+      }
+      int result = await dbHelper.insertEducation(list,SQ_USER_EDUCATION,resumeId.value);
       if(result>0){
         ShowToast(message: "Education Detail Saved");
       }
     }catch(e){
       print(e);
     }
-
-
   }
 
 

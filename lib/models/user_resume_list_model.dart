@@ -17,7 +17,7 @@ class UserResumeListModel {
     this.dob,
     this.address,
     this.website,
-    this.objective,
+    this.objective
   });
 
   int? id;
@@ -29,6 +29,7 @@ class UserResumeListModel {
   String? website;
   String? objective;
 
+
   factory UserResumeListModel.fromJson(Map<String, dynamic> json) => UserResumeListModel(
     id: json["id"],
     name: json["name"],
@@ -37,7 +38,7 @@ class UserResumeListModel {
     dob: json["dob"],
     address: json["address"],
     website: json["website"],
-    objective: json["objective"],
+    objective: json["objective"]
   );
 
 
