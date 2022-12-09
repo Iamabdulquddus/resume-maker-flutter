@@ -12,6 +12,7 @@ class EducationListModel {
     this.uni_or_school,
     this.degree_or_course,
     this.user_id,
+    this.id,
   });
 
 
@@ -21,8 +22,10 @@ class EducationListModel {
   String? uni_or_school;
   String? degree_or_course;
   int? user_id;
+  int? id;
 
   factory EducationListModel.fromJson(Map<String, dynamic> json) => EducationListModel(
+    id: json["id"],
     gpa_or_marks: json["gpa_or_marks"],
     join_from_year: json["join_from_year"],
     end_to_year: json["end_to_year"],
@@ -32,7 +35,7 @@ class EducationListModel {
   );
 
   Map<String, dynamic> toJson() => {
-    "gpa_or_marks": gpa_or_marks,
+    "id": id,
     "join_from_year": join_from_year,
     "end_to_year": end_to_year,
     "uni_or_school": uni_or_school,

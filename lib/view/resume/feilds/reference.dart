@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:resumemaker/controller/resume_controller.dart';
 
 import '../../../constants/style.dart';
 import '../../../widgets/textformfeild.dart';
@@ -11,6 +13,7 @@ class Reference extends StatefulWidget {
 }
 
 class _ReferenceState extends State<Reference> {
+  ResumeController resumeController = Get.find();
   int numberOfTextFields = 1;
   @override
   Widget build(BuildContext context) {
@@ -39,85 +42,103 @@ class _ReferenceState extends State<Reference> {
               Form(
                 child: Column(
                   children: [
-                    for (int i = 0; i < numberOfTextFields; i++)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: lightColor),
-                          child: Column(
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
-                                decoration: BoxDecoration(
-                                  color: primary.withOpacity(0.2),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    topRight: Radius.circular(10),
+                    SizedBox(
+                      height: 700,
+                      child: Obx(
+                        ()=> ListView.builder(
+                            itemCount: resumeController.valueReferenceController.value,
+                            shrinkWrap: true,
+                            itemBuilder: (context,index){
+                              resumeController.referenceCompanyNameController.add(TextEditingController());
+                              resumeController.referenceJobTileController.add(TextEditingController());
+                              resumeController.referencePhoneNoController.add(TextEditingController());
+                              resumeController.referenceNameController.add(TextEditingController());
+                              resumeController.referenceEmailController.add(TextEditingController());
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 10),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: lightColor),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 3),
+                                        decoration: BoxDecoration(
+                                          color: primary.withOpacity(0.2),
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(10),
+                                            topRight: Radius.circular(10),
+                                          ),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "Reference",
+                                              style: MyTextStyles.headingLargePrimary,
+                                            ),
+                                            IconButton(
+                                              onPressed: () {
+                                                resumeController.valueReferenceController.value--;
+                                              },
+                                              icon: const Icon(
+                                                Icons.delete,
+                                                color: primary,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 10, horizontal: 5),
+                                        child: Column(
+                                          children: [
+                                            CustomTextFormFeild(
+                                              controller: resumeController.referenceNameController[index],
+                                              maxLines: 1,
+                                              labelText: 'Reference Name',
+                                              keyboardType: TextInputType.name,
+                                            ),
+                                            CustomTextFormFeild(
+                                              controller: resumeController.referenceJobTileController[index],
+                                              maxLines: 1,
+                                              labelText: 'Job Title',
+                                              keyboardType: TextInputType.text,
+                                            ),
+                                            CustomTextFormFeild(
+                                              controller: resumeController.referenceCompanyNameController[index],
+                                              maxLines: 1,
+                                              labelText: 'Company Name',
+                                              keyboardType: TextInputType.name,
+                                            ),
+                                            CustomTextFormFeild(
+                                              controller: resumeController.referenceEmailController[index],
+                                              maxLines: 1,
+                                              labelText: 'Email',
+                                              keyboardType: TextInputType.emailAddress,
+
+                                            ),
+                                            CustomTextFormFeild(
+                                              controller: resumeController.referencePhoneNoController[index],
+                                              maxLines: 1,
+                                              labelText: 'Phone',
+                                              keyboardType: TextInputType.phone,
+                                              maxLenght: 11,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Reference",
-                                      style: MyTextStyles.headingLargePrimary,
-                                    ),
-                                    IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          numberOfTextFields--;
-                                        });
-                                      },
-                                      icon: const Icon(
-                                        Icons.delete,
-                                        color: primary,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 5),
-                                child: Column(
-                                  children: const [
-                                    CustomTextFormFeild(
-                                      maxLines: 1,
-                                      labelText: 'Reference Name',
-                                      keyboardType: TextInputType.name,
-                                    ),
-                                    CustomTextFormFeild(
-                                      maxLines: 1,
-                                      labelText: 'Job Title',
-                                      keyboardType: TextInputType.text,
-                                    ),
-                                    CustomTextFormFeild(
-                                      maxLines: 1,
-                                      labelText: 'Company Name',
-                                      keyboardType: TextInputType.name,
-                                    ),
-                                    CustomTextFormFeild(
-                                      maxLines: 1,
-                                      labelText: 'Email',
-                                      keyboardType: TextInputType.emailAddress,
-
-                                    ),
-                                    CustomTextFormFeild(
-                                      maxLines: 1,
-                                      labelText: 'Phone',
-                                      keyboardType: TextInputType.phone,
-                                      maxLenght: 11,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
+                              );
+                          }
                         ),
-                      )
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -132,9 +153,7 @@ class _ReferenceState extends State<Reference> {
                     padding: const EdgeInsets.all(15.0),
                     child: TextButton(
                       onPressed: () {
-                        setState(() {
-                          numberOfTextFields++;
-                        });
+                          resumeController.valueReferenceController.value++;
                       },
                       style: TextButton.styleFrom(
                           backgroundColor: primary.withOpacity(0.1)),

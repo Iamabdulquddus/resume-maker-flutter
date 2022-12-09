@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants/style.dart';
+import '../../../controller/resume_controller.dart';
 import '../../../widgets/textformfeild.dart';
+import 'package:get/get.dart';
 
 class SkillsInterestActivities extends StatefulWidget {
   const SkillsInterestActivities({Key? key, required this.field})
@@ -13,6 +15,8 @@ class SkillsInterestActivities extends StatefulWidget {
 }
 
 class _SkillsInterestActivitiesState extends State<SkillsInterestActivities> {
+  ResumeController _resumeController = Get.find();
+
   int numberOfTextFields = 1;
   @override
   Widget build(BuildContext context) {
@@ -41,64 +45,75 @@ class _SkillsInterestActivitiesState extends State<SkillsInterestActivities> {
               Form(
                 child: Column(
                   children: [
-                    for (int i = 0; i < numberOfTextFields; i++)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: lightColor),
-                          child: Column(
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
-                                decoration: BoxDecoration(
-                                  color: primary.withOpacity(0.2),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    topRight: Radius.circular(10),
+                    SizedBox(
+                      height: 700,
+                      child: Obx(
+                        ()=> ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: _resumeController.valueSkillController.value,
+                            itemBuilder: (context,index){
+                              _resumeController.listSkillController.add(TextEditingController());
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 10),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: lightColor),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 3),
+                                        decoration: BoxDecoration(
+                                          color: primary.withOpacity(0.2),
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(10),
+                                            topRight: Radius.circular(10),
+                                          ),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              widget.field,
+                                              style: MyTextStyles.headingLargePrimary,
+                                            ),
+                                            IconButton(
+                                              onPressed: () {
+                                                _resumeController.valueSkillController.value--;
+                                              },
+                                              icon: const Icon(
+                                                Icons.delete,
+                                                color: primary,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 10, horizontal: 5),
+                                        child: Column(
+                                          children: [
+                                            CustomTextFormFeild(
+                                              controller: _resumeController.listSkillController[index],
+                                              maxLines: 1,
+                                              labelText: "${widget.field}",
+                                              keyboardType: TextInputType.text,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      widget.field,
-                                      style: MyTextStyles.headingLargePrimary,
-                                    ),
-                                    IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          numberOfTextFields--;
-                                        });
-                                      },
-                                      icon: const Icon(
-                                        Icons.delete,
-                                        color: primary,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 5),
-                                child: Column(
-                                  children: [
-                                    CustomTextFormFeild(
-                                      maxLines: 1,
-                                      labelText: "${widget.field}",
-                                      keyboardType: TextInputType.text,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
+                              );
+                            }
                         ),
-                      )
+                      ),
+                    ),
+
                   ],
                 ),
               ),
@@ -106,16 +121,16 @@ class _SkillsInterestActivitiesState extends State<SkillsInterestActivities> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed:  (){
+                      _resumeController.addSkill();
+                    },
                     child: Text('Save'),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: TextButton(
                       onPressed: () {
-                        setState(() {
-                          numberOfTextFields++;
-                        });
+                          _resumeController.valueSkillController.value++;
                       },
                       style: TextButton.styleFrom(
                           backgroundColor: primary.withOpacity(0.1)),

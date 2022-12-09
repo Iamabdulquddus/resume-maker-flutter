@@ -5,11 +5,13 @@ import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:resumemaker/constants/images.dart';
 import 'package:resumemaker/controller/resume_controller.dart';
+import 'package:resumemaker/models/skill_list_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../constants/sqflite_constants.dart';
 import '../models/education_list_model.dart';
 import '../models/experience_list_model.dart';
+import '../models/reference_list_model.dart';
 import '../models/user_list_model.dart';
 import '../models/user_resume_list_model.dart';
 
@@ -78,7 +80,7 @@ class DatabaseHelper {
     //               $SQ_USER_PUBLICATION $SQ_KEY_TEXT
     //               )
     //               ''');
-    await db.execute('''Create TABLE $USER_EDUCATION (
+    await db.execute('''Create TABLE $USER_EDUCATION_TABLE (
                   $SQ_EDUCATION_TABLE_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
                   $SQ_USER_ID2 $SQ_KEY_INTEGER,
                   $SQ_USER_GPA_OR_MARKS $SQ_KEY_TEXT,
@@ -88,7 +90,7 @@ class DatabaseHelper {
                   $SQ_USER_DEGREE_OR_COURSE $SQ_KEY_TEXT
                    )
                   ''');
-    await db.execute('''Create TABLE $USER_EXPERIENCE (
+    await db.execute('''Create TABLE $USER_EXPERIENCE_TABLE (
                   $SQ_EXPERIENCE_TABLE_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
                   $SQ_USER_ID2 $SQ_KEY_INTEGER,
                   $SQ_USER_COMPANY_NAME $SQ_KEY_TEXT,
@@ -98,13 +100,13 @@ class DatabaseHelper {
                   $SQ_USER_DETAILS $SQ_KEY_TEXT
                    )
                   ''');
-    await db.execute('''Create TABLE $USER_SKILLS (
+    await db.execute('''Create TABLE $USER_SKILLS_TABLE (
                   $SQ_SKILLS_TABLE_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
                   $SQ_USER_ID2 $SQ_KEY_INTEGER,
                   $SQ_USER_SKILLS $SQ_KEY_TEXT
                    )
                   ''');
-    await db.execute('''Create TABLE $USER_REFERENC (
+    await db.execute('''Create TABLE $USER_REFERENC_TABLE (
                   $SQ_REFERENC_TABLE_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
                   $SQ_USER_ID2 $SQ_KEY_INTEGER,
                   $SQ_REFERENC_NAME $SQ_KEY_TEXT,
@@ -114,34 +116,34 @@ class DatabaseHelper {
                   $SQ_REFERENC_PHONE_NO $SQ_KEY_TEXT
                    )
                   ''');
-    await db.execute('''Create TABLE $USER_INTEREST (
+    await db.execute('''Create TABLE $USER_INTEREST_TABLE (
                   $SQ_INTEREST_TABLE_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
                   $SQ_USER_ID2 $SQ_KEY_INTEGER,
                   $SQ_INTEREST $SQ_KEY_TEXT
                    )
                   ''');
-    await db.execute('''Create TABLE $USER_PROJECTS (
+    await db.execute('''Create TABLE $USER_PROJECTS_TABLE (
                   $SQ_PROJECTS_TABLE_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
                   $SQ_USER_ID2 $SQ_KEY_INTEGER,
                   $SQ_USER_PROJECTS_TITLE $SQ_KEY_TEXT,
                   $SQ_USER_PROJECTS_DETAILS $SQ_KEY_TEXT
                    )
                   ''');
-    await db.execute('''Create TABLE $USER_LANGUAGE (
+    await db.execute('''Create TABLE $USER_LANGUAGE_TABLE (
                   $SQ_LANGUAGE_TABLE_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
                   $SQ_USER_ID2 $SQ_KEY_INTEGER,
                   $SQ_LANGUAGE_TITLE $SQ_KEY_TEXT
                    )
                   ''');
 
-    await db.execute('''Create TABLE $USER_AWARDS (
+    await db.execute('''Create TABLE $USER_AWARDS_TABLE (
                   $SQ_AWARDS_TABLE_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
                   $SQ_USER_ID2 $SQ_KEY_INTEGER,
                   $SQ_AWARDS $SQ_KEY_TEXT
                    )
                   ''');
 
-    await db.execute('''Create TABLE $USER_PUBLICATION (
+    await db.execute('''Create TABLE $USER_PUBLICATION_TABLE (
                   $SQ_PUBLICATION_TABLE_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
                   $SQ_USER_ID2 $SQ_KEY_INTEGER,
                   $SQ_PUBLICATION_TITLE $SQ_KEY_TEXT,
@@ -190,24 +192,35 @@ class DatabaseHelper {
     }
     return userlist;
   }
+  ///Update User Objective
+  Future<int> updateUserResumeObjective(Map<String,dynamic> objectiveMap,int id) async {
+    Database db = await instance.database;
+    print(objectiveMap);
+    int result = await db.update(USER_BIO_TABLE, objectiveMap, where: 'id=?', whereArgs: [id]);
+    if(result==0){
+      result = await db.insert(USER_BIO_TABLE,objectiveMap, );
+    }
+    return result;
+  }
+
 
 
 
 
   /// Insert Education
-  insertEducation(List<EducationListModel> list, String sq_user_education, int value) async {
+  insertEducation(List<EducationListModel> list, int value) async {
     Database db = await instance.database;
     int? result;
     for(var educationListModel  in list){
-      result = await db.insert(USER_EDUCATION, educationListModel.toJson());
+      result = await db.insert(USER_EDUCATION_TABLE, educationListModel.toJson());
     }
-    List<EducationListModel> userlist = [];
-    List<Map<String, dynamic>> listMap = await  db
-        .query(USER_EDUCATION,where: '$SQ_USER_ID2=?', whereArgs: [value]);
-       for (var educationListModel in listMap) {
-      print("data=> ${EducationListModel.fromJson(educationListModel).end_to_year}");
-      userlist.add(EducationListModel.fromJson(educationListModel));
-    }
+    // List<EducationListModel> userlist = [];
+    // List<Map<String, dynamic>> listMap = await  db
+    //     .query(USER_EDUCATION,where: '$SQ_USER_ID2=?', whereArgs: [value]);
+    //    for (var educationListModel in listMap) {
+    //   print("data=> ${EducationListModel.fromJson(educationListModel).end_to_year}");
+    //   userlist.add(EducationListModel.fromJson(educationListModel));
+    // }
     return result;
   }
   /// Get All Education
@@ -216,17 +229,118 @@ class DatabaseHelper {
     Database db = await instance.database;
     // read data from table
     List<Map<String, dynamic>> listMap = await  db
-        .rawQuery('SELECT * FROM $USER_EDUCATION WHERE $SQ_USER_ID2 = $value');//db.query(USER_EDUCATION);
+        .rawQuery('SELECT * FROM $USER_EDUCATION_TABLE WHERE $SQ_USER_ID2 = $value');//db.query(USER_EDUCATION);
     for (var educationListModel in listMap) {
       userlist.add(EducationListModel.fromJson(educationListModel));
     }
     print(userlist);
     return userlist;
   }
-  /// del Education Record By ID
+  /// Del Education Record By ID
   Future<int> deleteAllEducationByID(int id) async {
     Database db = await instance.database;
-    int result = await db.delete(USER_EDUCATION, where: '$SQ_USER_ID2=?', whereArgs: [id]);
+    int result = await db.delete(USER_EDUCATION_TABLE, where: '$SQ_USER_ID2=?', whereArgs: [id]);
+    return result;
+  }
+
+  ///Experience Insertion
+  insertExperience(List<ExperienceListModel> list, int value) async {
+    Database db = await instance.database;
+    int? result;
+    for(var experienceListModel  in list){
+      result = await db.insert(USER_EXPERIENCE_TABLE, experienceListModel.toJson());
+    }
+    return result;
+  }
+  /// Get All Experience
+  Future<List<ExperienceListModel>> getAllExperienceById(int value) async {
+    List<ExperienceListModel> userList = [];
+    Database db = await instance.database;
+    List<Map<String, dynamic>> listMap =await db
+        .query(
+        USER_EXPERIENCE_TABLE,
+        where: '$SQ_USER_ID2=?',
+        whereArgs: [value]
+    );
+    //.rawQuery('SELECT * FROM $USER_EXPERIENCE_TABLE WHERE $SQ_USER_ID2 = $value');//db.query(USER_EDUCATION);
+    for (var educationListModel in listMap) {
+      userList.add(ExperienceListModel.fromJson(educationListModel));
+    }
+    return userList;
+  }
+  /// Del Experience Record By ID
+  Future<int> deleteAllExperienceByID(int id) async {
+    Database db = await instance.database;
+    int result = await db.delete(USER_EXPERIENCE_TABLE, where: '$SQ_USER_ID2=?', whereArgs: [id]);
+    return result;
+  }
+
+
+
+
+  ///Skill Insertion
+  insertSkill(List<SkillListModel> list, int value) async {
+    Database db = await instance.database;
+    int? result;
+    for(var skillListModel  in list){
+      result = await db.insert(USER_SKILLS_TABLE, skillListModel.toJson());
+    }
+    return result;
+  }
+  /// Get All Skill
+  Future<List<SkillListModel>> getAllSkillById(int value) async {
+    List<SkillListModel> userList = [];
+    Database db = await instance.database;
+    List<Map<String, dynamic>> listMap =await db
+        .query(
+        USER_SKILLS_TABLE,
+        where: '$SQ_USER_ID2=?',
+        whereArgs: [value]
+    );
+    for (var skillListModel in listMap) {
+      userList.add(SkillListModel.fromJson(skillListModel));
+    }
+    return userList;
+  }
+  /// Del Skill Record By ID
+  Future<int> deleteAllSkillByID(int id) async {
+    Database db = await instance.database;
+    int result = await db.delete(USER_SKILLS_TABLE, where: '$SQ_USER_ID2=?', whereArgs: [id]);
+    return result;
+  }
+
+
+
+
+
+  ///Reference Insertion
+  insertReference(List<ReferenceListModel> list, int value) async {
+    Database db = await instance.database;
+    int? result;
+    for(var referenceListModel  in list){
+      result = await db.insert(USER_REFERENC_TABLE, referenceListModel.toJson());
+    }
+    return result;
+  }
+  /// Get All Reference
+  Future<List<ReferenceListModel>> getAllReferenceById(int value) async {
+    List<ReferenceListModel> userList = [];
+    Database db = await instance.database;
+    List<Map<String, dynamic>> listMap =await db
+        .query(
+        USER_REFERENC_TABLE,
+        where: '$SQ_USER_ID2=?',
+        whereArgs: [value]
+    );
+    for (var referenceListModel in listMap) {
+      userList.add(ReferenceListModel.fromJson(referenceListModel));
+    }
+    return userList;
+  }
+  /// Del Reference Record By ID
+  Future<int> deleteAllReferenceByID(int id) async {
+    Database db = await instance.database;
+    int result = await db.delete(USER_REFERENC_TABLE, where: '$SQ_USER_ID2=?', whereArgs: [id]);
     return result;
   }
 

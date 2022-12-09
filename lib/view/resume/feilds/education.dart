@@ -54,34 +54,10 @@ class _EducationState extends State<Education> {
           decoration: BoxDecoration(),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      resumeController.addEducations();
-                    },
-                    child: Text('Save'),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: TextButton(
-                      onPressed: () {
-                        // setState(() {
-                        //   numberOfTextFields++;
-                        // });
-                        resumeController.valueEducationController.value++;
-                      },
-                      style: TextButton.styleFrom(
-                          backgroundColor: primary.withOpacity(0.1)),
-                      child: const Text('Add another'),
-                    ),
-                  ),
-                ],
-              ),
+
               Form(
                 child:  SizedBox(
-                  height: 631.5,
+                  height: 700,
                   child: Obx(
                         ()=> ListView.builder(
                             shrinkWrap: true,
@@ -350,6 +326,31 @@ class _EducationState extends State<Education> {
                 //
                 //   ],
                 // ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      resumeController.addEducations();
+                    },
+                    child: Text('Save'),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: TextButton(
+                      onPressed: () {
+                        // setState(() {
+                        //   numberOfTextFields++;
+                        // });
+                        resumeController.valueEducationController.value++;
+                      },
+                      style: TextButton.styleFrom(
+                          backgroundColor: primary.withOpacity(0.1)),
+                      child: const Text('Add another'),
+                    ),
+                  ),
+                ],
               ),
 
             ],
