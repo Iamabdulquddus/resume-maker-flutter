@@ -5,16 +5,16 @@ const String  USERS_INFO_DB = "user_database.db";
 
 ///TABLE NAME
 const String  USER_BIO_TABLE = "user_bio";
-const String  USER_EDUCATION = "user_education";
-const String  USER_EXPERIENCE = "user_experience";
-const String  USER_SKILLS = "user_skills";
-const String  USER_REFERENC = "user_reference";
-const String  USER_INTEREST = "user_interest";
-const String  USER_PROJECTS = "user_projects";
-const String  USER_LANGUAGE = "user_language";
-const String  USER_AWARDS = "user_awards";
-const String  USER_ACTIVITY = "user_activity";
-const String  USER_PUBLICATION = "user_publication";
+const String  USER_EDUCATION_TABLE = "user_education";
+const String  USER_EXPERIENCE_TABLE = "user_experience";
+const String  USER_SKILLS_TABLE = "user_skills";
+const String  USER_REFERENC_TABLE = "user_reference";
+const String  USER_INTEREST_TABLE = "user_interest";
+const String  USER_PROJECTS_TABLE = "user_projects";
+const String  USER_LANGUAGE_TABLE = "user_language";
+const String  USER_AWARDS_TABLE = "user_awards";
+const String  USER_ACTIVITY_TABLE = "user_activity";
+const String  USER_PUBLICATION_TABLE = "user_publication";
 
 
 ///DATABASE KEYS
@@ -36,7 +36,6 @@ const String  SQ_USER_WEBSITE = "website";
 const String  SQ_USER_OBJECTIVE = "objective";
 const String  SQ_USER_EDUCATION = "education";
 const String  SQ_USER_EXPERIENCE = "experience";
-const String  SQ_USER_SKILLS = "skills";
 const String  SQ_USER_REFERENC = "reference";
 const String  SQ_USER_INTEREST = "interest";
 const String  SQ_USER_PROJECTS = "projects";
@@ -59,18 +58,18 @@ const String  SQ_EXPERIENCE_TABLE_ID = "id";
 const String  SQ_USER_COMPANY_NAME = "company_name";
 const String  SQ_USER_JOB_TITLE = "job_tile";
 const String  SQ_USER_COMPANY_JOIN_FROM_YEAR = "join_from_year";
-const String  SQ_USER_COMPANY_LEVE_TO_YEAR = "join_leve_year";
+const String  SQ_USER_COMPANY_LEVE_TO_YEAR = "end_to_year";
 const String  SQ_USER_DETAILS = "details";
 
 ///USER SKILLS TABLE FIELDS
 const String  SQ_SKILLS_TABLE_ID = "id";
-
+const String  SQ_USER_SKILLS = "skills";
 
 
 ///USER REFERENCE TABLE FIELDS
 const String  SQ_REFERENC_TABLE_ID = "id";
 const String  SQ_REFERENC_NAME = "reference_name";
-const String  SQ_REFERENC_JOB_TITLE = "reference_jon_title";
+const String  SQ_REFERENC_JOB_TITLE = "reference_job_title";
 const String  SQ_REFERENC_COMPANY_NAME = "reference_company_name";
 const String  SQ_REFERENC_EMAIL = "reference_email";
 const String  SQ_REFERENC_PHONE_NO = "reference_phone_no";

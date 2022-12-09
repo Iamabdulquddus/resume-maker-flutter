@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:resumemaker/controller/resume_controller.dart';
 
 import '../../../constants/style.dart';
+import 'package:get/get.dart';
 import '../../../widgets/textformfeild.dart';
 
 class Objectives extends StatefulWidget {
@@ -11,6 +13,7 @@ class Objectives extends StatefulWidget {
 }
 
 class _ObjectivesState extends State<Objectives> {
+  final ResumeController _resumeController = Get.find();
   int numberOfTextFields = 1;
   @override
   Widget build(BuildContext context) {
@@ -66,8 +69,9 @@ class _ObjectivesState extends State<Objectives> {
                     padding: EdgeInsets.symmetric(
                         vertical: 10, horizontal: 5),
                     child: Column(
-                      children: const [
+                      children: [
                         CustomTextFormFeild(
+                          controller: _resumeController.objectiveController,
                           maxLines: 3,
                           labelText: 'Objective',
                           keyboardType: TextInputType.text,
@@ -85,7 +89,9 @@ class _ObjectivesState extends State<Objectives> {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _resumeController.addObjective();
+                    },
                     child: Text('Save'),
                   ),
                 ),
