@@ -34,6 +34,7 @@ class _ReferenceState extends State<Reference> {
         ),
       ),
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           decoration: BoxDecoration(),
@@ -42,125 +43,127 @@ class _ReferenceState extends State<Reference> {
               Form(
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: 700,
-                      child: Obx(
-                        ()=> ListView.builder(
-                            itemCount: resumeController.valueReferenceController.value,
-                            shrinkWrap: true,
-                            itemBuilder: (context,index){
-                              resumeController.referenceCompanyNameController.add(TextEditingController());
-                              resumeController.referenceJobTileController.add(TextEditingController());
-                              resumeController.referencePhoneNoController.add(TextEditingController());
-                              resumeController.referenceNameController.add(TextEditingController());
-                              resumeController.referenceEmailController.add(TextEditingController());
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 10),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: lightColor),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 3),
-                                        decoration: BoxDecoration(
-                                          color: primary.withOpacity(0.2),
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(10),
-                                            topRight: Radius.circular(10),
+                    Obx(
+                      ()=> ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          physics: ScrollPhysics(),
+                          itemCount: resumeController.valueReferenceController.value,
+                          shrinkWrap: true,
+                          itemBuilder: (context,index){
+                            resumeController.referenceCompanyNameController.add(TextEditingController());
+                            resumeController.referenceJobTileController.add(TextEditingController());
+                            resumeController.referencePhoneNoController.add(TextEditingController());
+                            resumeController.referenceNameController.add(TextEditingController());
+                            resumeController.referenceEmailController.add(TextEditingController());
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: lightColor),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 3),
+                                      decoration: BoxDecoration(
+                                        color: primary.withOpacity(0.2),
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          topRight: Radius.circular(10),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Reference",
+                                            style: MyTextStyles.headingLargePrimary,
                                           ),
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "Reference",
-                                              style: MyTextStyles.headingLargePrimary,
+                                          IconButton(
+                                            onPressed: () {
+                                              resumeController.valueReferenceController.value--;
+                                            },
+                                            icon: const Icon(
+                                              Icons.delete,
+                                              color: primary,
                                             ),
-                                            IconButton(
-                                              onPressed: () {
-                                                resumeController.valueReferenceController.value--;
-                                              },
-                                              icon: const Icon(
-                                                Icons.delete,
-                                                color: primary,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 10, horizontal: 5),
-                                        child: Column(
-                                          children: [
-                                            CustomTextFormFeild(
-                                              controller: resumeController.referenceNameController[index],
-                                              maxLines: 1,
-                                              labelText: 'Reference Name',
-                                              keyboardType: TextInputType.name,
-                                            ),
-                                            CustomTextFormFeild(
-                                              controller: resumeController.referenceJobTileController[index],
-                                              maxLines: 1,
-                                              labelText: 'Job Title',
-                                              keyboardType: TextInputType.text,
-                                            ),
-                                            CustomTextFormFeild(
-                                              controller: resumeController.referenceCompanyNameController[index],
-                                              maxLines: 1,
-                                              labelText: 'Company Name',
-                                              keyboardType: TextInputType.name,
-                                            ),
-                                            CustomTextFormFeild(
-                                              controller: resumeController.referenceEmailController[index],
-                                              maxLines: 1,
-                                              labelText: 'Email',
-                                              keyboardType: TextInputType.emailAddress,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 10, horizontal: 5),
+                                      child: Column(
+                                        children: [
+                                          CustomTextFormFeild(
+                                            controller: resumeController.referenceNameController[index],
+                                            maxLines: 1,
+                                            labelText: 'Reference Name',
+                                            keyboardType: TextInputType.name,
+                                          ),
+                                          CustomTextFormFeild(
+                                            controller: resumeController.referenceJobTileController[index],
+                                            maxLines: 1,
+                                            labelText: 'Job Title',
+                                            keyboardType: TextInputType.text,
+                                          ),
+                                          CustomTextFormFeild(
+                                            controller: resumeController.referenceCompanyNameController[index],
+                                            maxLines: 1,
+                                            labelText: 'Company Name',
+                                            keyboardType: TextInputType.name,
+                                          ),
+                                          CustomTextFormFeild(
+                                            controller: resumeController.referenceEmailController[index],
+                                            maxLines: 1,
+                                            labelText: 'Email',
+                                            keyboardType: TextInputType.emailAddress,
 
-                                            ),
-                                            CustomTextFormFeild(
-                                              controller: resumeController.referencePhoneNoController[index],
-                                              maxLines: 1,
-                                              labelText: 'Phone',
-                                              keyboardType: TextInputType.phone,
-                                              maxLenght: 11,
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                          CustomTextFormFeild(
+                                            controller: resumeController.referencePhoneNoController[index],
+                                            maxLines: 1,
+                                            labelText: 'Phone',
+                                            keyboardType: TextInputType.phone,
+                                            maxLenght: 11,
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              );
-                          }
-                        ),
+                              ),
+                            );
+                        }
                       ),
                     ),
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Save'),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: TextButton(
-                      onPressed: () {
-                          resumeController.valueReferenceController.value++;
-                      },
-                      style: TextButton.styleFrom(
-                          backgroundColor: primary.withOpacity(0.1)),
-                      child: const Text('Add another'),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text('Save'),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextButton(
+                        onPressed: () {
+                            resumeController.valueReferenceController.value++;
+                        },
+                        style: TextButton.styleFrom(
+                            backgroundColor: primary.withOpacity(0.1)),
+                        child: const Text('Add another'),
+                      ),
+                    ),
+                  ],
+                ),
               )
             ],
           ),

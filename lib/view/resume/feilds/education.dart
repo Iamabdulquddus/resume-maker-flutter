@@ -56,103 +56,101 @@ class _EducationState extends State<Education> {
             children: [
 
               Form(
-                child:  SizedBox(
-                  height: 700,
-                  child: Obx(
-                        ()=> ListView.builder(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: resumeController.valueEducationController.value,
-                            itemBuilder: (context,index){
-                              resumeController.listJoinFromYearController.add(TextEditingController());
-                              resumeController.listJoinToYearController.add(TextEditingController());
-                              resumeController.listDegreeOrCourseController.add(TextEditingController());
-                              resumeController.listUniOrSchoolController.add(TextEditingController());
-                              resumeController.listGPAOrMarksController.add(TextEditingController());
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 10),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: lightColor),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 3),
-                                        decoration: BoxDecoration(
-                                          color: primary.withOpacity(0.2),
-                                          borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(10),
-                                            topRight: Radius.circular(10),
+                child:  Obx(
+                      ()=> ListView.builder(
+                          physics: ScrollPhysics(),
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: resumeController.valueEducationController.value,
+                          itemBuilder: (context,index){
+                            resumeController.listJoinFromYearController.add(TextEditingController());
+                            resumeController.listJoinToYearController.add(TextEditingController());
+                            resumeController.listDegreeOrCourseController.add(TextEditingController());
+                            resumeController.listUniOrSchoolController.add(TextEditingController());
+                            resumeController.listGPAOrMarksController.add(TextEditingController());
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: lightColor),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 3),
+                                      decoration: BoxDecoration(
+                                        color: primary.withOpacity(0.2),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          topRight: Radius.circular(10),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Education",
+                                            style: MyTextStyles.headingLargePrimary,
                                           ),
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "Education",
-                                              style: MyTextStyles.headingLargePrimary,
+                                          IconButton(
+                                            onPressed: () {
+                                              CleanController();
+                                              resumeController.valueEducationController.value--;
+                                            },
+                                            icon: const Icon(
+                                              Icons.delete,
+                                              color: primary,
                                             ),
-                                            IconButton(
-                                              onPressed: () {
-                                                CleanController();
-                                                resumeController.valueEducationController.value--;
-                                              },
-                                              icon: const Icon(
-                                                Icons.delete,
-                                                color: primary,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 10, horizontal: 5),
-                                        child: Column(
-                                          children: [
-                                            CustomTextFormFeild(
-                                              controller: resumeController.listDegreeOrCourseController[index],
-                                              maxLines: 1,
-                                              labelText: 'Degree / Course',
-                                              keyboardType: TextInputType.text,
-                                            ),
-                                            CustomTextFormFeild(
-                                              controller: resumeController.listUniOrSchoolController[index],
-                                              maxLines: 1,
-                                              labelText: 'School / Universiy',
-                                              keyboardType: TextInputType.text,
-                                            ),
-                                            CustomTextFormFeild(
-                                              controller: resumeController.listGPAOrMarksController[index],
-                                              maxLines: 1,
-                                              labelText: 'Marks / CGPA',
-                                              keyboardType: TextInputType.text,
-                                            ),
-                                            CustomTextFormFeild(
-                                              controller: resumeController.listJoinFromYearController[index],
-                                              maxLines: 1,
-                                              labelText: 'From (year)',
-                                              keyboardType: TextInputType.text,
-                                              maxLenght: 4,
-                                            ),
-                                            CustomTextFormFeild(
-                                              controller: resumeController.listJoinToYearController[index],
-                                              maxLines: 1,
-                                              labelText: 'To (year)',
-                                              keyboardType: TextInputType.text,
-                                              maxLenght: 4,
-                                            ),
-                                          ],
-                                        ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10, horizontal: 5),
+                                      child: Column(
+                                        children: [
+                                          CustomTextFormFeild(
+                                            controller: resumeController.listDegreeOrCourseController[index],
+                                            maxLines: 1,
+                                            labelText: 'Degree / Course',
+                                            keyboardType: TextInputType.text,
+                                          ),
+                                          CustomTextFormFeild(
+                                            controller: resumeController.listUniOrSchoolController[index],
+                                            maxLines: 1,
+                                            labelText: 'School / Universiy',
+                                            keyboardType: TextInputType.text,
+                                          ),
+                                          CustomTextFormFeild(
+                                            controller: resumeController.listGPAOrMarksController[index],
+                                            maxLines: 1,
+                                            labelText: 'Marks / CGPA',
+                                            keyboardType: TextInputType.text,
+                                          ),
+                                          CustomTextFormFeild(
+                                            controller: resumeController.listJoinFromYearController[index],
+                                            maxLines: 1,
+                                            labelText: 'From (year)',
+                                            keyboardType: TextInputType.text,
+                                            maxLenght: 4,
+                                          ),
+                                          CustomTextFormFeild(
+                                            controller: resumeController.listJoinToYearController[index],
+                                            maxLines: 1,
+                                            labelText: 'To (year)',
+                                            keyboardType: TextInputType.text,
+                                            maxLenght: 4,
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              );
-                            }
-                    ),
+                              ),
+                            );
+                          }
                   ),
                 ),
                 // child: Column(
@@ -327,30 +325,33 @@ class _EducationState extends State<Education> {
                 //   ],
                 // ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      resumeController.addEducations();
-                    },
-                    child: Text('Save'),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: TextButton(
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
                       onPressed: () {
-                        // setState(() {
-                        //   numberOfTextFields++;
-                        // });
-                        resumeController.valueEducationController.value++;
+                        resumeController.addEducations();
                       },
-                      style: TextButton.styleFrom(
-                          backgroundColor: primary.withOpacity(0.1)),
-                      child: const Text('Add another'),
+                      child: Text('Save'),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextButton(
+                        onPressed: () {
+                          // setState(() {
+                          //   numberOfTextFields++;
+                          // });
+                          resumeController.valueEducationController.value++;
+                        },
+                        style: TextButton.styleFrom(
+                            backgroundColor: primary.withOpacity(0.1)),
+                        child: const Text('Add another'),
+                      ),
+                    ),
+                  ],
+                ),
               ),
 
             ],
