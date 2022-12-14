@@ -5,12 +5,14 @@ import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:resumemaker/constants/images.dart';
 import 'package:resumemaker/controller/resume_controller.dart';
+import 'package:resumemaker/models/publication_lsit_model.dart';
 import 'package:resumemaker/models/skill_list_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../constants/sqflite_constants.dart';
 import '../models/education_list_model.dart';
 import '../models/experience_list_model.dart';
+import '../models/project_list_model.dart';
 import '../models/reference_list_model.dart';
 import '../models/user_list_model.dart';
 import '../models/user_resume_list_model.dart';
@@ -341,6 +343,70 @@ class DatabaseHelper {
   Future<int> deleteAllReferenceByID(int id) async {
     Database db = await instance.database;
     int result = await db.delete(USER_REFERENC_TABLE, where: '$SQ_USER_ID2=?', whereArgs: [id]);
+    return result;
+  }
+
+
+  ///Publish List Insertion
+  insertPublishList(List<PublicationListModel> list, int value) async {
+    Database db = await instance.database;
+    int? result;
+    for(var publicationListModel  in list){
+      result = await db.insert(USER_PUBLICATION_TABLE, publicationListModel.toJson());
+    }
+    return result;
+  }
+  /// Get All Publish
+  Future<List<PublicationListModel>> getAllPublishListById(int value) async {
+    List<PublicationListModel> userList = [];
+    Database db = await instance.database;
+    List<Map<String, dynamic>> listMap =await db
+        .query(
+        USER_PUBLICATION_TABLE,
+        where: '$SQ_USER_ID2=?',
+        whereArgs: [value]
+    );
+    for (var publicationListModel in listMap) {
+      userList.add(PublicationListModel.fromJson(publicationListModel));
+    }
+    return userList;
+  }
+  /// Del Publish Record By ID
+  Future<int> deleteAllPublishListByID(int id) async {
+    Database db = await instance.database;
+    int result = await db.delete(USER_PUBLICATION_TABLE, where: '$SQ_USER_ID2=?', whereArgs: [id]);
+    return result;
+  }
+
+
+  ///Publish List Insertion
+  insertProjectList(List<ProjectListModel> list, int value) async {
+    Database db = await instance.database;
+    int? result;
+    for(var projectListModel  in list){
+      result = await db.insert(USER_PROJECTS_TABLE, projectListModel.toJson());
+    }
+    return result;
+  }
+  /// Get All Publish
+  Future<List<ProjectListModel>> getAllProjectListById(int value) async {
+    List<ProjectListModel> userList = [];
+    Database db = await instance.database;
+    List<Map<String, dynamic>> listMap =await db
+        .query(
+        USER_PROJECTS_TABLE,
+        where: '$SQ_USER_ID2=?',
+        whereArgs: [value]
+    );
+    for (var projectListModel in listMap) {
+      userList.add(ProjectListModel.fromJson(projectListModel));
+    }
+    return userList;
+  }
+  /// Del Publish Record By ID
+  Future<int> deleteAllProjectListByID(int id) async {
+    Database db = await instance.database;
+    int result = await db.delete(USER_PROJECTS_TABLE, where: '$SQ_USER_ID2=?', whereArgs: [id]);
     return result;
   }
 

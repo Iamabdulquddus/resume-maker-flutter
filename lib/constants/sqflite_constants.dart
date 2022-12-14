@@ -15,6 +15,7 @@ const String  USER_LANGUAGE_TABLE = "user_language";
 const String  USER_AWARDS_TABLE = "user_awards";
 const String  USER_ACTIVITY_TABLE = "user_activity";
 const String  USER_PUBLICATION_TABLE = "user_publication";
+const String  USER_COMMON_TABLE = "user_common_table";
 
 
 ///DATABASE KEYS
@@ -43,6 +44,9 @@ const String  SQ_USER_LANGUAGE = "languages";
 const String  SQ_USER_AWARDS = "awards";
 const String  SQ_USER_PUBLICATION = "publication";
 
+
+///USER COMMON TABLE
+///
 
 
 ///USER EDUCATION TABLE FIELDS
