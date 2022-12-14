@@ -45,99 +45,101 @@ class _SkillsInterestActivitiesState extends State<SkillsInterestActivities> {
               Form(
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: 700,
-                      child: Obx(
-                        ()=> ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: _resumeController.valueSkillController.value,
-                            itemBuilder: (context,index){
-                              _resumeController.listSkillController.add(TextEditingController());
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 10),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: lightColor),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 3),
-                                        decoration: BoxDecoration(
-                                          color: primary.withOpacity(0.2),
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(10),
-                                            topRight: Radius.circular(10),
+                    Obx(
+                      ()=> ListView.builder(
+                          physics: ScrollPhysics(),
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: _resumeController.valueSkillController.value,
+                          itemBuilder: (context,index){
+                            _resumeController.listSkillController.add(TextEditingController());
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: lightColor),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 3),
+                                      decoration: BoxDecoration(
+                                        color: primary.withOpacity(0.2),
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          topRight: Radius.circular(10),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            widget.field,
+                                            style: MyTextStyles.headingLargePrimary,
                                           ),
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              widget.field,
-                                              style: MyTextStyles.headingLargePrimary,
+                                          IconButton(
+                                            onPressed: () {
+                                              _resumeController.valueSkillController.value--;
+                                            },
+                                            icon: const Icon(
+                                              Icons.delete,
+                                              color: primary,
                                             ),
-                                            IconButton(
-                                              onPressed: () {
-                                                _resumeController.valueSkillController.value--;
-                                              },
-                                              icon: const Icon(
-                                                Icons.delete,
-                                                color: primary,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 10, horizontal: 5),
-                                        child: Column(
-                                          children: [
-                                            CustomTextFormFeild(
-                                              controller: _resumeController.listSkillController[index],
-                                              maxLines: 1,
-                                              labelText: "${widget.field}",
-                                              keyboardType: TextInputType.text,
-                                            ),
-                                          ],
-                                        ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 10, horizontal: 5),
+                                      child: Column(
+                                        children: [
+                                          CustomTextFormFeild(
+                                            controller: _resumeController.listSkillController[index],
+                                            maxLines: 1,
+                                            labelText: "${widget.field}",
+                                            keyboardType: TextInputType.text,
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              );
-                            }
-                        ),
+                              ),
+                            );
+                          }
                       ),
                     ),
 
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                    onPressed:  (){
-                      _resumeController.addSkill();
-                    },
-                    child: Text('Save'),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: TextButton(
-                      onPressed: () {
-                          _resumeController.valueSkillController.value++;
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      onPressed:  (){
+                        _resumeController.addSkill();
                       },
-                      style: TextButton.styleFrom(
-                          backgroundColor: primary.withOpacity(0.1)),
-                      child: const Text('Add another'),
+                      child: Text('Save'),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextButton(
+                        onPressed: () {
+                            _resumeController.valueSkillController.value++;
+                        },
+                        style: TextButton.styleFrom(
+                            backgroundColor: primary.withOpacity(0.1)),
+                        child: const Text('Add another'),
+                      ),
+                    ),
+                  ],
+                ),
               )
             ],
           ),
