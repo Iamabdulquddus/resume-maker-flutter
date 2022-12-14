@@ -17,7 +17,6 @@ class SkillsInterestActivities extends StatefulWidget {
 class _SkillsInterestActivitiesState extends State<SkillsInterestActivities> {
   ResumeController _resumeController = Get.find();
 
-  int numberOfTextFields = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

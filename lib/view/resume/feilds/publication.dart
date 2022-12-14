@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import '../../../constants/style.dart';
+import '../../../controller/resume_controller.dart';
 import '../../../widgets/textformfeild.dart';
 
 class Publication extends StatefulWidget {
@@ -11,7 +12,8 @@ class Publication extends StatefulWidget {
 }
 
 class _PublicationState extends State<Publication> {
-  int numberOfTextFields = 1;
+  ResumeController _resumeController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,93 +41,107 @@ class _PublicationState extends State<Publication> {
               Form(
                 child: Column(
                   children: [
-                    for (int i = 0; i < numberOfTextFields; i++)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: lightColor),
-                          child: Column(
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                    Obx(
+                      ()=> ListView.builder(
+                          itemCount: _resumeController.valuePublicationController.value,
+                          shrinkWrap: true,
+                          physics: const ScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          itemBuilder: (context,index){
+                            _resumeController.publicationTitleController.add(TextEditingController());
+                            _resumeController.publicationDisController.add(TextEditingController());
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: Container(
                                 decoration: BoxDecoration(
-                                  color: primary.withOpacity(0.2),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    topRight: Radius.circular(10),
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: lightColor),
+                                child: Column(
                                   children: [
-                                    Text(
-                                      "Publication",
-                                      style: MyTextStyles.headingLargePrimary,
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 3),
+                                      decoration: BoxDecoration(
+                                        color: primary.withOpacity(0.2),
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          topRight: Radius.circular(10),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Publication",
+                                            style: MyTextStyles.headingLargePrimary,
+                                          ),
+                                          IconButton(
+                                            onPressed: () {
+                                                _resumeController.valuePublicationController.value--;
+                                            },
+                                            icon: const Icon(
+                                              Icons.delete,
+                                              color: primary,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          numberOfTextFields--;
-                                        });
-                                      },
-                                      icon: const Icon(
-                                        Icons.delete,
-                                        color: primary,
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 10, horizontal: 5),
+                                      child: Column(
+                                        children: [
+                                          CustomTextFormFeild(
+                                            controller: _resumeController.publicationTitleController[index],
+                                            maxLines: 1,
+                                            labelText: 'Title',
+                                            keyboardType: TextInputType.text,
+                                          ),
+                                          CustomTextFormFeild(
+                                            controller: _resumeController.publicationDisController[index],
+                                            maxLines: 1,
+                                            labelText: 'Description',
+                                            keyboardType: TextInputType.text,
+                                            maxLenght: 50,
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 5),
-                                child: Column(
-                                  children: const [
-                                    CustomTextFormFeild(
-                                      maxLines: 1,
-                                      labelText: 'Title',
-                                      keyboardType: TextInputType.text,
-                                    ),
-                                    CustomTextFormFeild(
-                                      maxLines: 1,
-                                      labelText: 'Description',
-                                      keyboardType: TextInputType.text,
-                                      maxLenght: 50,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
+                            );
+                          }
+                      ),
+                    ),
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Save'),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: TextButton(
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
                       onPressed: () {
-                        setState(() {
-                          numberOfTextFields++;
-                        });
+                        _resumeController.addPublish();
                       },
-                      style: TextButton.styleFrom(
-                          backgroundColor: primary.withOpacity(0.1)),
-                      child: const Text('Add another'),
+                      child: Text('Save'),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextButton(
+                        onPressed: () {
+                            _resumeController.valuePublicationController.value++;
+                        },
+                        style: TextButton.styleFrom(
+                            backgroundColor: primary.withOpacity(0.1)),
+                        child: const Text('Add another'),
+                      ),
+                    ),
+                  ],
+                ),
               )
             ],
           ),

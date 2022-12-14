@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:resumemaker/models/education_list_model.dart';
 import 'package:resumemaker/models/experience_list_model.dart';
+import 'package:resumemaker/models/project_list_model.dart';
+import 'package:resumemaker/models/publication_lsit_model.dart';
 import 'package:resumemaker/models/reference_list_model.dart';
 import 'package:resumemaker/models/user_resume_list_model.dart';
 import 'package:sqflite/sqflite.dart';
@@ -30,6 +32,8 @@ class ResumeController extends GetxController{
   RxInt valueExperienceController = 1.obs;
   RxInt valueSkillController = 1.obs;
   RxInt valueReferenceController = 1.obs;
+  RxInt valuePublicationController = 1.obs;
+  RxInt valueProjectController = 1.obs;
 
   /// List Of Controllers
   /// 1). Education
@@ -54,6 +58,13 @@ class ResumeController extends GetxController{
   List referenceCompanyNameController = [].obs ;
   List referenceEmailController = [].obs ;
   List referencePhoneNoController = [].obs ;
+  /// 6). Reference
+  List publicationTitleController = [].obs ;
+  List publicationDisController = [].obs ;
+  /// 7). Reference
+  List projectTitleController = [].obs ;
+  List projectDisController = [].obs ;
+
 
 
 
@@ -287,6 +298,69 @@ class ResumeController extends GetxController{
       int result = await dbHelper.insertReference(list,resumeId.value);
       if(result>0){
         ShowToast(message: "Reference Saved");
+      }
+    }catch(e){
+      print(e);
+    }
+  }
+
+  addPublish() async {
+    List<PublicationListModel> list = [];
+    for(int lop=0;lop<publicationTitleController.length;lop++){
+      String title = publicationTitleController[lop].text;
+      String dis = publicationDisController[lop].text;
+      if( title.isNotEmpty || dis.isNotEmpty ){
+        list.add(
+            PublicationListModel(
+              publicationDetail: dis,
+              publicationTitle: title,
+              userId: resumeId.value,
+            )
+        );
+      }
+    }
+    try{
+      var dbHelper =  DatabaseHelper.instance;
+      List<PublicationListModel> allPublishList = await dbHelper.getAllPublishListById(resumeId.value);
+      print("allPublishList=> ${allPublishList.length}");
+      if(allPublishList.isNotEmpty){
+        await dbHelper.deleteAllPublishListByID(resumeId.value);
+      }
+      int result = await dbHelper.insertPublishList(list,resumeId.value);
+      if(result>0){
+        ShowToast(message: "Publish Saved");
+      }
+    }catch(e){
+      print(e);
+    }
+  }
+
+
+  addProject() async {
+    List<ProjectListModel> list = [];
+    for(int lop=0;lop<projectTitleController.length;lop++){
+      String title = projectTitleController[lop].text;
+      String dis = projectDisController[lop].text;
+      if( title.isNotEmpty || dis.isNotEmpty ){
+        list.add(
+            ProjectListModel(
+              userProjectDetail: dis,
+              userProjectTitle: title,
+              userId: resumeId.value,
+            )
+        );
+      }
+    }
+    try{
+      var dbHelper =  DatabaseHelper.instance;
+      List<ProjectListModel> allProject = await dbHelper.getAllProjectListById(resumeId.value);
+      print("allProject=> ${allProject.length}");
+      if(allProject.isNotEmpty){
+        await dbHelper.deleteAllProjectListByID(resumeId.value);
+      }
+      int result = await dbHelper.insertProjectList(list,resumeId.value);
+      if(result>0){
+        ShowToast(message: "Project Saved");
       }
     }catch(e){
       print(e);
