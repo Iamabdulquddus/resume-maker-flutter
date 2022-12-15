@@ -1,10 +1,8 @@
-import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:resumemaker/models/common_list_model.dart';
 import 'package:resumemaker/models/education_list_model.dart';
 import 'package:resumemaker/models/experience_list_model.dart';
-import 'package:resumemaker/models/project_list_model.dart';
 import 'package:resumemaker/models/publication_lsit_model.dart';
 import 'package:resumemaker/models/reference_list_model.dart';
 import 'package:resumemaker/models/user_resume_list_model.dart';
@@ -12,7 +10,6 @@ import 'package:sqflite/sqflite.dart';
 
 import '../componet/show_toast.dart';
 import '../constants/sqflite_constants.dart';
-import '../models/skill_list_model.dart';
 import '../rep/sqflite_rep.dart';
 
 class ResumeController extends GetxController{
@@ -31,6 +28,10 @@ class ResumeController extends GetxController{
   RxInt valueEducationController = 1.obs;
   RxInt valueExperienceController = 1.obs;
   RxInt valueSkillController = 1.obs;
+  RxInt valueAwardController = 1.obs;
+  RxInt valueInterestController = 1.obs;
+  RxInt valueLanguageController = 1.obs;
+  RxInt valueActivityController = 1.obs;
   RxInt valueReferenceController = 1.obs;
   RxInt valuePublicationController = 1.obs;
   RxInt valueProjectController = 1.obs;
@@ -58,12 +59,20 @@ class ResumeController extends GetxController{
   List referenceCompanyNameController = [].obs ;
   List referenceEmailController = [].obs ;
   List referencePhoneNoController = [].obs ;
-  /// 6). Reference
+  /// 6). Publication
   List publicationTitleController = [].obs ;
   List publicationDisController = [].obs ;
-  /// 7). Reference
+  /// 7). Project
   List projectTitleController = [].obs ;
   List projectDisController = [].obs ;
+  /// 8). Interest
+  List listInterestController = [].obs ;
+  /// 9). Language
+  List listLanguageController = [].obs ;
+  /// 10). Award
+  List listAwardController = [].obs ;
+  /// 11). Activity
+  List listActivityController = [].obs ;
 
 
 
@@ -236,30 +245,31 @@ class ResumeController extends GetxController{
     }
   }
 
-  addSkill() async {
-    List<SkillListModel> list = [];
+  addCommon(String commonActivityType) async {
+    List<CommonListModel> list = [];
     for(int lop=0;lop<listSkillController.length;lop++){
       String skill = listSkillController[lop].text;
       if( skill.isEmpty ){
       }else {
         list.add(
-            SkillListModel(
+            CommonListModel(
               userId: resumeId.value,
-              skillName: skill
+              commonActivity: skill,
+              commonActivityType: commonActivityType
             )
         );
       }
     }
     try{
       var dbHelper =  DatabaseHelper.instance;
-      List<SkillListModel> allSkill = await dbHelper.getAllSkillById(resumeId.value);
-      print("allSkill=> ${allSkill.length}");
-      if(allSkill.isNotEmpty){
-        await dbHelper.deleteAllSkillByID(resumeId.value);
+      List<CommonListModel> allCommon = await dbHelper.getAllCommonListByIdAndType(resumeId.value,commonActivityType);
+      print("all$commonActivityType=> ${allCommon.length}");
+      if(allCommon.isNotEmpty){
+        await dbHelper.deleteAllCommonListByIDAndType(resumeId.value,commonActivityType);
       }
-      int result = await dbHelper.insertSkill(list,resumeId.value);
+      int result = await dbHelper.insertCommonList(list,resumeId.value);
       if(result>0){
-        ShowToast(message: "Skill Saved");
+        ShowToast(message: "$commonActivityType Saved");
       }
     }catch(e){
       print(e);
@@ -336,36 +346,6 @@ class ResumeController extends GetxController{
   }
 
 
-  addProject() async {
-    List<ProjectListModel> list = [];
-    for(int lop=0;lop<projectTitleController.length;lop++){
-      String title = projectTitleController[lop].text;
-      String dis = projectDisController[lop].text;
-      if( title.isNotEmpty || dis.isNotEmpty ){
-        list.add(
-            ProjectListModel(
-              userProjectDetail: dis,
-              userProjectTitle: title,
-              userId: resumeId.value,
-            )
-        );
-      }
-    }
-    try{
-      var dbHelper =  DatabaseHelper.instance;
-      List<ProjectListModel> allProject = await dbHelper.getAllProjectListById(resumeId.value);
-      print("allProject=> ${allProject.length}");
-      if(allProject.isNotEmpty){
-        await dbHelper.deleteAllProjectListByID(resumeId.value);
-      }
-      int result = await dbHelper.insertProjectList(list,resumeId.value);
-      if(result>0){
-        ShowToast(message: "Project Saved");
-      }
-    }catch(e){
-      print(e);
-    }
-  }
 
 
 

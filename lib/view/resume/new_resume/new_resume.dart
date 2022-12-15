@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:resumemaker/constants/sqflite_constants.dart';
 import 'package:resumemaker/constants/style.dart';
 import 'package:resumemaker/controller/resume_controller.dart';
 import '../../../constants/images.dart';
 import '../../../routes/routes.dart';
-import '../feilds/education.dart';
-import '../feilds/experience.dart';
-import '../feilds/objective.dart';
-import '../feilds/personal_details.dart';
-import '../feilds/project.dart';
-import '../feilds/publication.dart';
-import '../feilds/reference.dart';
-import '../feilds/skills_interest_activites.dart';
 import 'components/more_sections.dart';
 import 'components/profile_entity.dart';
 
@@ -88,9 +81,12 @@ class _NewResumeState extends State<NewResume> {
                     name: skills,
                     text: 'SKILLS',
                     onTap: () {
-                      Get.to(const SkillsInterestActivities(
-                        field: 'Skill',
-                      ));
+                      Get.toNamed(
+                          MyRoutes.getSkillsInterestActivitiesRoute(),
+                          arguments: {SQ_USER_COMMON_ACTIVITY_TYPE:"Skills"});
+                      // Get.toNamed(const SkillsInterestActivities(
+                      //   field: 'Skill',
+                      // ));
                     },
                   ),
                   ProfileEntity(
@@ -136,9 +132,9 @@ class _NewResumeState extends State<NewResume> {
                         ),
                         text: 'Interests',
                         onTap: () {
-                          Get.to(const SkillsInterestActivities(
-                            field: 'Interest',
-                          ));
+                          Get.toNamed(
+                              MyRoutes.getSkillsInterestActivitiesRoute(),
+                              arguments: {SQ_USER_COMMON_ACTIVITY_TYPE:"Interests"});
                         },
                       ),
                       MoreSections(
@@ -160,9 +156,10 @@ class _NewResumeState extends State<NewResume> {
                         ),
                         text: 'Language',
                         onTap: () {
-                          Get.to(const SkillsInterestActivities(
-                            field: 'Language',
-                          ));
+                          Get.toNamed(
+                              MyRoutes.getSkillsInterestActivitiesRoute(),
+                              arguments: {SQ_USER_COMMON_ACTIVITY_TYPE:"Languages"});
+
                         },
                       ),
                       MoreSections(
@@ -173,9 +170,9 @@ class _NewResumeState extends State<NewResume> {
                         ),
                         text: 'Achievements & Awards',
                         onTap: () {
-                          Get.to(const SkillsInterestActivities(
-                            field: 'Achievements & Awards',
-                          ));
+                          Get.toNamed(
+                              MyRoutes.getSkillsInterestActivitiesRoute(),
+                              arguments: {SQ_USER_COMMON_ACTIVITY_TYPE:"Achievements & Awards"});
 
                         },
                       ),
@@ -187,9 +184,9 @@ class _NewResumeState extends State<NewResume> {
                         ),
                         text: 'Activities',
                         onTap: () {
-                          Get.to(const SkillsInterestActivities(
-                            field: 'Activities',
-                          ));
+                          Get.toNamed(
+                              MyRoutes.getSkillsInterestActivitiesRoute(),
+                              arguments: {SQ_USER_COMMON_ACTIVITY_TYPE:"Activities"});
                         },
                       ),
                       MoreSections(

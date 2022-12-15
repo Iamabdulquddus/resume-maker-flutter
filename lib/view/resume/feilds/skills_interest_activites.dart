@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resumemaker/constants/sqflite_constants.dart';
 
 import '../../../constants/style.dart';
 import '../../../controller/resume_controller.dart';
@@ -6,9 +7,8 @@ import '../../../widgets/textformfeild.dart';
 import 'package:get/get.dart';
 
 class SkillsInterestActivities extends StatefulWidget {
-  const SkillsInterestActivities({Key? key, required this.field})
+  const SkillsInterestActivities({Key? key})
       : super(key: key);
-  final String field;
   @override
   State<SkillsInterestActivities> createState() =>
       _SkillsInterestActivitiesState();
@@ -16,6 +16,7 @@ class SkillsInterestActivities extends StatefulWidget {
 
 class _SkillsInterestActivitiesState extends State<SkillsInterestActivities> {
   ResumeController _resumeController = Get.find();
+  String field = Get.arguments[SQ_USER_COMMON_ACTIVITY_TYPE];
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class _SkillsInterestActivitiesState extends State<SkillsInterestActivities> {
           ),
         ),
         title: Text(
-          "${widget.field}s",
+          field,
           style: MyTextStyles.headingxSmallBoldWhite,
         ),
       ),
@@ -49,9 +50,17 @@ class _SkillsInterestActivitiesState extends State<SkillsInterestActivities> {
                           physics: ScrollPhysics(),
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
-                          itemCount: _resumeController.valueSkillController.value,
+                          itemCount:  field=="Skills" ? _resumeController.valueSkillController.value :
+                          field=="Interests" ? _resumeController.valueInterestController.value :
+                          field=="Languages" ? _resumeController.valueLanguageController.value :
+                          field=="Achievements & Awards" ? _resumeController.valueAwardController.value :
+                          _resumeController.valueActivityController.value  ,
                           itemBuilder: (context,index){
-                            _resumeController.listSkillController.add(TextEditingController());
+                            field=="Skills" ? _resumeController.listSkillController.add(TextEditingController()) :
+                            field=="Interests" ? _resumeController.listInterestController.add(TextEditingController()) :
+                            field=="Languages" ? _resumeController.listLanguageController.add(TextEditingController()) :
+                            field=="Achievements & Awards" ? _resumeController.listAwardController.add(TextEditingController()) :
+                            _resumeController.listActivityController.add(TextEditingController());
                             return Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10),
                               child: Container(
@@ -75,12 +84,16 @@ class _SkillsInterestActivitiesState extends State<SkillsInterestActivities> {
                                         MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            widget.field,
+                                            field,
                                             style: MyTextStyles.headingLargePrimary,
                                           ),
                                           IconButton(
                                             onPressed: () {
-                                              _resumeController.valueSkillController.value--;
+                                              field=="Skills" ? _resumeController.valueSkillController-- :
+                                              field=="Interests" ? _resumeController.valueInterestController-- :
+                                              field=="Languages" ? _resumeController.valueLanguageController-- :
+                                              field=="Achievements & Awards" ? _resumeController.valueAwardController-- :
+                                              _resumeController.valueActivityController--;
                                             },
                                             icon: const Icon(
                                               Icons.delete,
@@ -96,9 +109,13 @@ class _SkillsInterestActivitiesState extends State<SkillsInterestActivities> {
                                       child: Column(
                                         children: [
                                           CustomTextFormFeild(
-                                            controller: _resumeController.listSkillController[index],
+                                            controller: field=="Skills" ? _resumeController.listSkillController[index] :
+                                            field=="Interests" ? _resumeController.listInterestController[index] :
+                                            field=="Languages" ? _resumeController.listLanguageController[index] :
+                                            field=="Achievements & Awards" ? _resumeController.listAwardController[index] :
+                                            _resumeController.listActivityController[index] ,
                                             maxLines: 1,
-                                            labelText: "${widget.field}",
+                                            labelText: "${field}",
                                             keyboardType: TextInputType.text,
                                           ),
                                         ],
@@ -122,7 +139,7 @@ class _SkillsInterestActivitiesState extends State<SkillsInterestActivities> {
                   children: [
                     ElevatedButton(
                       onPressed:  (){
-                        _resumeController.addSkill();
+                        _resumeController.addCommon(field);
                       },
                       child: Text('Save'),
                     ),
@@ -130,7 +147,11 @@ class _SkillsInterestActivitiesState extends State<SkillsInterestActivities> {
                       padding: const EdgeInsets.all(15.0),
                       child: TextButton(
                         onPressed: () {
-                            _resumeController.valueSkillController.value++;
+                          field=="Skills" ? _resumeController.valueSkillController++ :
+                          field=="Interests" ? _resumeController.valueInterestController++ :
+                          field=="Languages" ? _resumeController.valueLanguageController++ :
+                          field=="Achievements & Awards" ? _resumeController.valueAwardController++ :
+                          _resumeController.valueActivityController++;
                         },
                         style: TextButton.styleFrom(
                             backgroundColor: primary.withOpacity(0.1)),

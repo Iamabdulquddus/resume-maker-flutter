@@ -119,7 +119,9 @@ class _ProjectsState extends State<Projects> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                    onPressed: () {_resumeController.addProject();},
+                    onPressed: () {
+                      //_resumeController.addProject();
+                      },
                     child: Text('Save'),
                   ),
                   Padding(

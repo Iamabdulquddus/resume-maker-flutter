@@ -1,20 +1,14 @@
-import 'dart:convert';
 import 'dart:io';
 
-import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:resumemaker/constants/images.dart';
-import 'package:resumemaker/controller/resume_controller.dart';
 import 'package:resumemaker/models/publication_lsit_model.dart';
-import 'package:resumemaker/models/skill_list_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../constants/sqflite_constants.dart';
+import '../models/common_list_model.dart';
 import '../models/education_list_model.dart';
 import '../models/experience_list_model.dart';
-import '../models/project_list_model.dart';
 import '../models/reference_list_model.dart';
-import '../models/user_list_model.dart';
 import '../models/user_resume_list_model.dart';
 
 class DatabaseHelper {
@@ -62,26 +56,6 @@ class DatabaseHelper {
                   )
                   ''');
 
-    // await db.execute('''Create TABLE $USER_BIO_TABLE (
-    //               $SQ_USER_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
-    //               $SQ_USER_NAME $SQ_KEY_TEXT,
-    //               $SQ_USER_EMAIL $SQ_KEY_TEXT,
-    //               $SQ_USER_PHONE_NO $SQ_KEY_TEXT,
-    //               $SQ_USER_DOB $SQ_KEY_TEXT,
-    //               $SQ_USER_ADDRESS $SQ_KEY_TEXT,
-    //               $SQ_USER_WEBSITE $SQ_KEY_TEXT,
-    //               $SQ_USER_OBJECTIVE $SQ_KEY_TEXT,
-    //               $SQ_USER_EDUCATION $SQ_KEY_TEXT,
-    //               $SQ_USER_EXPERIENCE $SQ_KEY_TEXT,
-    //               $SQ_USER_SKILLS $SQ_KEY_TEXT,
-    //               $SQ_USER_REFERENC $SQ_KEY_TEXT,
-    //               $SQ_USER_INTEREST $SQ_KEY_TEXT,
-    //               $SQ_USER_PROJECTS $SQ_KEY_TEXT,
-    //               $SQ_USER_LANGUAGE $SQ_KEY_TEXT,
-    //               $SQ_USER_AWARDS $SQ_KEY_TEXT,
-    //               $SQ_USER_PUBLICATION $SQ_KEY_TEXT
-    //               )
-    //               ''');
     await db.execute('''Create TABLE $USER_EDUCATION_TABLE (
                   $SQ_EDUCATION_TABLE_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
                   $SQ_USER_ID2 $SQ_KEY_INTEGER,
@@ -102,12 +76,7 @@ class DatabaseHelper {
                   $SQ_USER_DETAILS $SQ_KEY_TEXT
                    )
                   ''');
-    await db.execute('''Create TABLE $USER_SKILLS_TABLE (
-                  $SQ_SKILLS_TABLE_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
-                  $SQ_USER_ID2 $SQ_KEY_INTEGER,
-                  $SQ_USER_SKILLS $SQ_KEY_TEXT
-                   )
-                  ''');
+
     await db.execute('''Create TABLE $USER_REFERENC_TABLE (
                   $SQ_REFERENC_TABLE_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
                   $SQ_USER_ID2 $SQ_KEY_INTEGER,
@@ -118,30 +87,12 @@ class DatabaseHelper {
                   $SQ_REFERENC_PHONE_NO $SQ_KEY_TEXT
                    )
                   ''');
-    await db.execute('''Create TABLE $USER_INTEREST_TABLE (
-                  $SQ_INTEREST_TABLE_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
-                  $SQ_USER_ID2 $SQ_KEY_INTEGER,
-                  $SQ_INTEREST $SQ_KEY_TEXT
-                   )
-                  ''');
+
     await db.execute('''Create TABLE $USER_PROJECTS_TABLE (
                   $SQ_PROJECTS_TABLE_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
                   $SQ_USER_ID2 $SQ_KEY_INTEGER,
                   $SQ_USER_PROJECTS_TITLE $SQ_KEY_TEXT,
                   $SQ_USER_PROJECTS_DETAILS $SQ_KEY_TEXT
-                   )
-                  ''');
-    await db.execute('''Create TABLE $USER_LANGUAGE_TABLE (
-                  $SQ_LANGUAGE_TABLE_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
-                  $SQ_USER_ID2 $SQ_KEY_INTEGER,
-                  $SQ_LANGUAGE_TITLE $SQ_KEY_TEXT
-                   )
-                  ''');
-
-    await db.execute('''Create TABLE $USER_AWARDS_TABLE (
-                  $SQ_AWARDS_TABLE_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
-                  $SQ_USER_ID2 $SQ_KEY_INTEGER,
-                  $SQ_AWARDS $SQ_KEY_TEXT
                    )
                   ''');
 
@@ -150,6 +101,15 @@ class DatabaseHelper {
                   $SQ_USER_ID2 $SQ_KEY_INTEGER,
                   $SQ_PUBLICATION_TITLE $SQ_KEY_TEXT,
                   $SQ_PUBLICATION_DETAILS $SQ_KEY_TEXT
+                   )
+                  ''');
+
+
+    await db.execute('''Create TABLE $USER_COMMON_TABLE (
+                  $SQ_USER_COMMON_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
+                  $SQ_USER_ID2 $SQ_KEY_INTEGER,
+                  $SQ_USER_COMMON_ACTIVITY $SQ_KEY_TEXT,
+                  $SQ_USER_COMMON_ACTIVITY_TYPE $SQ_KEY_TEXT
                    )
                   ''');
 
@@ -172,7 +132,6 @@ class DatabaseHelper {
   }
   /// Insert UserResumeListModel
   Future<int> insertUserBoi(UserResumeListModel userResumeListModel) async {
-    // add dog to table
     Database db = await instance.database;
     int result = await db.insert(USER_BIO_TABLE, userResumeListModel.toJson());
     return result;
@@ -216,13 +175,6 @@ class DatabaseHelper {
     for(var educationListModel  in list){
       result = await db.insert(USER_EDUCATION_TABLE, educationListModel.toJson());
     }
-    // List<EducationListModel> userlist = [];
-    // List<Map<String, dynamic>> listMap = await  db
-    //     .query(USER_EDUCATION,where: '$SQ_USER_ID2=?', whereArgs: [value]);
-    //    for (var educationListModel in listMap) {
-    //   print("data=> ${EducationListModel.fromJson(educationListModel).end_to_year}");
-    //   userlist.add(EducationListModel.fromJson(educationListModel));
-    // }
     return result;
   }
   /// Get All Education
@@ -264,7 +216,6 @@ class DatabaseHelper {
         where: '$SQ_USER_ID2=?',
         whereArgs: [value]
     );
-    //.rawQuery('SELECT * FROM $USER_EXPERIENCE_TABLE WHERE $SQ_USER_ID2 = $value');//db.query(USER_EDUCATION);
     for (var educationListModel in listMap) {
       userList.add(ExperienceListModel.fromJson(educationListModel));
     }
@@ -276,43 +227,6 @@ class DatabaseHelper {
     int result = await db.delete(USER_EXPERIENCE_TABLE, where: '$SQ_USER_ID2=?', whereArgs: [id]);
     return result;
   }
-
-
-
-
-  ///Skill Insertion
-  insertSkill(List<SkillListModel> list, int value) async {
-    Database db = await instance.database;
-    int? result;
-    for(var skillListModel  in list){
-      result = await db.insert(USER_SKILLS_TABLE, skillListModel.toJson());
-    }
-    return result;
-  }
-  /// Get All Skill
-  Future<List<SkillListModel>> getAllSkillById(int value) async {
-    List<SkillListModel> userList = [];
-    Database db = await instance.database;
-    List<Map<String, dynamic>> listMap =await db
-        .query(
-        USER_SKILLS_TABLE,
-        where: '$SQ_USER_ID2=?',
-        whereArgs: [value]
-    );
-    for (var skillListModel in listMap) {
-      userList.add(SkillListModel.fromJson(skillListModel));
-    }
-    return userList;
-  }
-  /// Del Skill Record By ID
-  Future<int> deleteAllSkillByID(int id) async {
-    Database db = await instance.database;
-    int result = await db.delete(USER_SKILLS_TABLE, where: '$SQ_USER_ID2=?', whereArgs: [id]);
-    return result;
-  }
-
-
-
 
 
   ///Reference Insertion
@@ -379,87 +293,36 @@ class DatabaseHelper {
   }
 
 
-  ///Publish List Insertion
-  insertProjectList(List<ProjectListModel> list, int value) async {
+  ///USER COMMON List Insertion
+  insertCommonList(List<CommonListModel> list, int value) async {
     Database db = await instance.database;
     int? result;
-    for(var projectListModel  in list){
-      result = await db.insert(USER_PROJECTS_TABLE, projectListModel.toJson());
+    for(var commonListModel  in list){
+      result = await db.insert(USER_COMMON_TABLE, commonListModel.toJson());
     }
     return result;
   }
-  /// Get All Publish
-  Future<List<ProjectListModel>> getAllProjectListById(int value) async {
-    List<ProjectListModel> userList = [];
+  /// Get All COMMON
+  Future<List<CommonListModel>> getAllCommonListByIdAndType(int value, String activityType) async {
+    List<CommonListModel> userList = [];
     Database db = await instance.database;
     List<Map<String, dynamic>> listMap =await db
-        .query(
-        USER_PROJECTS_TABLE,
-        where: '$SQ_USER_ID2=?',
-        whereArgs: [value]
-    );
-    for (var projectListModel in listMap) {
-      userList.add(ProjectListModel.fromJson(projectListModel));
+        .rawQuery('SELECT * FROM $USER_COMMON_TABLE WHERE ($SQ_USER_ID2 = $value AND $SQ_USER_COMMON_ACTIVITY_TYPE="$activityType" )');
+    print(listMap);
+    for (var commonListModel in listMap) {
+      userList.add(CommonListModel.fromJson(commonListModel));
     }
     return userList;
   }
-  /// Del Publish Record By ID
-  Future<int> deleteAllProjectListByID(int id) async {
+  /// Del COMMON Record By ID
+  Future<int> deleteAllCommonListByIDAndType(int id, String activityType) async {
     Database db = await instance.database;
-    int result = await db.delete(USER_PROJECTS_TABLE, where: '$SQ_USER_ID2=?', whereArgs: [id]);
+    int result = await db.rawDelete('DELETE FROM $USER_COMMON_TABLE WHERE $SQ_USER_ID2 = $id AND $SQ_USER_COMMON_ACTIVITY_TYPE="$activityType" ');
     return result;
   }
 
 
 
-  // Future<int> insertUserOtherDetails( String  data,String columName,int id) async {
-  //   // add dog to table
-  //   Database db = await instance.database;
-  //   int result = await db.update(
-  //       USER_BIO_TABLE, {columName: data}, where: 'id=?', whereArgs: [id]);
-  //   var dbHelper =  DatabaseHelper.instance;
-  //   var result2 = await dbHelper.getAll();
-  //
-  //   try{
-  //     //print(result2[0].education);
-  //     String? dta = result2[0].education;
-  //
-  //     educationListModelFromJson(dta!).degreeOrCourse;
-  //
-  //
-  //     print(educationListModelFromJson(dta!).degreeOrCourse);
-  //   }catch (e){
-  //     print(e);
-  //   }
-  //
-  //
-  //   //int result = await db.insert(USER_EDUCATION, educationListModel.toJson());
-  //   return result;
-  // }
-
-  // read operation
-
-
-
-
-
-
-
-
-  //
-  // // delete
-  // Future<int> deleteDog(int id) async {
-  //   Database db = await instance.database;
-  //   int result = await db.delete('tbl_dog', where: 'id=?', whereArgs: [id]);
-  //   return result;
-  // }
-  //
-  // // update
-  // Future<int> updateDog(Dog dog) async {
-  //   Database db = await instance.database;
-  //   int result = await db.update('tbl_dog', dog.toMap(), where: 'id=?', whereArgs: [dog.id]);
-  //   return result;
-  // }
 
 
 }

@@ -166,7 +166,7 @@ class MyRoutes {
     GetPage(
         name: getSkillsInterestActivitiesRoute(),
         transition: Transition.circularReveal,
-        page: ()=> const SkillsInterestActivities(field: '',)
+        page: ()=> SkillsInterestActivities()
     ),
     // GetPage(
     //     name: getPreviewRoute(),

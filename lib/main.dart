@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
       //home:  SafeArea(child: FeatureSelection()),
       initialRoute: FirebaseAuth.instance.currentUser?.uid != null?  MyRoutes.getFeatureSelectionRoute() : MyRoutes.getWelcome(),
       getPages: MyRoutes.appRoutes(),
-      //initialBinding: BindBuilding(),
+      initialBinding: BindBuilding(),
     );
   }
 }
