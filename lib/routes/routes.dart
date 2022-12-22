@@ -5,8 +5,6 @@ import 'package:resumemaker/view/resume/feilds/project.dart';
 import 'package:resumemaker/view/resume/feilds/publication.dart';
 import 'package:resumemaker/view/resume/feilds/reference.dart';
 import 'package:resumemaker/view/resume/new_resume/new_resume.dart';
-import 'package:resumemaker/view/resume/preview/preview.dart';
-import 'package:resumemaker/view/resume/templates/all_templates/first_template.dart';
 import 'package:resumemaker/view/resume/templates/select_template.dart';
 import '../middleware/auth_middleware.dart';
 import '../view/buniness_card/buniesscard_home/businesscard_home.dart';

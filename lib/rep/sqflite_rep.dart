@@ -29,10 +29,8 @@ class DatabaseHelper {
   Future<Database> initializeDatabase() async {
     // Get the directory path for both Android and iOS
     // to store database
-
     Directory directory = await getApplicationDocumentsDirectory();
     String path = '${directory.path}/$USERS_INFO_DB';
-
     // open/ create database at a given path
     var studentsDatabase = await openDatabase(
       path,
@@ -47,6 +45,7 @@ class DatabaseHelper {
     await db.execute('''Create TABLE $USER_BIO_TABLE (
                   $SQ_USER_ID $SQ_KEY_INTEGER PRIMARY KEY AUTOINCREMENT,
                   $SQ_USER_NAME $SQ_KEY_TEXT,
+                  $SQ_USER_PROFILE $SQ_KEY_TEXT,
                   $SQ_USER_EMAIL $SQ_KEY_TEXT, 
                   $SQ_USER_PHONE_NO $SQ_KEY_TEXT, 
                   $SQ_USER_DOB $SQ_KEY_TEXT, 

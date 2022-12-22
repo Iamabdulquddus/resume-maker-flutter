@@ -1,5 +1,11 @@
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:resumemaker/models/common_list_model.dart';
 import 'package:resumemaker/models/education_list_model.dart';
 import 'package:resumemaker/models/experience_list_model.dart';
@@ -83,15 +89,99 @@ class ResumeController extends GetxController{
   /// Check Already Save Or Not
   RxBool checkAlreadySaveOrNot = false.obs;
 
+
+
+  ///IMAGE PICKER STRING
+  RxString imageSelector = "".obs;
+  File? image;
+  XFile? pickedImage;
+  Uint8List uint8list = Uint8List.fromList([0, 2, 5 ,7,]);
+  ImagePicker? picker;
+
+  /// LIST OF UserResumeListModel
+  // List userResumeListModel  = [].obs;
+
+  Future<List<UserResumeListModel>?> getFutureResumeList() async {
+    List<UserResumeListModel>? userResumeListModel2 = [];
+    try{
+      var dbHelper =  DatabaseHelper.instance;
+      userResumeListModel2 =  await dbHelper.getAll();
+    }catch(e){
+      print(e);
+    }
+    return userResumeListModel2;
+  }
+  Stream<List<UserResumeListModel>> getStreamResumeListModel(){
+    late final List<UserResumeListModel> userResumeListModel2;
+    late final StreamController<List<UserResumeListModel>> userResumeListModel;
+    userResumeListModel = StreamController<List<UserResumeListModel>>(
+      onListen: () async {
+        await Future<void>.delayed(const Duration(seconds: 1));
+        try{
+          var dbHelper =  DatabaseHelper.instance;
+          userResumeListModel2 = await dbHelper.getAll();
+          userResumeListModel.add(userResumeListModel2);
+        }catch(e){
+          print(e);
+        }
+      },
+    );
+    return userResumeListModel.stream;  }
+
+
+  Future<void> imagePicker2() async {
+    print("start1");
+    try{ print("start2");
+      picker = ImagePicker();
+      print("start3");
+      pickedImage = await picker?.pickImage(source: ImageSource.gallery);
+      print("start3");
+      print(pickedImage);
+      if (pickedImage != null) {
+        print("start4");
+        image = File(pickedImage!.path);
+        uint8list=await testComporessList(await pickedImage!.readAsBytes());
+        print("uint8list3333 $uint8list");
+      } else {
+        print('No image selected.');
+      }
+    }catch(e){
+      print(e);
+    }
+    update();
+    print("start1888");
+  }
+
+  Future<Uint8List> testComporessList(Uint8List list) async {
+    var result = await FlutterImageCompress.compressWithList(
+      list,
+      minHeight: 1920,
+      minWidth: 1080,
+      quality: 96,
+      rotate: 135,
+    );
+    print(list.length);
+    print(result.length);
+    return result;
+  }
+
+
+
   addBio() async {
     try {
       var dbHelper =  DatabaseHelper.instance;
       int result;
+      if(pickedImage!= null){
+        imageSelector.value = pickedImage!.path ;
+        print("imageSelector $imageSelector");
+      }
+
       if(checkAlreadySaveOrNot.isFalse){
         result = await dbHelper.insertUserBoi(
             UserResumeListModel(
                 id: resumeId.value,
                 name: bioUserName.text,
+                image_profile: uint8list.toString(),
                 email: bioUserEmail.text,
                 phoneNo: bioUserPhoneNo.text,
                 dob: bioUserDOB.text,
@@ -105,6 +195,7 @@ class ResumeController extends GetxController{
             UserResumeListModel(
                 id: resumeId.value,
                 name: bioUserName.text,
+                image_profile: imageSelector.value,
                 email: bioUserEmail.text,
                 phoneNo: bioUserPhoneNo.text,
                 dob: bioUserDOB.text,
