@@ -6,7 +6,6 @@ import 'package:resumemaker/constants/style.dart';
 import 'package:resumemaker/controller/resume_controller.dart';
 import 'package:resumemaker/routes/routes.dart';
 
-import '../../resume/new_resume/new_resume.dart';
 import 'components/resume_about.dart';
 import 'components/resume_generated_pdf.dart';
 import 'components/resume_home_list_item.dart';

@@ -12,6 +12,7 @@ class UserResumeListModel {
   UserResumeListModel({
     this.id,
     this.name,
+    this.image_profile,
     this.email,
     this.phoneNo,
     this.dob,
@@ -22,6 +23,7 @@ class UserResumeListModel {
 
   int? id;
   String? name;
+  String? image_profile;
   String? email;
   String? phoneNo;
   String? dob;
@@ -33,6 +35,7 @@ class UserResumeListModel {
   factory UserResumeListModel.fromJson(Map<String, dynamic> json) => UserResumeListModel(
     id: json["id"],
     name: json["name"],
+    image_profile: json["image_profile"],
     email: json["email"],
     phoneNo: json["phone_no"],
     dob: json["dob"],
@@ -46,6 +49,7 @@ class UserResumeListModel {
   Map<String, dynamic> toJson() => {
     "id": id,
     "name": name,
+    "image_profile": image_profile,
     "email": email,
     "phone_no": phoneNo,
     "dob": dob,

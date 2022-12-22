@@ -26,6 +26,7 @@ const String  SQ_USER_ID2 = "user_id";
 /// USER RESUME TABLES FIELDS
 const String  SQ_USER_ID = "id";
 const String  SQ_USER_NAME = "name";
+const String  SQ_USER_PROFILE = "image_profile";
 const String  SQ_USER_EMAIL = "email";
 const String  SQ_USER_PHONE_NO = "phone_no";
 const String  SQ_USER_DOB = "dob";
