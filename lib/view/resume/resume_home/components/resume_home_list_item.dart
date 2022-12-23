@@ -23,11 +23,14 @@ class ResumeCardHomeListItem extends StatelessWidget {
         stream: resumeController.getStreamResumeListModel(),
         builder: (ctx, snapshot) {
         // Displaying LoadingSpinner to indicate waiting state
+
+
         if(snapshot.hasData){
       return ListView.builder(
           itemCount: snapshot.data!.length,
           itemBuilder: (context,idex){
             UserResumeListModel userResumeListModel = snapshot.data![idex];
+
             return Card(
               margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
               // elevation: 1,
@@ -44,14 +47,14 @@ class ResumeCardHomeListItem extends StatelessWidget {
                             color: lightColor,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: userResumeListModel.image_profile!=null ?
-                          SetImageFromMemery(height: 100, widget: 100, image: userResumeListModel.image_profile,) :
+                          child: userResumeListModel.image_profile=='[0, 2, 5 ,7]' ?
                           Image.asset(
                             resumeBro,
                             height: 100,
                             width: 100,
                             fit: BoxFit.cover,
-                          ),
+                          ) :
+                          SetImageFromMemery(height: 100, widget: 100, image: userResumeListModel.image_profile,) ,
                         ),
                         const SizedBox(
                           width: 20,
@@ -160,15 +163,13 @@ class ResumeCardHomeListItem extends StatelessWidget {
 
           });
 
-    }
-    if(!snapshot.hasData){
-      return Center(
-        child: CircularProgressIndicator(),
-      );
-    }
-    return Text("data");
+    }else{
+          return const Center(child: Text("No Resume Found"));
+        }
 
-  },
+
+
+        },
       ),
 //       body: FutureBuilder(
 //         future: resumeController.getResumeList(),
